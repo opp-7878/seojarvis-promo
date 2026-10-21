@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>SEO Jarvis — превью</title>
+<style>
+@font-face { font-family: "InterF"; src: url(assets/fonts/inter-cyrillic-opsz-normal.woff2) format("woff2"); font-weight: 100 900;
+  unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
+@font-face { font-family: "InterF"; src: url(assets/fonts/inter-latin-opsz-normal.woff2) format("woff2"); font-weight: 100 900; }
+
+:root {
+  --blue: #1A69F0; --blue2: #1AA2E6; --ink: #0E1525; --ink2: #5B6577; --line: #E3E8F1; --bgapp: #F5F7FB;
+  --green: #16A34A; --amber: #F5A524; --red: #EF4444;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+body { font-family: "InterF", sans-serif; font-feature-settings: "ss01" 0, "cv11" 1; -webkit-font-smoothing: antialiased; color: var(--ink); }
+#stage { position: absolute; inset: 0; overflow: hidden; background: #02040A; }
+
+/* ---------- background ---------- */
+#bg { position: absolute; inset: -80px; }
+#bloom { position: absolute; left: 50%; top: 50%; width: 1500px; height: 1100px; margin: -550px 0 0 -750px;
+  background: radial-gradient(closest-side, rgba(26,105,240,.38), rgba(26,105,240,.12) 55%, rgba(26,105,240,0) 100%); }
+#bloom2 { position: absolute; left: 50%; top: 50%; width: 900px; height: 700px; margin: -350px 0 0 -450px;
+  background: radial-gradient(closest-side, rgba(26,162,230,.18), rgba(26,162,230,0)); }
+#lines { position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, rgba(120,150,220,.075) 0 1px, transparent 1px 64px);
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 45%, #000 0%, rgba(0,0,0,.35) 60%, transparent 100%); }
+#vignette { position: absolute; inset: 0; background: radial-gradient(ellipse 85% 85% at 50% 50%, transparent 62%, rgba(0,0,0,.32) 100%); pointer-events: none; }
+#grain { position: absolute; inset: -128px; opacity: .06; mix-blend-mode: overlay; pointer-events: none; }
+
+/* ---------- world (camera) ---------- */
+#world { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+.abs { position: absolute; }
+
+/* big typography on the dark stage */
+.big { position: absolute; color: #fff; font-weight: 680; letter-spacing: -0.035em; line-height: 1.02; white-space: nowrap; font-variation-settings: "opsz" 32; }
+.w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .02em .12em; margin-bottom: -.12em; }
+.w > span { display: inline-block; transform-origin: 0 100%; }
+.eyebrow { position: absolute; color: #6EA1FF; font-weight: 600; font-size: 26px; letter-spacing: .24em; text-transform: uppercase; white-space: nowrap; }
+.muted { color: rgba(220,228,245,.62); }
+
+/* ---------- the one shape ---------- */
+#shape { position: absolute; overflow: hidden; background: #fff;
+  box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 2px 4px rgba(0,8,30,.10), 0 12px 32px rgba(0,8,30,.22), 0 40px 120px rgba(0,8,40,.45); }
+#shapeBlue { position: absolute; inset: 0; background: linear-gradient(118deg, #0B64F4 0%, #1A7BF0 55%, #1AA2E6 100%); }
+#shapeEdge { position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(255,255,255,.22); pointer-events: none; }
+.panel { position: absolute; left: 0; top: 0; }
+.panel * { position: relative; }
+
+/* logo mark */
+.mark { position: absolute; }
+.mark svg { width: 100%; height: 100%; display: block; }
+
+/* button label inside shape */
+#ctaLabel { color: #fff; font-weight: 620; font-size: 33px; letter-spacing: -0.01em; white-space: nowrap; display: flex; align-items: center; justify-content: center; }
+
+/* ---------- app UI (light) ---------- */
+.ui { font-variation-settings: "opsz" 20; color: var(--ink); }
+.h1 { font-weight: 720; letter-spacing: -0.03em; line-height: 1.08; }
+.sub { color: var(--ink2); font-weight: 420; line-height: 1.4; }
+.lbl { font-weight: 560; color: #2A3345; }
+.inp { height: 66px; border: 1.5px solid var(--line); border-radius: 14px; background: #fff; display: flex; align-items: center; padding: 0 20px; gap: 14px; font-size: 25px; color: var(--ink); }
+.inp .ph { color: #A3ADBD; }
+.inp.focus { border-color: var(--blue); box-shadow: 0 0 0 5px rgba(26,105,240,.14); }
+.caret { display: inline-block; width: 2px; height: 30px; background: var(--blue); margin-left: 2px; vertical-align: middle; }
+.btn { height: 70px; border-radius: 14px; background: linear-gradient(90deg, #5A9BF8, #1A69F0); color: #fff; font-weight: 620; font-size: 26px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+.btn.ghost { background: #EEF4FF; color: var(--blue); }
+.ico { display: inline-block; flex: none; }
+.chip { display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 20px; border: 1.5px solid var(--line); border-radius: 13px; font-size: 22px; color: #3A4458; background: #fff; margin: 0 10px 12px 0; white-space: nowrap; }
+.qnum { display: inline-flex; width: 34px; height: 34px; border-radius: 9px; background: #EAF1FF; color: var(--blue); font-weight: 650; font-size: 19px; align-items: center; justify-content: center; margin-right: 14px; }
+.q { font-weight: 640; font-size: 25px; display: flex; align-items: center; margin: 28px 0 16px; }
+
+/* steps */
+.step { display: flex; align-items: center; height: 92px; border-bottom: 1.5px solid #EEF1F6; }
+.step:last-child { border-bottom: 0; }
+.sicon { width: 46px; height: 46px; border-radius: 50%; border: 2.5px solid #D9E1EE; flex: none; display: flex; align-items: center; justify-content: center; margin-right: 24px; }
+.stitle { font-size: 29px; font-weight: 600; letter-spacing: -0.01em; flex: 1; }
+.sval { font-size: 27px; font-weight: 620; color: var(--blue); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* odometer */
+.odo { display: inline-flex; font-variant-numeric: tabular-nums; line-height: 1; overflow: hidden; vertical-align: bottom; }
+.odo .slot { display: inline-block; height: 1em; overflow: hidden; }
+.odo .strip { display: flex; flex-direction: column; }
+.odo .strip > span { height: 1em; line-height: 1; display: block; }
+.odo .fix { display: inline-block; height: 1em; line-height: 1; }
+
+/* dashboard */
+#dash { width: 1800px; height: 1000px; }
+.dsk { position: absolute; inset: 0; display: flex; background: var(--dbg); color: var(--dink); }
+.dsk.light { --dbg: #F5F7FB; --dcard: #fff; --dink: #0E1525; --dink2: #6B7487; --dline: #E6EBF3; --dside: #fff; --dchip: #F1F5FB; --dacc: #EAF1FF; }
+.dsk.dark  { --dbg: #070D1C; --dcard: #0D1528; --dink: #EAF0FF; --dink2: #8D98B3; --dline: #1C2742; --dside: #0A1124; --dchip: #131D35; --dacc: #12224A; }
+.side { width: 270px; background: var(--dside); border-right: 1.5px solid var(--dline); padding: 30px 20px; display: flex; flex-direction: column; }
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 25px; color: var(--blue); margin: 0 8px 34px; }
+.dsk.dark .brand { color: #fff; }
+.mi { display: flex; align-items: center; gap: 14px; height: 54px; padding: 0 16px; border-radius: 12px; font-size: 21px; color: var(--dink2); margin-bottom: 6px; }
+.mi.on { background: var(--dacc); color: var(--blue); border: 1.5px solid rgba(26,105,240,.35); font-weight: 600; }
+.dsk.dark .mi.on { color: #7FB0FF; }
+.idea { margin-top: auto; border-radius: 18px; padding: 22px; background: linear-gradient(150deg, #1E63E6, #0B3FA8); color: #fff; }
+.idea b { display: block; font-size: 21px; line-height: 1.25; margin: 14px 0 8px; }
+.idea p { font-size: 16px; opacity: .8; line-height: 1.35; }
+.idea .ib { margin-top: 14px; height: 46px; border-radius: 11px; background: rgba(255,255,255,.22); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 18px; }
+.main { flex: 1; padding: 26px 34px; display: flex; flex-direction: column; gap: 22px; }
+.top { display: flex; align-items: center; gap: 14px; height: 52px; }
+.pill { height: 50px; border-radius: 12px; border: 1.5px solid var(--dline); background: var(--dcard); display: flex; align-items: center; gap: 10px; padding: 0 18px; font-size: 19px; font-weight: 520; color: var(--dink); }
+.pill.ok { border: 0; background: rgba(22,163,74,.12); color: var(--green); }
+.pill.pri { border: 0; background: var(--blue); color: #fff; }
+.iconbtn { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--dink2); }
+.av { width: 50px; height: 50px; border-radius: 12px; background: var(--dacc); color: var(--blue); font-weight: 700; font-size: 21px; display: flex; align-items: center; justify-content: center; }
+.banner { height: 84px; border-radius: 18px; background: linear-gradient(90deg, rgba(26,105,240,.12), rgba(26,105,240,.04)); display: flex; align-items: center; gap: 18px; padding: 0 22px; }
+.banner .bi { width: 48px; height: 48px; border-radius: 12px; background: var(--blue); display: flex; align-items: center; justify-content: center; }
+.banner b { font-size: 21px; }
+.banner p { font-size: 16px; color: var(--dink2); margin-top: 4px; }
+.card { background: var(--dcard); border-radius: 20px; border: 1.5px solid var(--dline); }
+.kpi { display: flex; height: 250px; padding: 28px 34px; gap: 40px; align-items: center; }
+.kpi .ttl { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+.kpi .cap { font-size: 17px; color: var(--dink2); margin-top: 16px; }
+.kpi .vis { font-size: 108px; font-weight: 700; color: var(--blue); letter-spacing: -0.04em; margin-top: 2px; }
+.dsk.dark .kpi .vis { color: #5C9BFF; }
+.delta { font-size: 21px; font-weight: 620; color: var(--green); }
+.legend { font-size: 18px; color: var(--dink2); }
+.legend div { display: flex; align-items: center; height: 34px; gap: 12px; }
+.legend i { width: 12px; height: 12px; border-radius: 4px; display: inline-block; }
+.legend em { font-style: normal; color: var(--dink); font-weight: 620; width: 60px; text-align: right; margin-left: auto; font-variant-numeric: tabular-nums; }
+.tbl { flex: 1; padding: 22px 30px; }
+.thead, .trow { display: grid; grid-template-columns: 1fr 150px 160px 160px 150px; align-items: center; }
+.thead { font-size: 17px; color: var(--dink2); height: 46px; border-bottom: 1.5px solid var(--dline); }
+.trow { height: 64px; border-bottom: 1.5px solid var(--dline); font-size: 21px; }
+.trow:last-child { border-bottom: 0; }
+.trow .qq { font-weight: 560; }
+.trow .fr { color: var(--dink2); font-variant-numeric: tabular-nums; }
+.pos { display: inline-flex; min-width: 50px; height: 40px; padding: 0 12px; border-radius: 11px; align-items: center; justify-content: center; font-weight: 650; background: var(--dchip); font-variant-numeric: tabular-nums; }
+.pos.top { background: rgba(22,163,74,.14); color: var(--green); }
+.dyn { font-weight: 650; color: var(--green); font-variant-numeric: tabular-nums; }
+.dyn.zero { color: var(--dink2); }
+.tabs { display: flex; gap: 8px; margin-bottom: 14px; align-items: center; }
+.tab { height: 46px; padding: 0 18px; border-radius: 11px; display: flex; align-items: center; font-size: 18px; color: var(--dink2); }
+.tab.on { background: var(--dacc); color: var(--blue); font-weight: 600; }
+
+/* hud */
+#hud { position: absolute; inset: 0; pointer-events: none; }
+#cursor { position: absolute; left: 0; top: 0; width: 44px; height: 54px; transform-origin: 6px 4px; filter: drop-shadow(0 6px 10px rgba(0,0,0,.35)); }
+#ripple { position: absolute; width: 90px; height: 90px; margin: -45px 0 0 -45px; border-radius: 50%; border: 3px solid rgba(26,105,240,.9); }
+#flash { position: absolute; inset: 0; background: #000; opacity: 0; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bg"><div id="bloom"></div><div id="bloom2"></div><div id="lines"></div></div>
+  <canvas id="grain" width="512" height="512"></canvas>
+
+  <div id="world">
+    <!-- S0 hook text -->
+    <div id="hook" class="big" style="left:900px; top:338px; font-size:150px;">
+      <div><span class="w"><span>Отчёт</span></span></div>
+      <div><span class="w"><span>раз</span></span> <span class="w"><span>в</span></span> <span class="w"><span>месяц?</span></span></div>
+    </div>
+
+    <!-- S1 hero -->
+    <div id="eyebrow" class="eyebrow" style="left:0; width:1920px; text-align:center; top:250px;">Платформа вместо агентства</div>
+    <div id="hero" class="big" style="left:0; width:1920px; text-align:center; top:318px; font-size:124px;">
+      <div><span class="w"><span>Продвижение</span></span> <span class="w"><span>сайтов</span></span></div>
+      <div><span class="w"><span>в</span></span> <span class="w"><span>ТОП</span></span> <span class="w"><span>Яндекса</span></span></div>
+    </div>
+
+    <!-- S8 outro text -->
+    <div id="wordmark" class="big" style="left:0; top:352px; font-size:112px; font-weight:700;">Jarvis</div>
+    <div id="outro" class="big" style="left:0; width:1920px; text-align:center; top:560px; font-size:128px;">
+      <span class="w"><span>SEO</span></span> <span class="w"><span>на</span></span> <span class="w"><span>автопилоте</span></span>
+    </div>
+    <div id="outroSub" class="big muted" style="left:0; width:1920px; text-align:center; top:742px; font-size:44px; font-weight:520; letter-spacing:-0.01em;">
+      <span class="w"><span>5 дней бесплатно</span></span> <span class="w"><span style="color:#5C9BFF">·</span></span> <span class="w"><span style="color:#fff">seojarvis.ru</span></span>
+    </div>
+
+    <!-- THE ONE SHAPE -->
+    <div id="shape">
+      <div id="shapeBlue"></div>
+
+      <!-- P0: PDF report -->
+      <div class="panel ui" id="pPdf" style="width:440px; height:580px; padding:38px;">
+        <div style="display:flex; align-items:center; gap:14px;">
+          <div style="width:58px; height:70px; border-radius:10px; background:#FDECEC; color:#E5484D; font-weight:800; font-size:17px; display:flex; align-items:flex-end; justify-content:center; padding-bottom:10px;">PDF</div>
+          <div><div style="font-weight:650; font-size:21px;">Отчёт_SEO.pdf</div><div class="sub" style="font-size:17px; margin-top:4px;">от агентства · 2,4 МБ</div></div>
+        </div>
+        <div style="height:1.5px; background:#EEF1F6; margin:26px 0 22px;"></div>
+        <div class="h1" style="font-size:30px;">Отчёт за сентябрь</div>
+        <div class="sub" style="font-size:18px; margin-top:6px;">Позиции на 1 сентября</div>
+        <div style="margin-top:24px; height:150px; border-radius:14px; background:#F6F8FC; padding:16px 18px; position:relative;">
+          <div class="sub" style="font-size:16px;">Видимость сайта</div>
+          <svg width="368" height="96" viewBox="0 0 368 96" style="position:absolute; left:18px; bottom:10px;"><path d="M0 70 C40 68, 70 72, 110 70 S180 69, 220 71 S300 70, 330 70" fill="none" stroke="#B4BDCC" stroke-width="3" stroke-linecap="round"/><circle cx="330" cy="70" r="6" fill="#B4BDCC"/></svg>
+          <div style="position:absolute; right:18px; top:14px; font-weight:650; font-size:18px; color:#8A94A6;">± 0%</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-top:26px; font-size:18px;"><span class="sub">Следующий отчёт</span><b style="color:#E5484D;">через 30 дней</b></div>
+      </div>
+
+      <!-- logo mark (logo state + outro) -->
+      <div class="mark" id="pMark"><svg viewBox="6 6 20 20"><path d="M25.0111 13.2056C25.2516 16.1344 23.9056 10.7651 18.5327 10.8046C12.8162 10.6513 11.8413 16.2738 12.1908 13.1058C12.5403 9.93777 15.0655 7.13892 18.5298 7.13892C21.9941 7.13892 24.7706 10.2769 25.0111 13.2056Z" fill="#fff"/><path d="M6.98889 18.8921C6.74837 15.9634 8.09435 21.3326 13.4673 21.2931C19.1838 21.4464 20.1588 15.8239 19.8092 18.992C19.4597 22.16 16.9345 24.9588 13.4702 24.9588C10.0059 24.9588 7.2294 21.8209 6.98889 18.8921Z" fill="#fff"/><path d="M18.8222 24.9733C15.8949 25.2139 21.2614 23.8673 21.2219 18.4916C21.3751 12.7721 15.7555 11.7967 18.9219 12.1464C22.0883 12.4961 24.8857 15.0226 24.8857 18.4887C24.8857 21.9548 21.7494 24.7327 18.8222 24.9733Z" fill="#fff"/><path d="M13.3058 7.02663C16.233 6.78599 10.8665 8.13266 10.906 13.5084C10.7528 19.2278 16.3724 20.2032 13.206 19.8535C10.0396 19.5038 7.24219 16.9773 7.24219 13.5113C7.24219 10.0452 10.3785 7.26727 13.3058 7.02663Z" fill="#fff"/></svg></div>
+
+      <!-- CTA label -->
+      <div class="panel" id="ctaLabel">Попробовать бесплатно</div>
+
+      <!-- P2: registration -->
+      <div class="panel ui" id="pReg" style="width:640px; height:760px; padding:44px 48px;">
+        <div class="h1" style="font-size:44px;">Создание аккаунта</div>
+        <div class="sub" style="font-size:22px; margin-top:10px;">Заполните данные — это займёт минуту</div>
+        <div class="lbl" style="font-size:20px; margin:34px 0 10px;">Имя</div>
+        <div class="inp" data-k="regName"><span class="ico" data-icon="user"></span><span class="val"></span></div>
+        <div class="lbl" style="font-size:20px; margin:22px 0 10px;">Email или телефон</div>
+        <div class="inp" data-k="regMail"><span class="ico" data-icon="mail"></span><span class="val"></span></div>
+        <div class="lbl" style="font-size:20px; margin:22px 0 10px;">Пароль</div>
+        <div class="inp" data-k="regPass"><span class="ico" data-icon="lock"></span><span class="val" style="letter-spacing:.18em;"></span></div>
+        <div class="btn" data-k="regBtn" style="margin-top:34px;"><span class="bl">Создать аккаунт</span><span class="ico" data-icon="arrow"></span></div>
+        <div class="sub" style="font-size:18px; text-align:center; margin-top:26px;">или продолжить через Яндекс ID · MAX</div>
+      </div>
+
+      <!-- P3: email confirm -->
+      <div class="panel ui" id="pMail" style="width:760px; height:560px; padding:40px 48px;">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div class="mark" style="position:relative; width:58px; height:58px; border-radius:15px; background:linear-gradient(118deg,#0B64F4,#1AA2E6); padding:12px;"><svg viewBox="6 6 20 20" data-clone="mark"></svg></div>
+          <div><div style="font-weight:650; font-size:22px;">SEO Jarvis</div><div class="sub" style="font-size:18px;">noreply@seojarvis.ru · сейчас</div></div>
+          <div style="margin-left:auto; height:36px; padding:0 14px; border-radius:10px; background:#EAF1FF; color:var(--blue); font-weight:600; font-size:17px; display:flex; align-items:center;">Входящие</div>
+        </div>
+        <div style="height:1.5px; background:#EEF1F6; margin:30px 0;"></div>
+        <div class="h1" style="font-size:48px;">Подтвердите email</div>
+        <div class="sub" style="font-size:24px; margin-top:14px;">Александр, остался один шаг — подтвердите адрес, и кабинет откроется.</div>
+        <div class="btn" data-k="mailBtn" style="margin-top:38px; width:380px;"><span class="bl">Подтвердить email</span></div>
+      </div>
+
+      <!-- P4: quiz -->
+      <div class="panel ui" id="pQuiz" style="width:780px; height:1160px; padding:46px 48px;">
+        <div class="h1" style="font-size:46px;">Пара вопросов — и начнём</div>
+        <div class="sub" style="font-size:22px; margin-top:12px;">Ответы помогут вести продвижение под вашу задачу.</div>
+        <div class="q"><span class="qnum">1</span>Откуда вы узнали о SEO Jarvis?</div>
+        <div><span class="chip" data-k="q1">Поиск Яндекс / Google</span><span class="chip">Реклама</span><span class="chip">Telegram-канал</span><span class="chip">YouTube</span><span class="chip">Совет знакомого</span></div>
+        <div class="q"><span class="qnum">2</span>Кто будет работать в кабинете?</div>
+        <div><span class="chip" data-k="q2">Владелец бизнеса</span><span class="chip">Маркетолог</span><span class="chip">SEO-специалист</span><span class="chip">Агентство / подрядчик</span></div>
+        <div class="q"><span class="qnum">3</span>Что важнее в первую очередь?</div>
+        <div><span class="chip" data-k="q3">Заявки и звонки</span><span class="chip">Трафик из поиска</span><span class="chip">Позиции по запросам</span><span class="chip">Клиенты из своего города</span></div>
+        <div class="q"><span class="qnum">4</span>Как с вами удобнее связаться?</div>
+        <div><span class="chip" data-k="q4"><span class="ico" data-icon="send"></span>Telegram</span><span class="chip">WhatsApp</span><span class="chip">MAX</span><span class="chip">Звонок</span></div>
+        <div style="display:flex; gap:14px; margin-top:22px;"><div class="btn" data-k="quizBtn" style="flex:1;"><span class="bl">Продолжить</span><span class="ico" data-icon="arrow"></span></div><div class="btn ghost" style="width:180px;">Пропустить</div></div>
+      </div>
+
+      <!-- P5: add site -->
+      <div class="panel ui" id="pSite" style="width:780px; height:660px; padding:46px 48px;">
+        <div class="h1" style="font-size:46px;">Добавьте сайт для начала тестового периода</div>
+        <div class="sub" style="font-size:22px; margin-top:14px;">Мы сами соберём все данные и запустим продвижение</div>
+        <div class="lbl" style="font-size:21px; margin:32px 0 10px;">Адрес сайта</div>
+        <div class="inp" data-k="siteUrl"><span class="ico" data-icon="globe"></span><span class="val"></span></div>
+        <div class="lbl" style="font-size:21px; margin:22px 0 10px;">Регион продвижения</div>
+        <div class="inp"><span class="ico" data-icon="pin"></span><span>Москва и МО</span><span class="ico" data-icon="chev" style="margin-left:auto;"></span></div>
+        <div class="btn" data-k="siteBtn" style="margin-top:30px;"><span class="bl">Начать продвижение</span><span class="ico" data-icon="arrow"></span></div>
+      </div>
+
+      <!-- P6: Jarvis works -->
+      <div class="panel ui" id="pSteps" style="width:900px; height:800px; padding:44px 50px;">
+        <div style="display:flex; align-items:center; gap:18px;">
+          <div class="mark" style="position:relative; width:60px; height:60px; border-radius:16px; background:linear-gradient(118deg,#0B64F4,#1AA2E6); padding:12px;"><svg viewBox="6 6 20 20" data-clone="mark"></svg></div>
+          <div><div class="h1" style="font-size:38px;">Jarvis работает</div><div class="sub" style="font-size:20px;">example.ru · Москва и МО</div></div>
+          <div id="pct" style="margin-left:auto; font-size:40px; font-weight:720; color:var(--blue); letter-spacing:-0.02em;"></div>
+        </div>
+        <div style="height:6px; border-radius:3px; background:#EEF1F6; margin:28px 0 8px; overflow:hidden;"><div id="bar" style="height:100%; width:0; background:linear-gradient(90deg,#5A9BF8,#1A69F0); border-radius:3px;"></div></div>
+        <div id="steps">
+          <div class="step"><div class="sicon"></div><div class="stitle">Определяем нишу</div><div class="sval">Стоматология</div></div>
+          <div class="step"><div class="sicon"></div><div class="stitle">Собираем семантику</div><div class="sval"><span class="odo" data-odo="1248" data-fmt="int"></span> запросов</div></div>
+          <div class="step"><div class="sicon"></div><div class="stitle">Расставляем приоритеты</div><div class="sval">50 в работе</div></div>
+          <div class="step"><div class="sicon"></div><div class="stitle">Снимаем позиции</div><div class="sval">Яндекс · Google</div></div>
+          <div class="step"><div class="sicon"></div><div class="stitle">Технический аудит</div><div class="sval"><span class="odo" data-odo="53" data-fmt="int"></span> / 100</div></div>
+          <div class="step"><div class="sicon"></div><div class="stitle">Рекомендации</div><div class="sval">12 задач</div></div>
+        </div>
+      </div>
+
+      <!-- P7: dashboard (light + dark copies, built by JS) -->
+      <div class="panel" id="dash"></div>
+    </div>
+  </div>
+
+  <div id="vignette"></div>
+  <div id="hud">
+    <div id="ripple"></div>
+    <svg id="cursor" viewBox="0 0 44 54"><path d="M6 4 L6 42 L15.5 33 L22 48 L28.5 45.2 L22.2 30.6 L35 30.6 Z" fill="#fff" stroke="#0B1222" stroke-width="2.6" stroke-linejoin="round"/></svg>
+  </div>
+  <div id="flash"></div>
+</div>
+<script src="film.js"></script>
+</body>
+</html>
