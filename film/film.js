@@ -225,11 +225,11 @@ shapeTo(T.lockup, 'endL', { w: 9, z: 0.9 });
 const PANELS = [
   ['#pPdf', 'pdf', -1, T.toLogo + 0.2, true],
   ['#ctaLabel', 'cta', T.toCta + 0.3, T.ctaClick + 0.12],
-  ['#pReg', 'reg', T.toReg + 0.22, T.toMail - 0.06],
-  ['#pMail', 'mail', T.toMail + 0.15, T.toQuiz - 0.06],
-  ['#pQuiz', 'quiz', T.toQuiz + 0.15, T.toSite + 0.02],
-  ['#pSite', 'site', T.toSite + 0.04, T.toSteps - 0.06],
-  ['#pSteps', 'steps', T.toSteps + 0.12, T.toDash + 0.02],
+  ['#pReg', 'reg', T.toReg + 0.22, T.toMail + 0.03],
+  ['#pMail', 'mail', T.toMail + 0.06, T.toQuiz + 0.03],
+  ['#pQuiz', 'quiz', T.toQuiz + 0.06, T.toSite + 0.02],
+  ['#pSite', 'site', T.toSite + 0.04, T.toSteps + 0.03],
+  ['#pSteps', 'steps', T.toSteps + 0.06, T.toDash + 0.02],
   ['#dash', 'dash', T.toDash + 0.08, T.toEnd + 0.22, true],
 ].map(([s, st, a, b, sc]) => ({ el: $(s), st, tin: a, tout: b, sc: !!sc }));
 $('#ctaLabel').style.width = ST.cta.w + 'px'; $('#ctaLabel').style.height = ST.cta.h + 'px';
