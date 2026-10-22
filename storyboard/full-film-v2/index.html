@@ -1,4 +1,5 @@
-<title>SEO Jarvis — сценарий v2</title>
+<meta charset="utf-8">
+<title>SEO Jarvis — сценарий v3</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +25,7 @@ p{margin:0}
 section{padding-block:48px 8px;display:grid;gap:20px}
 header{padding-block:56px 24px;display:grid;gap:18px}
 header h1{font-size:clamp(30px,5.4vw,56px);line-height:1.05}
-header h1 span{color:var(--accent2)}
+header h1 span{color:#3b82ff}
 .lead{font-size:18px;max-width:70ch;color:#c9d0e0}
 .facts{display:flex;flex-wrap:wrap;gap:8px}
 .chip{font:500 13px/1 var(--mono);padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:#cfd6e6}
@@ -37,33 +38,38 @@ header h1 span{color:var(--accent2)}
 .timeline a small{font:400 11px/1.2 var(--mono);opacity:.75}
 .timeline a:focus-visible{outline:2px solid #fff;outline-offset:-2px}
 
-/* Что поменялось */
 .changes{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:10px;counter-reset:c}
-.changes div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:4px}
+.changes div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:4px;align-content:start}
 .changes b{font-size:15px}
 .changes b::before{counter-increment:c;content:counter(c) ". ";color:var(--accent2);font-family:var(--mono)}
 .changes p{font-size:14px;color:#b9c2d4}
+.changes a{color:var(--accent2)}
 
 .take{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .take > div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px;align-content:start}
 .take h3{font-size:15px}
 .take ul{margin:0;padding-left:18px;display:grid;gap:6px;color:#c9d0e0;font-size:15px}
-.take .no{border-color:rgba(255,110,110,.25)}
-.take .no h3{color:#ff9b9b}
 .sw{display:flex;gap:8px;flex-wrap:wrap}
 .sw i{display:grid;place-items:end start;width:84px;height:52px;border-radius:8px;padding:6px;font:500 11px/1 var(--mono);font-style:normal;border:1px solid var(--line)}
 
 /* Маскот */
-.mascots{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.mcard{background:radial-gradient(70% 70% at 50% 40%,rgba(26,105,240,.28),transparent 70%),#000;border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:8px;justify-items:center;text-align:center}
-.mcard img{width:150px;height:150px;object-fit:contain}
-.mcard small{font:500 12px/1.4 var(--mono);color:var(--muted)}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.vcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:10px}
+.vcard .vbox{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000}
+.vcard video{width:100%;height:100%;display:block;object-fit:cover}
+.vcard b{font-size:15px}
+.vcard p{font-size:14px;color:#b9c2d4}
 .roles{width:100%;border-collapse:collapse;font-size:15px}
 .roles th,.roles td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 .roles th{font:500 11px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .roles td:first-child{font-family:var(--mono);color:var(--accent2);white-space:nowrap}
 .tablewrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.vtag{font:600 11px/1 var(--mono);border-radius:6px;padding:4px 6px;white-space:nowrap}
+.vtag.on{background:var(--accent);color:#fff}
+.vtag.st{background:#1b2333;color:#aeb7ca}
 .veo{display:grid;gap:12px}
+.veowrap > summary{cursor:pointer;font:700 16px/1.4 var(--sans);color:var(--accent2);padding:14px 18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;list-style-position:inside}
+.veowrap[open] > summary{margin-bottom:12px}
 .prompt{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;gap:10px}
 .prompt .hd{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
 .prompt .hd b{font-size:16px}
@@ -82,6 +88,15 @@ header h1 span{color:var(--accent2)}
 .act .tc{font:500 14px/1 var(--mono);color:var(--accent2)}
 .scene{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px;align-items:start;padding-block:18px}
 @media (max-width:860px){.scene{grid-template-columns:minmax(0,1fr)}}
+.vis{display:grid;gap:8px;min-width:0}
+.kf{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+.kf .frame{border-radius:8px}
+.kf .frame .tag{font-size:2.9cqw;left:3cqw;bottom:3cqw;padding:1.2cqw 1.8cqw;border-radius:1.4cqw}
+.kfl{font:500 11px/1.3 var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.var{display:grid;gap:8px;padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.var h4{margin:0;font:700 15px/1.3 var(--sans);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.var p{font-size:14px;color:#b9c2d4}
+.var.rec{border-color:rgba(26,105,240,.6)}
 .meta{display:grid;gap:14px;min-width:0}
 .meta .top{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
 .num{font:600 13px/1 var(--mono);color:#fff;background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:5px 7px}
@@ -90,49 +105,83 @@ header h1 span{color:var(--accent2)}
 .badge{font:600 11px/1 var(--mono);border-radius:6px;padding:5px 7px;letter-spacing:.06em}
 .peak{color:#000;background:var(--warn)}
 .new{color:#fff;background:var(--accent)}
+.fix{color:#04140a;background:var(--ok)}
 .mas{color:#041028;background:#bcd6ff}
 dl{margin:0;display:grid;gap:10px}
 dt{font:500 11px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 dd{margin:2px 0 0;font-size:15px;color:#d4dae7}
+dd ol{margin:4px 0 0;padding-left:20px;display:grid;gap:4px}
 .vo{border-left:3px solid var(--accent);background:linear-gradient(90deg,rgba(26,105,240,.12),transparent);padding:10px 14px;border-radius:0 10px 10px 0;font-size:17px;color:#fff}
 .vo small{display:block;font:400 12px/1.4 var(--mono);color:var(--muted);margin-top:4px}
 .vo.silent{border-left-color:#3a4256;color:var(--muted);background:none}
 .why{font-size:14px;color:#aeb7ca}
+.edit{font-size:14px;color:#bfe9d2;background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.25);border-radius:10px;padding:8px 12px}
 
-/* Кадр 16:9 — тёмная сцена бренда, как в первом видео */
+/* Кадр 16:9 — тёмная сцена бренда */
 .frame{container-type:inline-size;position:relative;aspect-ratio:16/9;max-width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--line);
   background:
     radial-gradient(60% 55% at 50% 105%,rgba(26,105,240,.55),transparent 70%),
     radial-gradient(40% 40% at 85% 0%,rgba(26,105,240,.18),transparent 70%),
     repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 8.333%),
     #000;}
-.frame .tag{position:absolute;left:1.6cqw;bottom:1.4cqw;font:500 1.5cqw/1 var(--mono);color:rgba(255,255,255,.6);background:rgba(0,0,0,.5);padding:.6cqw .8cqw;border-radius:.6cqw;z-index:9}
+.frame .tag{position:absolute;left:1.6cqw;bottom:1.4cqw;font:500 1.5cqw/1 var(--mono);color:rgba(255,255,255,.6);background:rgba(0,0,0,.5);padding:.6cqw .8cqw;border-radius:.6cqw;z-index:20}
 .t{position:absolute;font-family:var(--sans);font-weight:800;color:#fff;letter-spacing:-.035em;line-height:1.04;z-index:4}
-.t .b{color:var(--accent2)}
+/* акцент в словах — синий бренда, без бирюзы */
+.t .b{color:#1A69F0}
 .sub{position:absolute;font:500 1.6cqw/1.3 var(--sans);color:rgba(255,255,255,.72);z-index:4}
-.monot{position:absolute;font:500 1.35cqw/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);z-index:4}
 .win{position:absolute;border-radius:1.1cqw;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:#fff;color:#0c1220;
   box-shadow:0 .4cqw 1cqw rgba(0,0,0,.5),0 3cqw 6cqw rgba(0,0,0,.6),0 0 0 1px rgba(0,0,0,.6);z-index:3}
 .win img{display:block;width:100%;height:auto}
+.win.fill img{height:100%;object-fit:cover;object-position:top left}
+.shade::after{content:"";position:absolute;inset:0;background:#05070e;opacity:var(--sh,.62);pointer-events:none}
 .dim{opacity:.35;filter:blur(.25cqw)}
-.cursor{position:absolute;width:2.4cqw;z-index:8;filter:drop-shadow(0 .3cqw .5cqw rgba(0,0,0,.5))}
-.btn{position:absolute;font:600 1.9cqw/1 var(--sans);color:#fff;background:linear-gradient(90deg,#2f6fd6,#1450c8);border-radius:1cqw;padding:1.6cqw 2.8cqw;box-shadow:0 0 4cqw rgba(26,105,240,.55);z-index:4;white-space:nowrap}
+.cursor{position:absolute;width:2.4cqw;z-index:12;filter:drop-shadow(0 .3cqw .5cqw rgba(0,0,0,.5))}
+.click{position:absolute;width:4cqw;height:4cqw;margin:-2cqw 0 0 -2cqw;border-radius:50%;border:.3cqw solid rgba(26,105,240,.9);box-shadow:0 0 2cqw rgba(26,105,240,.8);z-index:11}
 .pill{position:absolute;font:600 1.6cqw/1 var(--sans);color:#fff;background:var(--accent);border-radius:999px;padding:1.1cqw 1.8cqw;z-index:4;white-space:nowrap}
-.toast{position:absolute;display:flex;align-items:center;gap:1cqw;font:600 1.5cqw/1 var(--sans);color:#0c1220;background:#fff;border:1px solid rgba(61,220,132,.6);border-radius:1cqw;padding:1cqw 1.5cqw;z-index:6;box-shadow:0 1.5cqw 3cqw rgba(0,0,0,.6)}
-.toast i{width:2cqw;height:2cqw;border-radius:50%;background:var(--ok);display:grid;place-items:center;font-style:normal;color:#04140a;font-size:1.3cqw}
-.ring{position:absolute;z-index:3}
+.toast{position:absolute;display:flex;align-items:center;gap:1cqw;font:600 1.5cqw/1 var(--sans);color:#0c1220;background:#fff;border-radius:1cqw;padding:1cqw 1.6cqw 1cqw 1cqw;z-index:9;box-shadow:0 1.5cqw 3cqw rgba(0,0,0,.6);white-space:nowrap}
+.toast img{width:2.4cqw;height:2.4cqw;display:block}
 .tilt-r{transform:perspective(110cqw) rotateY(-20deg) rotateX(7deg)}
-.tilt-l{transform:perspective(110cqw) rotateY(16deg) rotateX(6deg)}
 .glow{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(26,105,240,.5),transparent 65%);z-index:1}
 .mascot{position:absolute;z-index:7;filter:drop-shadow(0 0 2.4cqw rgba(26,105,240,.55))}
-/* шапка модуля: пункт меню, который «развернулся» */
-.mhead{position:absolute;left:3cqw;top:2.6cqw;display:flex;align-items:center;gap:1cqw;background:#fff;color:#0c1220;border-radius:999px;padding:.7cqw 1.6cqw .7cqw .7cqw;z-index:6;box-shadow:0 1cqw 3cqw rgba(0,0,0,.55)}
-.mhead em{font:600 1.2cqw/1 var(--mono);font-style:normal;color:#fff;background:var(--accent);border-radius:999px;padding:.6cqw .8cqw}
-.mhead b{font:700 1.75cqw/1 var(--sans);letter-spacing:-.02em;white-space:nowrap}
-.dots{position:absolute;right:3cqw;top:3.7cqw;display:flex;gap:.6cqw;z-index:6}
-.dots i{width:1cqw;height:1cqw;border-radius:50%;background:rgba(255,255,255,.22)}
-.dots i.on{background:var(--accent2);box-shadow:0 0 1cqw var(--accent2)}
+.mascot.flat{filter:none}
+canvas.kv{position:absolute;z-index:8;pointer-events:none}
+.blur-in{filter:blur(.5cqw);opacity:.55}
+.motion{filter:blur(.35cqw)}
+.ghost{position:absolute;opacity:.18;filter:blur(.4cqw)}
+.trail{position:absolute;border-top:.25cqw dashed rgba(255,255,255,.35);z-index:6}
+/* шапка модуля — меньше, чтобы не забирала внимание */
+.mhead{position:absolute;left:2.4cqw;top:2.2cqw;display:flex;align-items:center;gap:.7cqw;background:rgba(255,255,255,.92);color:#0c1220;border-radius:999px;padding:.45cqw 1.1cqw .45cqw .45cqw;z-index:10;box-shadow:0 .6cqw 2cqw rgba(0,0,0,.5)}
+.mhead em{font:600 .85cqw/1 var(--mono);font-style:normal;color:#fff;background:var(--accent);border-radius:999px;padding:.45cqw .55cqw}
+.mhead b{font:700 1.15cqw/1 var(--sans);letter-spacing:-.01em;white-space:nowrap}
+.dots{position:absolute;right:2.4cqw;top:3cqw;display:flex;gap:.45cqw;z-index:10}
+.dots i{width:.7cqw;height:.7cqw;border-radius:50%;background:rgba(255,255,255,.22)}
+.dots i.on{background:#1A69F0;box-shadow:0 0 .8cqw #1A69F0}
 .dots i.done{background:var(--ok)}
+
+/* окно входа — собрано заново по кабинету, ровные отступы */
+.auth{position:absolute;background:#fff;border-radius:1.4cqw;padding:2.2cqw;color:#0c1220;font-family:var(--sans);z-index:5;box-shadow:0 3cqw 6cqw rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.15)}
+.auth h5{margin:0;font:800 2.3cqw/1.1 var(--sans);letter-spacing:-.03em}
+.auth .s{font-size:1.05cqw;color:#5b6475;margin-top:.5cqw}
+.auth .tabs{display:grid;grid-template-columns:1fr 1fr;gap:.4cqw;background:#f1f5fd;border-radius:.9cqw;padding:.35cqw;margin-top:1.4cqw}
+.auth .tabs span{display:flex;align-items:center;justify-content:center;gap:.5cqw;height:2.6cqw;border-radius:.7cqw;font:600 1cqw/1 var(--sans);color:#8c96ad}
+.auth .tabs span.on{background:#fff;color:#1450c8;box-shadow:0 .1cqw .4cqw rgba(16,42,88,.12)}
+.auth label{display:block;font:500 1cqw/1 var(--sans);color:#5b6475;margin:1.3cqw 0 .6cqw}
+.auth .in{display:flex;align-items:center;gap:.8cqw;height:3.2cqw;border:.12cqw solid #1A69F0;box-shadow:0 0 0 .35cqw rgba(26,105,240,.12);border-radius:.9cqw;padding:0 1cqw;font:500 1.25cqw/1 var(--sans)}
+.auth .in i{font-style:normal;color:#1A69F0;font-weight:400}
+.auth .go{display:flex;align-items:center;justify-content:center;height:3.2cqw;border-radius:.9cqw;margin-top:1.2cqw;color:#fff;font:600 1.2cqw/1 var(--sans);background:linear-gradient(90deg,#3a78dd,#1450c8)}
+.auth .or{display:flex;align-items:center;gap:1cqw;margin:1.4cqw 0 1.1cqw;font:400 .95cqw/1 var(--sans);color:#8c96ad;white-space:nowrap}
+.auth .or::before,.auth .or::after{content:"";flex:1;height:1px;background:#e2e8f3}
+.auth .soc{display:grid;grid-template-columns:repeat(3,1fr);gap:.8cqw}
+.auth .ob{display:flex;align-items:center;justify-content:center;gap:.7cqw;height:3.4cqw;border:.12cqw solid #dde4f0;border-radius:1cqw;font:600 1.1cqw/1 var(--sans);color:#0c1220;background:#fff}
+.auth .ob img{width:1.8cqw;height:1.8cqw;display:block;flex:none}
+.auth .ob.hl{border-color:#1A69F0;box-shadow:0 0 0 .3cqw rgba(26,105,240,.22),0 0 2.4cqw rgba(26,105,240,.55)}
+.auth .ob.press{transform:scale(.96);background:#eef4ff}
+
+/* меню модулей: барабан и орбита */
+.drum{position:absolute;z-index:6;display:flex;align-items:center;gap:1cqw;white-space:nowrap;font:600 1.9cqw/1 var(--sans);color:#1d2433;background:#fff;border-radius:999px;padding:1.1cqw 2cqw 1.1cqw 1.1cqw;transform-origin:left center}
+.drum em{font:600 1.2cqw/1 var(--mono);font-style:normal;color:#fff;background:#1A69F0;border-radius:999px;padding:.55cqw .7cqw}
+.tile{position:absolute;z-index:6;width:13cqw;padding:1cqw;border-radius:1.1cqw;background:#fff;color:#1d2433;font:600 1.15cqw/1.2 var(--sans);box-shadow:0 1cqw 2.4cqw rgba(0,0,0,.55)}
+.tile em{display:inline-block;font:600 .9cqw/1 var(--mono);font-style:normal;color:#fff;background:#1A69F0;border-radius:999px;padding:.4cqw .5cqw;margin-bottom:.6cqw}
 
 .script{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:14px}
 .script ol{margin:0;padding-left:0;list-style:none;display:grid;gap:8px}
@@ -148,15 +197,15 @@ footer{margin-top:40px;font:400 13px/1.5 var(--mono);color:var(--muted)}
 
 <div class="wrap">
 <header>
-  <div class="eyebrow">Сценарий v2 · правки начальника учтены · 22.10.2026</div>
-  <h1>SEO Jarvis: <span>полный ролик</span>, версия 2</h1>
-  <p class="lead">Ролик 1 мин 52 с с голосом. Открываемся фразой «Всё для продвижения — в одном кабинете», знакомим с маскотом Jarvis, показываем регистрацию в 1 клик и анализ сайта, а потом маскот по очереди открывает 10 модулей кабинета. Шрифт и цвета — с сайта seojarvis.ru, кабинет — в светлой теме на тёмной сцене.</p>
+  <div class="eyebrow">Сценарий v3 · правки по кадрам · 22.10.2026</div>
+  <h1>SEO Jarvis: <span>полный ролик</span>, версия 3</h1>
+  <p class="lead">Внёс все правки начальника по кадрам. Под каждым главным кадром — раскадровка движения по секундам. Видео маскота из Veo стоят в сценах 04 и 06, в остальных сценах маскот — картинка с простой анимацией (подпрыгивает, покачивается). Для меню модулей и финального сбора — по два новых варианта.</p>
   <div class="facts">
     <span class="chip"><b>1:52</b> длительность</span>
     <span class="chip"><b>20</b> сцен, из них <b>10</b> модулей</span>
-    <span class="chip"><b>1920×1080</b>, 60 fps</span>
-    <span class="chip">шрифт <b>Inter</b> + JetBrains Mono, как на сайте</span>
-    <span class="chip">маскот — ведущий ролика</span>
+    <span class="chip"><b>2</b> видео маскота в работе</span>
+    <span class="chip">акцент — синий <b>#1A69F0</b></span>
+    <span class="chip">шрифт <b>Inter</b> + JetBrains Mono</span>
   </div>
 </header>
 
@@ -168,133 +217,190 @@ footer{margin-top:40px;font:400 13px/1.5 var(--mono);color:var(--muted)}
 </nav>
 
 <section aria-labelledby="h-ch">
-  <div><div class="eyebrow">Что поменялось после правок</div><h2 id="h-ch">Восемь пунктов начальника</h2></div>
+  <div><div class="eyebrow">Что поменялось после правок</div><h2 id="h-ch">Правки по кадрам</h2></div>
   <div class="changes">
-    <div><b>Новое начало</b><p>Убрали «Отчёт раз в месяц?». Ролик открывается фразой «Всё для продвижения — в одном кабинете», дальше путь клиента и модули.</p></div>
-    <div><b>Фраза про отчёты</b><p>«Никаких отчётов раз в месяц…» пока нигде не используем — по вашему решению. Можно вернуть позже одной строкой.</p></div>
-    <div><b>Регистрация в 1 клик</b><p>Показываем все способы из кабинета: телефон, почта и кнопки Яндекс ID и MAX. Нажимаем Яндекс ID — аккаунт готов.</p></div>
-    <div><b>Опрос убран</b><p>Сцены «Пара вопросов» больше нет: сразу после входа — адрес сайта и регион.</p></div>
-    <div><b>Акцент на шагах анализа</b><p>Над шкалой загрузки крупно «Jarvis собирает и готовит данные». Шаги — большим списком, каждый загорается и получает галочку. Маскот проверяет их через лупу.</p></div>
-    <div><b>Новый маскот</b><p>Маскот — ведущий: появляется из логотипа, жмёт кнопки, смотрит в лупу, радуется запуску, открывает модули и машет в финале. Ниже — промпты для Google Veo.</p></div>
-    <div><b>Правильный дашборд</b><p>Теперь это главный экран кабинета: «Ядро поднимается в топ», видимость 23%, 13 запросов, средняя позиция 16. Светлая тема.</p></div>
-    <div><b>10 модулей по клику</b><p>Пункт нажимается → разворачивается в окно раздела → сворачивается обратно с галочкой → нажимается следующий.</p></div>
+    <div><b>01 · Стопка окон</b><p>Три окна одинакового размера, ровной стопкой. Задние — непрозрачные и затемнённые, окно с видео тоже тёмное.</p></div>
+    <div><b>Синий акцент</b><p>Выделенные слова теперь синие, как бренд (#1A69F0), без бирюзы.</p></div>
+    <div><b>Текст и карточки влетают</b><p>Приёмы из ваших референсов: слова влетают по одному со смазом, выделение заливается синим, карточки летят по дуге в 3D и защёлкиваются.</p></div>
+    <div><b>02–03 · Логотип, потом маскот</b><p>Сначала из «О» собирается логотип с надписью. Потом прилетает маскот, расталкивает буквы, закрывает собой знак, здоровается и уходит влево — в следующую сцену.</p></div>
+    <div><b>04 · Ровные кнопки входа</b><p>Окно входа собрано заново: три одинаковые кнопки, иконки Яндекс ID и MAX — из кабинета, текст по центру. Галочка — иконка, а не символ. Маскот — ваше видео.</p></div>
+    <div><b>05 · Плашка целиком</b><p>Карточка «Добавьте сайт…» из кабинета. Заголовок размывается, наезд на адрес, потом на регион: меню, курсор проходит по регионам, клик, «Начать продвижение».</p></div>
+    <div><b>06 · Видео с лупой</b><p>Ваше видео маскота с лупой рядом со списком шагов. Галочки на его визоре совпадают с окончанием анализа.</p></div>
+    <div><b>07 · Без свечения</b><p>Синее свечение за маскотом в окне «Поздравляем!» убрано полностью.</p></div>
+    <div><b>08 · Меню — ещё 2 варианта</b><p>Кроме прежнего, «Барабан» и «Орбита», с финальными кадрами. Рекомендую «Барабан».</p></div>
+    <div><b>Шапка модуля меньше</b><p>Номер и название модуля сверху — меньше и спокойнее, внимание на экране кабинета.</p></div>
+    <div><b>10 · Позиции по центру</b><p>«Ядро поднимается в топ» сверху по центру, ключевые запросы снизу по центру, рядом выскакивает «+4 позиции».</p></div>
+    <div><b>14 · Нейросети в 3D</b><p>Плашка видимости и «Кого цитирует Алиса» — по центру, в 3D: поворачиваются и выезжают.</p></div>
+    <div><b>15 · Карты с кликами</b><p>Нажимаем «Добавить карточку», вставляем ссылку, «Далее» — и появляется готовая карточка с запросами.</p></div>
+    <div><b>19–20 · Новый сбор и финал по центру</b><p>Новый вариант сбора модулей и финального кадра. Последний кадр: маскот сверху, «SEO на автопилоте», кнопка и адрес — всё по центру.</p></div>
   </div>
 </section>
 
 <section aria-labelledby="h-take">
-  <div><div class="eyebrow">Оформление</div><h2 id="h-take">Стиль берём с сайта</h2></div>
+  <div><div class="eyebrow">Оформление</div><h2 id="h-take">Стиль и движение</h2></div>
   <div class="take">
-    <div><h3>Шрифты seojarvis.ru</h3><ul>
-      <li><b>Inter</b> — все титры и подписи. На сайте заголовки набраны Space Grotesk, но в нём нет русских букв, поэтому русский текст на сайте показывается в Inter — так же будет в ролике</li>
-      <li><b>JetBrains Mono</b> — короткие статусы Jarvis и номера модулей, как моноширинные подписи на сайте</li>
-    </ul></div>
-    <div><h3>Цвета сайта</h3>
+    <div><h3>Шрифты и цвета сайта</h3>
       <div class="sw">
-        <i style="background:#1A69F0">#1A69F0</i><i style="background:#6BA5FF;color:#041028">#6BA5FF</i><i style="background:#05070E">#05070E</i><i style="background:#FAFBFC;color:#0c1220">#FAFBFC</i><i style="background:#3DDC84;color:#04140a">#3DDC84</i>
+        <i style="background:#1A69F0">#1A69F0</i><i style="background:#05070E">#05070E</i><i style="background:#FAFBFC;color:#0c1220">#FAFBFC</i><i style="background:#3DDC84;color:#04140a">#3DDC84</i>
       </div>
-      <ul><li>Синий бренда, голубое свечение, почти чёрная сцена, светлые окна кабинета, зелёный — для галочек и роста</li></ul>
+      <ul><li><b>Inter</b> — все титры, <b>JetBrains Mono</b> — короткие статусы и номера</li><li>Акцент в словах — только синий #1A69F0</li></ul>
     </div>
-    <div><h3>Основа — первое видео</h3><ul>
-      <li>Тёмная сцена с синим свечением снизу и тонкими линиями</li>
-      <li>Белые окна кабинета в светлой теме, тонкая рамка и мягкая тень</li>
-      <li>Сборка логотипа из буквы «О», которая вам понравилась во втором видео</li>
+    <div><h3>Из ваших референсов</h3><ul>
+      <li><b>Spotify</b>: слова влетают по одному со смазом, выделенное слово «загорается» цветом; карточки в 3D-наклоне</li>
+      <li><b>Figma</b>: барабан из слов с активной плашкой, меню по кругу вокруг центра</li>
+      <li><b>Claude</b>: буквы падают по дуге, карточка переворачивается и встаёт на место</li>
+      <li><b>Nissan</b>: цепочка карточек летит по дуге</li>
     </ul></div>
-    <div class="no"><h3>Не берём</h3><ul>
-      <li>Стеклянные полупрозрачные вставки</li>
-      <li>Тёмную тему кабинета</li>
-      <li>Старого робота из окна «Поздравляем!» — вместо него новый маскот</li>
-      <li>Опрос и фразу про отчёты</li>
+    <div><h3>Правило движения</h3><ul>
+      <li>Всё влетает с пружиной и смазом, без резких склеек</li>
+      <li>Камера наезжает на то, о чём говорит голос</li>
+      <li>Окна кабинета — светлая тема, сцена — тёмная</li>
     </ul></div>
   </div>
 </section>
 
 <section aria-labelledby="h-m">
-  <div><div class="eyebrow">Маскот</div><h2 id="h-m">Jarvis — ведущий ролика</h2>
-  <p class="muted">Маскот не «наклейка сбоку»: в каждом появлении он что-то делает в сюжете. Картинки вырезал из чёрного фона сам; если есть исходники PNG с прозрачным фоном — края будут чище.</p></div>
-  <div class="mascots">
-    <div class="mcard"><img src="img/mascot-wink.png" alt="Маскот Jarvis подмигивает"><small>mascot-wink.png · знакомство, финал, центр меню</small></div>
-    <div class="mcard"><img src="img/mascot-magnifier.png" alt="Маскот Jarvis с лупой"><small>mascot-magnifier.png · анализ сайта</small></div>
+  <div><div class="eyebrow">Маскот</div><h2 id="h-m">Видео маскота в ролике</h2>
+  <p class="muted">Ваши два видео уже стоят в сценах 04 и 06: чёрный фон убираю, маскот остаётся поверх сцены. В остальных сценах пока картинка с простой анимацией.</p></div>
+  <div class="vids">
+    <div class="vcard"><div class="vbox"><video src="img/veo/scene04.mp4" poster="img/veo/scene04_press.jpg" autoplay muted loop playsinline></video></div>
+      <b>Сцена 04 · регистрация</b><p>0–2,7 с входит слева и смотрит вправо · 2,7–4,6 с тянет ручку · <b>4,8 с нажатие (вспышка)</b> = клик по «Яндекс ID» · 5,8 с поворачивается к нам · 6–8 с подмигивает.</p></div>
+    <div class="vcard"><div class="vbox"><video src="img/veo/scene06.mp4" poster="img/veo/scene06_lens.jpg" autoplay muted loop playsinline></video></div>
+      <b>Сцена 06 · анализ</b><p>0–3,2 с смотрит в лупу · 3,3–4,3 с радуется «&gt; &lt;» · <b>4,6–5,7 с на визоре галочки</b> = все шаги готовы · 6–8 с улыбается. Растягиваем до 9 с.</p></div>
   </div>
   <div class="tablewrap"><table class="roles">
-    <thead><tr><th>Сцена</th><th>Что делает маскот</th><th>Видео Veo</th><th>Если без видео</th></tr></thead>
+    <thead><tr><th>Сцена</th><th>Что делает маскот</th><th>Источник</th></tr></thead>
     <tbody>
-      <tr><td>03 · 0:07</td><td>Лепестки логотипа раскрываются — внутри маскот. Открывает глаза и подмигивает</td><td>A</td><td>Логотип плавно перетекает в картинку, маскот подпрыгивает</td></tr>
-      <tr><td>04 · 0:11</td><td>Отлетает к окну входа и сам нажимает «Яндекс ID»</td><td>D</td><td>Подлетает к кнопке, кнопка нажимается курсором</td></tr>
-      <tr><td>06 · 0:24</td><td>С лупой проверяет шаги анализа, едет вниз по списку</td><td>B</td><td>Картинка с лупой едет вдоль списка, на каждом шаге лёгкий кивок</td></tr>
-      <tr><td>07 · 0:33</td><td>Выпрыгивает в окне «Поздравляем!» вместо старого робота и радуется</td><td>C</td><td>Подпрыгивает и чуть кружится</td></tr>
-      <tr><td>08–18 · 0:37</td><td>Стоит в центре меню и по очереди «нажимает» на 10 модулей</td><td>E1 + E2</td><td>Парит, поворачивается к нужному пункту</td></tr>
-      <tr><td>20 · 1:45</td><td>Машет и подмигивает рядом с кнопкой «5 дней бесплатно»</td><td>F</td><td>Подлетает к кнопке, лёгкое покачивание</td></tr>
+      <tr><td>03 · 0:07</td><td>Влетает, расталкивает буквы логотипа, закрывает собой знак, подмигивает, уходит влево</td><td><span class="vtag st">картинка + движение</span></td></tr>
+      <tr><td>04 · 0:11</td><td>Входит слева, нажимает «Яндекс ID», поворачивается и подмигивает</td><td><span class="vtag on">видео 04</span></td></tr>
+      <tr><td>06 · 0:24</td><td>Смотрит в лупу, радуется, на визоре галочки</td><td><span class="vtag on">видео 06</span></td></tr>
+      <tr><td>07 · 0:33</td><td>Выпрыгивает в окне «Поздравляем!» (без свечения)</td><td><span class="vtag st">картинка + прыжок</span></td></tr>
+      <tr><td>08–18 · 0:37</td><td>В меню модулей: покачивается, наклоняется к нужному пункту</td><td><span class="vtag st">картинка + покачивание</span></td></tr>
+      <tr><td>20 · 1:45</td><td>Сверху по центру, подпрыгивает и подмигивает</td><td><span class="vtag st">картинка + подскок</span></td></tr>
     </tbody>
   </table></div>
-</section>
-
-<section aria-labelledby="h-veo">
-  <div><div class="eyebrow">Google Veo · image-to-video</div><h2 id="h-veo">Промпты для видео с маскотом</h2>
-  <p class="muted">Все клипы: 16:9, 1080p, 8 с, Veo 3.1 (Google Flow). У каждого клипа указано, в какой сцене он стоит, какие секунды берём в ролик, какой режим и картинку загрузить, и что маскот делает по секундам. Промпт на английском — так Veo понимает точнее; кнопка копирует его целиком. Каждый прогнать 3–4 раза, фон — чистый чёрный (я его вырежу). Файлы называйте A_take1.mp4, B_take2.mp4 и т. д.</p></div>
-  <div class="veo" id="veo"></div>
+  <details class="veowrap"><summary>Промпты Veo для остальных сцен (на потом)</summary>
+    <div class="veo" id="veo"></div>
+  </details>
 </section>
 
 <!-- ============ АКТ 1 ============ -->
 <div class="act" id="act1"><h2>1. Открытие</h2><span class="tc">0:00–0:11</span></div>
 
 <article class="scene">
-  <div class="frame">
-    <div class="t" style="left:6cqw;top:15cqw;font-size:5.4cqw">Всё для<br>продвижения —<br><span class="b">в одном кабинете</span></div>
-    <div class="win tilt-r" style="left:54cqw;top:7cqw;width:30cqw;opacity:.55"><img src="img/learn_video.jpg" alt=""></div>
-    <div class="win tilt-r" style="left:60cqw;top:13cqw;width:30cqw;opacity:.75"><img src="img/links_full.jpg" alt=""></div>
-    <div class="win tilt-r" style="left:55cqw;top:20cqw;width:38cqw"><img src="img/dash_full.jpg" alt="Дашборд кабинета"></div>
-    <span class="tag">0:00 · окна модулей слетаются в один кабинет</span>
+  <div class="vis">
+    <div class="frame">
+      <div class="t" style="left:6cqw;top:15cqw;font-size:5.4cqw">Всё для<br>продвижения —<br><span class="b">в одном кабинете</span></div>
+      <div id="stack1"></div>
+      <span class="tag">0:03 · стопка собрана</span>
+    </div>
+    <div class="kfl">Раскадровка</div>
+    <div class="kf">
+      <div class="frame">
+        <div class="t motion" style="left:6cqw;top:15cqw;font-size:5.4cqw">Всё<span style="opacity:.35;margin-left:2cqw;filter:blur(.6cqw)">для</span></div>
+        <div class="win fill tilt-r motion" style="left:70cqw;top:30cqw;width:38cqw;height:23.75cqw;transform:perspective(110cqw) rotateY(-50deg) rotateZ(-14deg)"><img src="img/learn_video.jpg" alt=""></div>
+        <span class="tag">0:00 · «Всё» влетает</span>
+      </div>
+      <div class="frame">
+        <div class="t" style="left:6cqw;top:15cqw;font-size:5.4cqw">Всё для<br>продвижения —</div>
+        <div id="stack1b"></div>
+        <svg viewBox="0 0 100 56.25" style="position:absolute;inset:0;width:100%;height:100%;z-index:2"><path d="M98 50 Q 80 50 70 30" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".3" stroke-dasharray="1 1"/></svg>
+        <div class="win fill motion" style="left:80cqw;top:38cqw;width:38cqw;height:23.75cqw;transform:perspective(110cqw) rotateY(-35deg) rotateZ(10deg)"><img src="img/dash_full.jpg" alt=""></div>
+        <span class="tag">0:01 · окна летят по дуге</span>
+      </div>
+      <div class="frame">
+        <div class="t" style="left:6cqw;top:15cqw;font-size:5.4cqw">Всё для<br>продвижения —<br><span style="background:linear-gradient(90deg,#1A69F0 0 55%,#fff 55%);-webkit-background-clip:text;background-clip:text;color:transparent">в одном кабинете</span></div>
+        <div id="stack1c"></div>
+        <span class="tag">0:02 · синий заливает слова</span>
+      </div>
+    </div>
   </div>
   <div class="meta">
-    <div class="top"><span class="num">01</span><span class="time">0:00–0:04</span><span class="badge new">НОВОЕ НАЧАЛО</span></div>
+    <div class="top"><span class="num">01</span><span class="time">0:00–0:04</span><span class="badge fix">ПРАВКА</span></div>
     <h3>Всё для продвижения — в одном кабинете</h3>
     <dl>
-      <dt>Что в кадре</dt><dd>Тёмная сцена. Из глубины вылетают окна разных разделов кабинета (дашборд, ссылки, обучение, аудит…) и складываются стопкой в один кабинет в 3D-наклоне справа. Слева крупная надпись.</dd>
-      <dt>Движение</dt><dd>Слова проявляются по одному из размытия. Окна летят веером и «защёлкиваются» друг на друга в ритм музыки. Первый кадр не пустой — это обложка ролика.</dd>
+      <dt>Что в кадре</dt><dd>Тёмная сцена. Справа ровная стопка из трёх окон кабинета одного размера: сзади обучение (видео), в середине ссылки, спереди дашборд. Задние окна непрозрачные и затемнённые, видно только переднее. Слева крупная надпись.</dd>
+      <dt>Движение</dt><dd><ol>
+        <li>0:00 — «Всё» влетает справа со смазом и сжатием букв, за ним по одному «для», «продвижения —» (как в рекламе Spotify).</li>
+        <li>0:00,5 — окна по очереди вылетают из-за правого нижнего края по дуге, в 3D-повороте, и защёлкиваются друг на друга с лёгким отскоком. Когда новое окно ложится сверху, предыдущее уходит в тень.</li>
+        <li>0:02 — «в одном кабинете» влетает белым, и слева направо его заливает синий — в момент, когда ложится последнее окно.</li>
+      </ol></dd>
       <dt>Текст в кадре</dt><dd>«Всё для продвижения — в одном кабинете»</dd>
     </dl>
+    <p class="edit">Правка: окна одного размера, ровной стопкой, задние непрозрачные и тёмные; акцент — синий #1A69F0; текст и карточки влетают по приёмам из референсов.</p>
     <p class="vo">«Всё для продвижения — в одном кабинете.»<small>≈ 2,5 с</small></p>
   </div>
 </article>
 
 <article class="scene">
-  <div class="frame">
-    <svg class="ring" viewBox="0 0 200 200" style="left:50%;top:50%;width:30cqw;transform:translate(-50%,-50%)">
-      <circle cx="100" cy="100" r="78" fill="none" stroke="#fff" stroke-width="5"/>
-      <g id="ticks"></g>
-    </svg>
-    <div class="t dim" style="left:8cqw;top:12cqw;font-size:4cqw;transform:rotate(-8deg)">Всё для</div>
-    <div class="t dim" style="right:8cqw;bottom:12cqw;font-size:3.4cqw;transform:rotate(6deg)">кабинете</div>
-    <span class="tag">0:05 · «О» становится кольцом</span>
+  <div class="vis">
+    <div class="frame">
+      <div id="logo2" style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:2.4cqw;z-index:5"></div>
+      <span class="tag">0:06,5 · логотип собран</span>
+    </div>
+    <div class="kfl">Раскадровка</div>
+    <div class="kf">
+      <div class="frame">
+        <svg class="ring" viewBox="0 0 200 200" style="position:absolute;left:50%;top:50%;width:30cqw;transform:translate(-50%,-50%);z-index:3"><circle cx="100" cy="100" r="78" fill="none" stroke="#fff" stroke-width="5"/><g class="ticks"></g></svg>
+        <div class="t dim" style="left:8cqw;top:12cqw;font-size:4cqw;transform:rotate(-8deg)">Всё для</div>
+        <div class="t dim" style="right:8cqw;bottom:12cqw;font-size:3.4cqw;transform:rotate(6deg)">кабинете</div>
+        <span class="tag">0:04 · «О» → кольцо</span>
+      </div>
+      <div class="frame"><div id="logo2b" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5"></div><span class="tag">0:05 · лепестки по спирали</span></div>
+      <div class="frame"><div id="logo2c" style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:2.4cqw;z-index:5"></div><span class="tag">0:06 · буквы выпрыгивают</span></div>
+    </div>
   </div>
   <div class="meta">
-    <div class="top"><span class="num">02</span><span class="time">0:04–0:07</span></div>
-    <h3>Буква «О» собирается в логотип</h3>
+    <div class="top"><span class="num">02</span><span class="time">0:04–0:07</span><span class="badge fix">ПРАВКА</span></div>
+    <h3>Из «О» собирается логотип</h3>
     <dl>
-      <dt>Что в кадре</dt><dd>Буквы надписи и окна разлетаются, в центре остаётся «О» из слова «одном». Она вырастает в кольцо с делениями, кольцо раскручивается, распадается на лепестки, и они собираются в знак Jarvis.</dd>
-      <dt>Движение</dt><dd>Тот самый приём из второго видео, который вам понравился. Тихие тики на деления, на сборке знака мягкий «вжух».</dd>
-      <dt>Текст в кадре</dt><dd>—</dd>
+      <dt>Что в кадре</dt><dd>В конце сцены в центре — полный логотип: синий знак с четырьмя лепестками и надпись «SEO Jarvis». Маскота здесь ещё нет.</dd>
+      <dt>Движение</dt><dd><ol>
+        <li>0:04 — буквы фразы и окна разлетаются, остаётся «О» из «одном». Она вырастает в кольцо с делениями.</li>
+        <li>0:05 — кольцо раскручивается и распадается на четыре лепестка, они по спирали влетают в синий квадрат знака.</li>
+        <li>0:06 — знак встаёт на место с отскоком, справа по одной выпрыгивают буквы «SEO Jarvis».</li>
+      </ol></dd>
+      <dt>Текст в кадре</dt><dd>«SEO Jarvis» (логотип)</dd>
     </dl>
-    <p class="vo silent">Голоса нет: музыка и звук сборки.</p>
+    <p class="edit">Правка: сначала собирается логотип целиком, маскот появляется только в следующей сцене.</p>
+    <p class="vo silent">Голоса нет: музыка, тики на деления, «вжух» на сборке знака.</p>
   </div>
 </article>
 
 <article class="scene">
-  <div class="frame">
-    <div class="glow" style="left:14cqw;top:2cqw;width:40cqw;height:40cqw"></div>
-    <img class="mascot" src="img/mascot-wink.png" alt="Маскот Jarvis" style="left:19cqw;top:9cqw;width:28cqw">
-    <div class="t" style="left:52cqw;top:17cqw;font-size:8cqw">Jarvis</div>
-    <div class="t" style="left:52.4cqw;top:28cqw;font-size:3.4cqw"><span class="b">SEO на автопилоте</span></div>
-    <span class="tag">0:08 · логотип раскрывается в маскота</span>
+  <div class="vis">
+    <div class="frame">
+      <div class="glow" style="left:32cqw;top:-2cqw;width:36cqw;height:36cqw;opacity:.7"></div>
+      <img class="mascot" src="img/mascot-wink.png" alt="Маскот Jarvis подмигивает" style="left:39cqw;top:6cqw;width:22cqw">
+      <div class="t" style="left:0;right:0;top:37cqw;text-align:center;font-size:5.2cqw">Jarvis</div>
+      <div class="t" style="left:0;right:0;top:44.4cqw;text-align:center;font-size:2.6cqw"><span class="b">SEO на автопилоте</span></div>
+      <div id="scatter3"></div>
+      <span class="tag">0:08,5 · подмигивает</span>
+    </div>
+    <div class="kfl">Раскадровка</div>
+    <div class="kf">
+      <div class="frame"><div id="logo3a" style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:2.4cqw;z-index:5"></div>
+        <img class="mascot motion" src="img/mascot-wink.png" alt="" style="left:58cqw;top:-14cqw;width:20cqw;transform:rotate(-25deg)">
+        <span class="tag">0:07 · маскот влетает</span></div>
+      <div class="frame"><img class="mascot" src="img/mascot-wink.png" alt="" style="left:38cqw;top:9cqw;width:24cqw;transform:scaleX(1.12) scaleY(.9)"><div id="scatter3b"></div><span class="tag">0:07,5 · буквы разлетаются</span></div>
+      <div class="frame"><img class="mascot motion" src="img/mascot-wink.png" alt="" style="left:-6cqw;top:16cqw;width:14cqw;transform:rotate(-12deg)"><div class="trail" style="left:10cqw;top:24cqw;width:30cqw"></div>
+        <div class="authslot motion" data-tab="phone"></div><span class="tag">0:10,5 · уходит влево</span></div>
+    </div>
   </div>
   <div class="meta">
-    <div class="top"><span class="num">03</span><span class="time">0:07–0:11</span><span class="badge mas">МАСКОТ · VEO A</span></div>
-    <h3>Знакомство: Jarvis</h3>
+    <div class="top"><span class="num">03</span><span class="time">0:07–0:11</span><span class="badge fix">ПРАВКА</span><span class="badge mas">МАСКОТ · КАРТИНКА</span></div>
+    <h3>Знакомство: маскот расталкивает логотип</h3>
     <dl>
-      <dt>Что в кадре</dt><dd>Лепестки знака раскрываются, как бутон, — внутри маскот: форма маскота повторяет логотип. Глаза загораются, он подмигивает. Справа по буквам печатается «Jarvis», ниже — «SEO на автопилоте».</dd>
-      <dt>Движение</dt><dd>Логотип и маскот — один объект, без склейки. Подмигивание точно в долю музыки.</dd>
+      <dt>Что в кадре</dt><dd>Маскот в центре на месте знака, подмигивает. Буквы логотипа разлетелись по краям и гаснут. Под маскотом — «Jarvis» и «SEO на автопилоте».</dd>
+      <dt>Движение</dt><dd><ol>
+        <li>0:07 — маскот влетает сверху справа и врезается в логотип: сжимается при ударе, буквы «SEO Jarvis» разлетаются в стороны с вращением.</li>
+        <li>0:07,5 — маскот встаёт ровно на место знака и закрывает его собой, отпружинивает.</li>
+        <li>0:08,5 — подмигивает (подмена картинки), снизу печатается «Jarvis», за ним «SEO на автопилоте».</li>
+        <li>0:10,5 — маскот уменьшается и улетает за левый край, камера едет вправо, оттуда выезжает окно входа. В сцене 04 он заходит слева уже в видео — получается одно непрерывное движение.</li>
+      </ol></dd>
       <dt>Текст в кадре</dt><dd>«Jarvis» · «SEO на автопилоте»</dd>
     </dl>
+    <p class="edit">Правка: маскот появляется после логотипа, отталкивает буквы, здоровается и плавно уводит в регистрацию.</p>
     <p class="vo">«Знакомьтесь: Джарвис — SEO-продвижение на автопилоте.»<small>≈ 3 с</small></p>
   </div>
 </article>
@@ -303,97 +409,147 @@ footer{margin-top:40px;font:400 13px/1.5 var(--mono);color:var(--muted)}
 <div class="act" id="act2"><h2>2. Регистрация и анализ</h2><span class="tc">0:11–0:37</span></div>
 
 <article class="scene">
-  <div class="frame">
-    <div class="t" style="left:5cqw;top:12cqw;font-size:4.6cqw">Регистрация<br><span class="b">в 1 клик</span></div>
-    <div class="sub" style="left:5cqw;top:25.5cqw;font-family:var(--mono);font-size:1.45cqw;color:rgba(255,255,255,.7)">ТЕЛЕФОН · ПОЧТА · ЯНДЕКС ID · MAX</div>
-    <div class="win" style="left:43cqw;top:4cqw;width:36cqw"><img src="img/auth_phone.jpg" alt="Окно входа: по телефону, по email, Яндекс ID, Mail.ru, MAX"></div>
-    <div style="position:absolute;left:44.6cqw;top:35.2cqw;width:10.6cqw;height:3.8cqw;border:.35cqw solid var(--accent);border-radius:1cqw;box-shadow:0 0 3cqw rgba(26,105,240,.8);z-index:5"></div>
-    <div style="position:absolute;left:66.2cqw;top:35.2cqw;width:10.6cqw;height:3.8cqw;border:.35cqw solid var(--accent);border-radius:1cqw;box-shadow:0 0 3cqw rgba(26,105,240,.8);z-index:5"></div>
-    <img class="mascot" src="img/mascot-wink.png" alt="" style="left:31cqw;top:30cqw;width:13cqw">
-    <div class="toast" style="left:48cqw;top:48cqw"><i>✓</i>Аккаунт создан</div>
-    <span class="tag">0:14 · телефон → почта → Яндекс ID</span>
+  <div class="vis">
+    <div class="frame" id="f04">
+      <div class="t" style="left:4.5cqw;top:5cqw;font-size:4.2cqw">Регистрация <span class="b">в 1 клик</span></div>
+      <div class="sub" style="left:4.6cqw;top:10.6cqw;font-family:var(--mono);font-size:1.3cqw;letter-spacing:.08em">ТЕЛЕФОН · ПОЧТА · ЯНДЕКС ID · MAX</div>
+      <div class="authslot" data-tab="phone" data-hl="1" data-press="1"></div>
+      <div class="toast" style="left:67cqw;top:50cqw"><img src="img/icons/ok.png" alt="">Аккаунт создан</div>
+      <canvas class="kv" data-src="img/veo/scene04.mp4" data-still="img/veo/scene04_press.jpg" data-anchor="0.765,0.70" data-target=".ob.ya" data-tx="0.12" data-w="48" data-fade="bottom" data-play="1"></canvas>
+      <span class="tag">0:15,8 · нажатие «Яндекс ID»</span>
+    </div>
+    <div class="kfl">Раскадровка</div>
+    <div class="kf">
+      <div class="frame"><div class="authslot" data-tab="phone" data-typing="1"></div><canvas class="kv" data-still="img/veo/scene04_walk.jpg" data-anchor="0.765,0.70" data-target=".ob.ya" data-tx="0.12" data-w="48" data-fade="bottom"></canvas><span class="tag">0:12 · телефон</span></div>
+      <div class="frame"><div class="authslot" data-tab="email"></div><canvas class="kv" data-still="img/veo/scene04_walk.jpg" data-anchor="0.765,0.70" data-target=".ob.ya" data-tx="0.12" data-w="48" data-fade="bottom"></canvas><span class="tag">0:13,5 · почта</span></div>
+      <div class="frame"><div class="authslot" data-tab="email" data-hl="1"></div><canvas class="kv" data-still="img/veo/scene04_press.jpg" data-anchor="0.765,0.70" data-target=".ob.ya" data-tx="0.12" data-w="48" data-fade="bottom"></canvas><span class="tag">0:15,8 · клик</span></div>
+      <div class="frame"><div class="authslot" data-tab="email" data-done="1"></div><div class="toast" style="left:67cqw;top:50cqw"><img src="img/icons/ok.png" alt="">Аккаунт создан</div><canvas class="kv" data-still="img/veo/scene04_wink.jpg" data-anchor="0.765,0.70" data-target=".ob.ya" data-tx="0.12" data-w="48" data-fade="bottom"></canvas><span class="tag">0:17 · подмигивает</span></div>
+    </div>
   </div>
   <div class="meta">
-    <div class="top"><span class="num">04</span><span class="time">0:11–0:18</span><span class="badge new">ПРАВКА</span><span class="badge mas">МАСКОТ · VEO D</span></div>
+    <div class="top"><span class="num">04</span><span class="time">0:11–0:18</span><span class="badge fix">ПРАВКА</span><span class="badge mas">МАСКОТ · ВИДЕО 04</span></div>
     <h3>Регистрация: все способы, вход в 1 клик</h3>
     <dl>
-      <dt>Что в кадре</dt><dd>Окно входа кабинета «Добро пожаловать». Вкладка «По телефону»: печатается номер. Вкладка переключается на «По email»: почта и пароль. Потом подсвечиваются кнопки <b>Яндекс ID</b> и <b>MAX</b>, маскот подлетает и нажимает «Яндекс ID» → всплывает «Аккаунт создан».</dd>
-      <dt>Движение</dt><dd>Телефон и почта — быстро, по 1 с: показываем, что способы есть. Главный акцент — на кнопках быстрого входа: они загораются, клик маскота — и сразу галочка.</dd>
-      <dt>Текст в кадре</dt><dd>«Регистрация в 1 клик» · «Телефон · Почта · Яндекс ID · MAX»</dd>
+      <dt>Что в кадре</dt><dd>Окно входа кабинета, собранное заново: «Добро пожаловать», вкладки «По телефону / По email», поле, «Получить код» и три одинаковые кнопки — <b>Яндекс ID, Mail.ru, MAX</b>. У всех кнопок одинаковые отступы, иконка и слово стоят ровно по центру. Иконки Яндекс ID и MAX взяты из кабинета. Слева — маскот из вашего видео.</dd>
+      <dt>Движение</dt><dd><ol>
+        <li>0:11 — окно въезжает справа, маскот заходит слева (продолжение ухода из сцены 03), смотрит на окно.</li>
+        <li>0:12 — во вкладке «По телефону» печатается номер; 0:13,5 — вкладка переключается на «По email».</li>
+        <li>0:14,5 — загораются кнопки быстрого входа, маскот тянет ручку.</li>
+        <li>0:15,8 — нажатие «Яндекс ID»: вспышка в ручке маскота = клик по кнопке, кнопка проседает.</li>
+        <li>0:16,5 — всплывает «Аккаунт создан» с зелёной иконкой-галочкой, маскот поворачивается к нам и подмигивает.</li>
+      </ol></dd>
+      <dt>Видео</dt><dd>Клип 04 целиком, 0–7 с клипа = 0:11–0:18 ролика. Маскот стоит низом на краю кадра — в клипе он обрезан снизу, поэтому так выглядит естественно.</dd>
+      <dt>Текст в кадре</dt><dd>«Регистрация в 1 клик» · «Телефон · Почта · Яндекс ID · MAX» · «Аккаунт создан»</dd>
     </dl>
+    <p class="edit">Правка: кнопки ровные, одинаковые отступы, слово по центру; галочка — иконка; маскот — ваше видео.</p>
     <p class="vo">«Регистрация — по телефону, почте или в один клик: через Яндекс ID или MAX.»<small>≈ 5 с</small></p>
   </div>
 </article>
 
 <article class="scene">
-  <div class="frame">
-    <div style="position:absolute;left:8cqw;right:8cqw;top:12cqw;z-index:4">
-      <div style="font:500 2.2cqw/1 var(--sans);color:#c9d0e0;margin-bottom:1.4cqw">Адрес сайта</div>
-      <div style="display:flex;align-items:center;gap:2cqw;height:10cqw;padding:0 3cqw;border-radius:1.6cqw;background:#fff;border:2px solid var(--accent);box-shadow:0 0 0 .6cqw rgba(26,105,240,.18)">
-        <svg viewBox="0 0 24 24" style="width:4cqw" fill="none" stroke="#8c96ad" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>
-        <span style="font:500 5cqw/1 var(--sans);color:#0c1220;letter-spacing:-.02em">https://example.ru<span style="color:var(--accent2)">|</span></span>
+  <div class="vis">
+    <div class="frame" id="f05">
+      <div style="position:absolute;left:15cqw;top:-22cqw;width:70cqw;z-index:4">
+        <div class="win" style="position:relative;width:100%"><img src="img/add_card_menu.jpg" alt="Карточка «Добавьте сайт…» с открытым списком регионов"></div>
+        <div style="position:absolute;left:0;right:0;top:0;height:22%;backdrop-filter:blur(.5cqw);-webkit-backdrop-filter:blur(.5cqw);background:rgba(255,255,255,.35);z-index:5;border-radius:1.1cqw 1.1cqw 0 0"></div>
       </div>
+      <svg class="cursor" viewBox="0 0 24 24" style="left:52cqw;top:45cqw"><path d="M3 2l7 19 2.5-7.5L20 11z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 100 56.25" style="position:absolute;inset:0;width:100%;height:100%;z-index:11"><path d="M52.6 31 C 51 36, 51 41, 52.6 45" fill="none" stroke="rgba(26,105,240,.9)" stroke-width=".35" stroke-dasharray="1 .8"/></svg>
+      <span class="tag">0:21,5 · курсор проходит по регионам</span>
     </div>
-    <div class="win" style="left:8cqw;top:31cqw;width:34cqw;padding:1.2cqw;color:#0c1220;font:500 1.7cqw/1.2 var(--sans)">
-      <div style="color:#8c96ad;font-size:1.3cqw;margin-bottom:.8cqw">Регион продвижения</div>
-      <div style="padding:1cqw;border-radius:.6cqw;background:rgba(26,105,240,.1);color:#1450c8">Москва и МО</div>
-      <div style="padding:1cqw;color:#5b6475">Санкт-Петербург</div>
-      <div style="padding:1cqw;color:#5b6475">Екатеринбург</div>
+    <div class="kfl">Раскадровка</div>
+    <div class="kf">
+      <div class="frame"><div class="win" style="left:31cqw;top:4cqw;width:38cqw"><img src="img/add_card.jpg" alt=""></div><span class="tag">0:18 · плашка целиком</span></div>
+      <div class="frame">
+        <div style="position:absolute;left:-14cqw;top:-20cqw;width:128cqw;z-index:4">
+          <div class="win" style="position:relative;width:100%"><img src="img/add_card.jpg" alt=""></div>
+          <div style="position:absolute;left:0;right:0;top:0;height:28%;backdrop-filter:blur(1.2cqw);-webkit-backdrop-filter:blur(1.2cqw);background:rgba(255,255,255,.45);border-radius:1.1cqw 1.1cqw 0 0"></div>
+        </div><span class="tag">0:19 · наезд на адрес</span></div>
+      <div class="frame">
+        <div style="position:absolute;left:15cqw;top:-22cqw;width:70cqw;z-index:4">
+          <div class="win" style="position:relative;width:100%"><img src="img/add_card_menu0.jpg" alt=""></div>
+          <div style="position:absolute;left:0;right:0;top:0;height:22%;backdrop-filter:blur(.5cqw);-webkit-backdrop-filter:blur(.5cqw);background:rgba(255,255,255,.35)"></div>
+        </div>
+        <svg class="cursor" viewBox="0 0 24 24" style="left:52cqw;top:31cqw"><path d="M3 2l7 19 2.5-7.5L20 11z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg><div class="click" style="left:52.6cqw;top:31.6cqw"></div>
+        <span class="tag">0:22,5 · клик «Москва и МО»</span></div>
+      <div class="frame"><div class="win" style="left:20cqw;top:-6cqw;width:60cqw"><img src="img/add_card.jpg" alt=""></div>
+        <svg class="cursor" viewBox="0 0 24 24" style="left:56cqw;top:52cqw"><path d="M3 2l7 19 2.5-7.5L20 11z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg><div class="click" style="left:57cqw;top:52.6cqw"></div>
+        <span class="tag">0:23 · «Начать продвижение»</span></div>
     </div>
-    <div class="btn" style="right:8cqw;top:38cqw">Начать продвижение →</div>
-    <svg class="cursor" viewBox="0 0 24 24" style="left:80cqw;top:42cqw"><path d="M3 2l7 19 2.5-7.5L20 11z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg>
-    <span class="tag">0:19 · крупный план поля</span>
   </div>
   <div class="meta">
-    <div class="top"><span class="num">05</span><span class="time">0:18–0:24</span></div>
+    <div class="top"><span class="num">05</span><span class="time">0:18–0:24</span><span class="badge fix">ПРАВКА</span></div>
     <h3>Адрес сайта и регион</h3>
     <dl>
-      <dt>Что в кадре</dt><dd>Галочка «Аккаунт создан» растягивается в одно поле «Адрес сайта» на весь кадр, печатается https://example.ru. Камера отъезжает: это окно «Добавьте сайт». Открывается «Регион продвижения», выбирается «Москва и МО», нажатие «Начать продвижение».</dd>
-      <dt>Движение</dt><dd>Наезд на одно поле, потом отъезд. Список регионов раскрывается пружиной, звук клавиш на каждую букву.</dd>
-      <dt>Текст в кадре</dt><dd>«Адрес сайта» · «https://example.ru» · «Москва и МО» · «Начать продвижение»</dd>
+      <dt>Что в кадре</dt><dd>Карточка из кабинета целиком: «Добавьте сайт для начала тестового периода», «Адрес сайта», «Регион продвижения», кнопка «Начать продвижение». Камера работает внутри неё.</dd>
+      <dt>Движение</dt><dd><ol>
+        <li>0:18 — карточка влетает крупным планом по центру, видна целиком, с заголовком.</li>
+        <li>0:19 — заголовок размывается, камера наезжает на поле «Адрес сайта», печатается https://example.ru.</li>
+        <li>0:20,5 — камера опускается к «Региону продвижения», курсор кликает — выскакивает меню.</li>
+        <li>0:21,5 — курсор медленно проходит вниз по регионам (Санкт-Петербург, Новосибирск, Екатеринбург), чтобы было видно, что их несколько, и возвращается.</li>
+        <li>0:22,5 — клик «Москва и МО», регион фиксируется, меню закрывается.</li>
+        <li>0:23 — камера отъезжает к кнопке, клик «Начать продвижение».</li>
+      </ol></dd>
+      <dt>Текст в кадре</dt><dd>Тексты карточки кабинета</dd>
     </dl>
+    <p class="edit">Правка: плашка из кабинета целиком, с заголовком; акцент сначала на адресе, потом на выборе региона.</p>
     <p class="vo">«Дальше — адрес сайта и регион, где нужны клиенты.»<small>≈ 3 с</small></p>
   </div>
 </article>
 
 <article class="scene">
-  <div class="frame">
-    <div class="t" style="left:6cqw;top:5cqw;font-size:3.6cqw">Jarvis собирает и готовит данные</div>
-    <div style="position:absolute;left:6cqw;top:11.4cqw;width:62cqw;height:1.1cqw;border-radius:1cqw;background:rgba(255,255,255,.12);z-index:4"><div style="width:72%;height:100%;border-radius:1cqw;background:linear-gradient(90deg,#1A69F0,#6ba5ff);box-shadow:0 0 2cqw rgba(107,165,255,.7)"></div></div>
-    <div style="position:absolute;left:70cqw;top:10.4cqw;font:700 2.4cqw/1 var(--mono);color:#fff;z-index:4">72%</div>
-    <div id="steps" style="position:absolute;left:6cqw;top:17cqw;z-index:4;display:grid;gap:1.3cqw"></div>
-    <div class="glow" style="left:58cqw;top:14cqw;width:36cqw;height:36cqw"></div>
-    <img class="mascot" src="img/mascot-magnifier.png" alt="Маскот с лупой" style="left:63cqw;top:19cqw;width:24cqw">
-    <span class="tag">0:28 · шаги загораются по очереди</span>
+  <div class="vis">
+    <div class="frame" id="f06">
+      <div class="t" style="left:6cqw;top:5cqw;font-size:3.6cqw">Jarvis собирает и готовит данные</div>
+      <div style="position:absolute;left:6cqw;top:11.4cqw;width:58cqw;height:1.1cqw;border-radius:1cqw;background:rgba(255,255,255,.12);z-index:4"><div style="width:72%;height:100%;border-radius:1cqw;background:#1A69F0;box-shadow:0 0 2cqw rgba(26,105,240,.8)"></div></div>
+      <div style="position:absolute;left:66cqw;top:10.4cqw;font:700 2.4cqw/1 var(--mono);color:#fff;z-index:4">72%</div>
+      <div class="steps" data-on="2" style="position:absolute;left:6cqw;top:17cqw;z-index:4;display:grid;gap:1.3cqw"></div>
+      <canvas class="kv" data-src="img/veo/scene06.mp4" data-still="img/veo/scene06_lens.jpg" data-box="47,24.75,56" data-fade="1" data-play="1"></canvas>
+      <span class="tag">0:26 · шаг 3, маскот смотрит в лупу</span>
+    </div>
+    <div class="kfl">Раскадровка</div>
+    <div class="kf">
+      <div class="frame"><div class="t" style="left:6cqw;top:5cqw;font-size:3.6cqw">Jarvis собирает и готовит данные</div><div class="steps" data-on="0" style="position:absolute;left:6cqw;top:17cqw;z-index:4;display:grid;gap:1.3cqw"></div><canvas class="kv" data-still="img/veo/scene06_lens.jpg" data-box="47,24.75,56" data-fade="1"></canvas><span class="tag">0:24 · лупа</span></div>
+      <div class="frame"><div class="t" style="left:6cqw;top:5cqw;font-size:3.6cqw">Jarvis собирает и готовит данные</div><div class="steps" data-on="3" style="position:absolute;left:6cqw;top:17cqw;z-index:4;display:grid;gap:1.3cqw"></div><canvas class="kv" data-still="img/veo/scene06_happy.jpg" data-box="47,24.75,56" data-fade="1"></canvas><span class="tag">0:28 · радуется</span></div>
+      <div class="frame"><div class="t" style="left:6cqw;top:5cqw;font-size:3.6cqw">Jarvis собирает и готовит данные</div><div class="steps" data-on="5" style="position:absolute;left:6cqw;top:17cqw;z-index:4;display:grid;gap:1.3cqw"></div><canvas class="kv" data-still="img/veo/scene06_checks.jpg" data-box="47,24.75,56" data-fade="1"></canvas><span class="tag">0:30 · все готово, галочки</span></div>
+    </div>
   </div>
   <div class="meta">
-    <div class="top"><span class="num">06</span><span class="time">0:24–0:33</span><span class="badge new">ПРАВКА</span><span class="badge mas">МАСКОТ · VEO B</span></div>
+    <div class="top"><span class="num">06</span><span class="time">0:24–0:33</span><span class="badge mas">МАСКОТ · ВИДЕО 06</span></div>
     <h3>Анализ: акцент на шагах</h3>
     <dl>
-      <dt>Что в кадре</dt><dd>Сверху крупно «Jarvis собирает и готовит данные», под ним шкала загрузки с процентами 0 → 100%. Ниже большим списком пять шагов, как в кабинете: Определяем тематику и нишу → Собираем семантическое ядро → Считаем объём спроса → Снимаем стартовые позиции → Находим конкурентов. Справа маскот с лупой.</dd>
-      <dt>Движение</dt><dd>Активный шаг крупный и белый, с бегущим бликом; готовый — зелёная галочка; следующие — приглушены. Маскот едет вниз вдоль списка и «проверяет» каждый шаг через лупу. Под конец шаги ускоряются вместе с музыкой — разгон к пику.</dd>
+      <dt>Что в кадре</dt><dd>Сверху «Jarvis собирает и готовит данные», под ним шкала 0 → 100%. Ниже пять шагов из кабинета: Определяем тематику и нишу → Собираем семантическое ядро → Считаем объём спроса → Снимаем стартовые позиции → Находим конкурентов. Справа маскот из вашего видео.</dd>
+      <dt>Движение и видео</dt><dd><ol>
+        <li>0:24–0:27 (клип 0–3,2 с) — маскот смотрит в лупу, шаги 1–3 загораются и получают галочки.</li>
+        <li>0:27,5–0:29 (клип 3,3–4,3 с) — радуется «&gt; &lt;» на шаге 4.</li>
+        <li>0:29,5–0:31 (клип 4,6–5,7 с) — на визоре появляются галочки, шаг 5 готов, шкала 100%.</li>
+        <li>0:31–0:33 — улыбается, шкала вспыхивает — переход в пик.</li>
+      </ol></dd>
       <dt>Текст в кадре</dt><dd>«Jarvis собирает и готовит данные» · проценты · названия шагов</dd>
     </dl>
+    <p class="edit">Тут всё было окей — заменил картинку на ваше видео. В клипе маскот обрезан сверху и снизу, поэтому верх плавно растворяю.</p>
     <p class="vo">«Джарвис сам собирает и готовит данные: определяет нишу, собирает семантическое ядро, считает спрос, снимает позиции и находит конкурентов.»<small>≈ 8 с</small></p>
   </div>
 </article>
 
 <article class="scene">
-  <div class="frame">
-    <div class="glow" style="left:28cqw;top:-8cqw;width:44cqw;height:44cqw"></div>
-    <div class="win" style="left:37cqw;top:4cqw;width:26cqw"><img src="img/congrats.jpg" alt="Окно «Поздравляем!»"></div>
-    <div style="position:absolute;left:45.8cqw;top:5.8cqw;width:8.4cqw;height:8.4cqw;border-radius:50%;background:#fff;z-index:6"></div>
-    <img class="mascot" src="img/mascot-wink.png" alt="" style="left:44cqw;top:3.4cqw;width:12cqw">
-    <span class="tag">0:33 · шкала вспыхивает — влёт в окно</span>
+  <div class="vis">
+    <div class="frame">
+      <div class="win" style="left:37cqw;top:4cqw;width:26cqw"><img src="img/congrats.jpg" alt="Окно «Поздравляем!»"></div>
+      <div style="position:absolute;left:45.8cqw;top:5.8cqw;width:8.4cqw;height:8.4cqw;border-radius:50%;background:#dbe9fb;z-index:6"></div>
+      <img class="mascot flat" src="img/mascot-wink.png" alt="" style="left:44.6cqw;top:4cqw;width:10.8cqw">
+      <span class="tag">0:34 · маскот в окне, без свечения</span>
+    </div>
   </div>
   <div class="meta">
-    <div class="top"><span class="num">07</span><span class="time">0:33–0:37</span><span class="badge peak">ПИК РОЛИКА</span><span class="badge mas">МАСКОТ · VEO C</span></div>
+    <div class="top"><span class="num">07</span><span class="time">0:33–0:37</span><span class="badge peak">ПИК РОЛИКА</span><span class="badge fix">ПРАВКА</span></div>
     <h3>Продвижение запущено</h3>
     <dl>
-      <dt>Что в кадре</dt><dd>Шкала доходит до 100% и вспыхивает, камера влетает в свечение. Оттуда на пружине выезжает окно кабинета «Поздравляем!»: «5 дней бесплатно · 1 240 запросов в работе · 24/7 мониторинг позиций». Вместо старого робота в окне — новый маскот, он выпрыгивает над окном и радуется.</dd>
-      <dt>Движение</dt><dd>Дроп музыки и низкий удар — единственный пик ролика.</dd>
+      <dt>Что в кадре</dt><dd>Шкала доходит до 100% и вспыхивает, камера влетает в свечение. Оттуда на пружине выезжает окно «Поздравляем!»: «5 дней бесплатно · 1 240 запросов в работе · 24/7 мониторинг позиций». Вместо старого робота — маскот, он подпрыгивает и приземляется в круг.</dd>
+      <dt>Движение</dt><dd>Дроп музыки и низкий удар — единственный пик ролика. Маскот — картинка: прыжок, сжатие при приземлении.</dd>
       <dt>Текст в кадре</dt><dd>«Поздравляем!» · «5 · 1 240 · 24/7»</dd>
     </dl>
+    <p class="edit">Правка: синее свечение за маскотом убрано полностью, круг — как в кабинете.</p>
     <p class="vo">«Продвижение запущено.»<small>≈ 1,5 с, после удара</small></p>
   </div>
 </article>
@@ -402,19 +558,28 @@ footer{margin-top:40px;font:400 13px/1.5 var(--mono);color:var(--muted)}
 <div class="act" id="act3"><h2>3. Десять модулей кабинета</h2><span class="tc">0:37–1:41</span></div>
 
 <article class="scene">
-  <div class="frame" id="hub">
-    <div class="glow" style="left:35cqw;top:8cqw;width:30cqw;height:30cqw"></div>
-    <img class="mascot" src="img/mascot-wink.png" alt="Маскот в центре меню" style="left:41cqw;top:15cqw;width:18cqw">
-    <span class="tag">0:38 · пункты выезжают по обе стороны</span>
+  <div class="vis">
+    <div class="var rec"><h4>Вариант Б · «Барабан» <span class="badge new">РЕКОМЕНДУЮ</span></h4>
+      <div class="frame" id="drumF"><span class="tag">0:40 · финальный кадр</span></div>
+      <div class="kf"><div class="frame" id="drumA"><span class="tag">0:37,5 · пункты выкатываются</span></div><div class="frame" id="drumB"><span class="tag">0:50 · барабан повернулся к 03</span></div></div>
+      <p>Справа вертикальный барабан из 10 пунктов, как в рекламе Figma: активный пункт — белая плашка по центру, остальные уходят вверх и вниз по цилиндру и гаснут. Пункты выкатываются снизу по одному. В туре барабан просто поворачивается к следующему пункту — переход между модулями получается сам собой.</p></div>
+    <div class="var"><h4>Вариант В · «Орбита»</h4>
+      <div class="frame" id="orbitF"><span class="tag">0:40 · финальный кадр</span></div>
+      <div class="kf"><div class="frame" id="orbitA"><span class="tag">0:37,5 · вылетают из-за маскота</span></div></div>
+      <p>10 карточек-модулей вылетают из-за маскота по спирали и встают на наклонную орбиту вокруг него: передние крупнее, задние меньше и размыты. Орбита медленно вращается, нужный модуль выезжает вперёд и раскрывается.</p></div>
+    <div class="var"><h4>Вариант А · прежний</h4>
+      <div class="frame" id="hub"><span class="tag">0:38 · пункты по обе стороны</span></div>
+      <p>Пункты выезжают из-за маскота по обе стороны (5 слева, 5 справа).</p></div>
   </div>
   <div class="meta">
-    <div class="top"><span class="num">08</span><span class="time">0:37–0:41</span><span class="badge new">ПРАВКА</span><span class="badge mas">МАСКОТ · VEO E</span></div>
+    <div class="top"><span class="num">08</span><span class="time">0:37–0:41</span><span class="badge fix">3 ВАРИАНТА</span><span class="badge mas">МАСКОТ · КАРТИНКА</span></div>
     <h3>Меню из 10 модулей</h3>
     <dl>
-      <dt>Что в кадре</dt><dd>Окно «Поздравляем!» сворачивается, маскот остаётся в центре. По обе стороны от него выезжают 10 пунктов — ровно те, что назвал начальник, с номерами 01–10.</dd>
-      <dt>Движение</dt><dd>Пункты выезжают из-за маскота по очереди, с шагом 0,08 с. Дальше — один и тот же ритм для каждого модуля: маскот поворачивается к пункту → пункт нажимается → разворачивается в окно раздела (≈ 5 с) → сворачивается обратно в пункт, пункт получает зелёную галочку → следующий.</dd>
+      <dt>Что в кадре</dt><dd>Окно «Поздравляем!» сворачивается, маскот остаётся. Появляются 10 пунктов — ровно те, что назвал начальник, с номерами 01–10. Выберите вариант — по нему соберу тур по модулям.</dd>
+      <dt>Ритм тура (для всех вариантов)</dt><dd>Маскот наклоняется к пункту → пункт нажимается → разворачивается в окно раздела (≈ 5 с) → сворачивается обратно с зелёной галочкой → следующий.</dd>
       <dt>Текст в кадре</dt><dd>10 названий модулей</dd>
     </dl>
+    <p class="edit">Правка: два новых варианта расположения и вылета пунктов, показаны финальные кадры.</p>
     <p class="vo">«Что внутри кабинета?»<small>≈ 1,2 с</small></p>
   </div>
 </article>
@@ -425,48 +590,75 @@ footer{margin-top:40px;font:400 13px/1.5 var(--mono);color:var(--muted)}
 <div class="act" id="act4"><h2>4. Финал</h2><span class="tc">1:41–1:52</span></div>
 
 <article class="scene">
-  <div class="frame" id="hubdone">
-    <div class="glow" style="left:35cqw;top:8cqw;width:30cqw;height:30cqw"></div>
-    <img src="img/logo.svg" alt="" style="position:absolute;left:45cqw;top:18cqw;width:10cqw;z-index:4">
-    <div class="t" style="left:0;right:0;text-align:center;top:48cqw;font-size:3.2cqw">Всё это — <span class="b">в одном кабинете</span></div>
-    <span class="tag">1:42 · все пункты с галочками стягиваются в знак</span>
+  <div class="vis">
+    <div class="var rec"><h4>Вариант Б · «Стена экранов → один кабинет» <span class="badge new">НОВЫЙ</span></h4>
+      <div class="kf">
+        <div class="frame" id="wallA"><span class="tag">1:41 · экраны вылетают стеной</span></div>
+        <div class="frame" id="wallB"><span class="tag">1:42,5 · складываются в стопку</span></div>
+      </div>
+      <div class="frame" id="wallF"><span class="tag">1:44 · финальный кадр</span></div>
+      <p>Все 10 экранов модулей с зелёными галочками вылетают из глубины наклонной стеной 5×2, как обложки в рекламе Spotify. Стена выравнивается, экраны слетаются и складываются в ту же стопку, что в первой сцене, — ролик закольцовывается. Последним ложится дашборд, на нём вспыхивает знак Jarvis.</p></div>
+    <div class="var"><h4>Вариант А · прежний</h4>
+      <div class="frame" id="hubdone"><span class="tag">1:42 · пункты стягиваются в знак</span></div>
+      <p>Пункты с галочками закручиваются по кругу и стягиваются в знак.</p></div>
   </div>
   <div class="meta">
-    <div class="top"><span class="num">19</span><span class="time">1:41–1:45</span></div>
+    <div class="top"><span class="num">19</span><span class="time">1:41–1:45</span><span class="badge fix">НОВЫЙ ВАРИАНТ</span></div>
     <h3>Всё это — в одном кабинете</h3>
     <dl>
-      <dt>Что в кадре</dt><dd>Все 10 пунктов уже с зелёными галочками. Они закручиваются по кругу и стягиваются в знак Jarvis в центре. Внизу надпись — перекличка с первой сценой.</dd>
-      <dt>Движение</dt><dd>Вращение ускоряется, знак «вдыхает» пункты и вспыхивает.</dd>
+      <dt>Что в кадре</dt><dd>Все 10 модулей собираются в один кабинет. Внизу надпись — перекличка с первой сценой.</dd>
+      <dt>Движение (вариант Б)</dt><dd><ol>
+        <li>1:41 — экраны вылетают из глубины в шахматном порядке, наклонной стеной; на каждом зелёная галочка.</li>
+        <li>1:42,5 — стена выпрямляется, экраны слетаются к центру и ложатся стопкой, задние уходят в тень.</li>
+        <li>1:44 — сверху ложится дашборд, на нём вспыхивает знак. Снизу влетает «Всё это — в одном кабинете», «в одном кабинете» заливается синим.</li>
+      </ol></dd>
       <dt>Текст в кадре</dt><dd>«Всё это — в одном кабинете»</dd>
     </dl>
+    <p class="edit">Правка: новый вариант вылета модулей и новый финальный кадр сбора.</p>
     <p class="vo">«Всё это — в одном кабинете.»<small>≈ 2 с</small></p>
   </div>
 </article>
 
 <article class="scene">
-  <div class="frame">
-    <div class="glow" style="left:8cqw;top:2cqw;width:40cqw;height:40cqw"></div>
-    <img class="mascot" src="img/mascot-wink.png" alt="Маскот машет" style="left:12cqw;top:10cqw;width:24cqw">
-    <div class="t" style="left:42cqw;top:15cqw;font-size:4.8cqw;white-space:nowrap">SEO на автопилоте</div>
-    <div class="pill" style="left:42cqw;top:25.5cqw">5 дней бесплатно</div>
-    <div class="sub" style="left:63cqw;top:26.6cqw;font-size:2cqw;color:#fff">seojarvis.ru</div>
-    <span class="tag">1:46 · держится 3 с</span>
+  <div class="vis">
+    <div class="frame">
+      <div class="glow" style="left:38cqw;top:-6cqw;width:24cqw;height:24cqw;opacity:.8"></div>
+      <img class="mascot" src="img/mascot-wink.png" alt="Маскот подмигивает" style="left:42.5cqw;top:3.5cqw;width:15cqw">
+      <div class="t" style="left:0;right:0;top:24cqw;text-align:center;font-size:5.6cqw;white-space:nowrap">SEO на <span class="b">автопилоте</span></div>
+      <div style="position:absolute;left:0;right:0;top:34cqw;display:flex;justify-content:center;align-items:center;gap:2cqw;z-index:4">
+        <span style="font:600 1.9cqw/1 var(--sans);color:#fff;background:#1A69F0;border-radius:999px;padding:1.3cqw 2.4cqw;box-shadow:0 0 3cqw rgba(26,105,240,.6)">5 дней бесплатно</span>
+        <span style="font:600 1.9cqw/1 var(--sans);color:#fff;border:.15cqw solid rgba(255,255,255,.35);border-radius:999px;padding:1.2cqw 2.3cqw">seojarvis.ru</span>
+      </div>
+      <div class="sub" style="left:0;right:0;top:41.5cqw;text-align:center;font-size:1.5cqw;color:rgba(255,255,255,.6)">без карты</div>
+      <span class="tag">1:46 · всё по центру, держится 3 с</span>
+    </div>
+    <div class="kfl">Раскадровка</div>
+    <div class="kf">
+      <div class="frame"><div style="position:absolute;left:46cqw;top:22cqw;width:8cqw;height:8cqw;border-radius:2cqw;background:linear-gradient(135deg,#0B64F4,#1AA2E6);box-shadow:0 0 6cqw rgba(26,105,240,.9);z-index:4"></div><span class="tag">1:45 · знак вспыхивает</span></div>
+      <div class="frame"><img class="mascot" src="img/mascot-wink.png" alt="" style="left:42cqw;top:12cqw;width:16cqw;transform:scaleY(1.1) scaleX(.92)"><div class="t motion" style="left:0;right:0;top:34cqw;text-align:center;font-size:5.6cqw">SEO на</div><span class="tag">1:45,5 · маскот выпрыгивает</span></div>
+      <div class="frame"><img class="mascot" src="img/mascot-wink.png" alt="" style="left:42.5cqw;top:3.5cqw;width:15cqw"><div class="t" style="left:0;right:0;top:24cqw;text-align:center;font-size:5.6cqw">SEO на <span class="b">автопилоте</span></div><div style="position:absolute;left:0;right:0;top:34cqw;display:flex;justify-content:center;z-index:4"><span class="motion" style="font:600 1.9cqw/1 var(--sans);color:#fff;background:#1A69F0;border-radius:999px;padding:1.3cqw 2.4cqw">5 дней бесплатно</span></div><span class="tag">1:46 · кнопки снизу</span></div>
+    </div>
   </div>
   <div class="meta">
-    <div class="top"><span class="num">20</span><span class="time">1:45–1:52</span><span class="badge mas">МАСКОТ · VEO F</span></div>
-    <h3>Маскот и призыв</h3>
+    <div class="top"><span class="num">20</span><span class="time">1:45–1:52</span><span class="badge fix">ПРАВКА</span><span class="badge mas">МАСКОТ · КАРТИНКА</span></div>
+    <h3>Финал: всё по центру</h3>
     <dl>
-      <dt>Что в кадре</dt><dd>Из знака снова раскрывается маскот, машет и подмигивает. Рядом «SEO на автопилоте», кнопка «5 дней бесплатно» и адрес seojarvis.ru. По кнопке проходит блик.</dd>
-      <dt>Движение</dt><dd>Финальная плашка держится 3 с, музыка затухает.</dd>
-      <dt>Текст в кадре</dt><dd>«SEO на автопилоте» · «5 дней бесплатно» · «seojarvis.ru»</dd>
+      <dt>Что в кадре</dt><dd>Одна ось по центру кадра: сверху маскот, под ним «SEO на автопилоте», ниже ровно по центру кнопка «5 дней бесплатно» и адрес seojarvis.ru, под ними мелко «без карты».</dd>
+      <dt>Движение</dt><dd><ol>
+        <li>1:45 — знак со стопки вспыхивает и превращается в маскота: он выпрыгивает вверх, сжимается при остановке и подмигивает.</li>
+        <li>1:45,5 — «SEO на автопилоте» влетает по словам снизу, «автопилоте» заливается синим.</li>
+        <li>1:46 — кнопка и адрес выезжают снизу с пружиной, по кнопке проходит блик. Маскот слегка покачивается до конца.</li>
+      </ol></dd>
+      <dt>Текст в кадре</dt><dd>«SEO на автопилоте» · «5 дней бесплатно» · «seojarvis.ru» · «без карты»</dd>
     </dl>
+    <p class="edit">Правка: вся композиция — маскот, текст и плашки — по центру.</p>
     <p class="vo">«Джарвис. SEO на автопилоте. Пять дней — бесплатно, без карты.»<small>≈ 4 с</small></p>
   </div>
 </article>
 
 <section aria-labelledby="h-vo">
   <div><div class="eyebrow">Для ElevenLabs</div><h2 id="h-vo">Весь текст озвучки</h2>
-  <p class="muted">Около 180 слов, спокойный уверенный темп. «Джарвис» — по-русски, чтобы голос не прочитал имя по-английски. Числа написаны словами.</p></div>
+  <p class="muted">Текст не менялся. Около 180 слов, спокойный уверенный темп. «Джарвис» — по-русски. Числа написаны словами.</p></div>
   <div class="script">
     <ol id="vo-list"></ol>
     <button class="copy" id="copy" type="button">Скопировать текст</button>
@@ -474,177 +666,287 @@ footer{margin-top:40px;font:400 13px/1.5 var(--mono);color:var(--muted)}
 </section>
 
 <section aria-labelledby="h-q">
-  <div><div class="eyebrow">Перед сборкой</div><h2 id="h-q">Что нужно подтвердить</h2></div>
+  <div><div class="eyebrow">Перед сборкой</div><h2 id="h-q">Что нужно решить</h2></div>
   <div class="qs">
-    <div><b>Цифры «182 пункта» и «11 нейросетей»</b><p>Беру со слов начальника, но в кабинете их нет. В фактах бренда записано «120+ проверок скорости, индексации и разметки», а экран GEO в кабинете показывает Алису, ChatGPT, Perplexity, Gemini, GigaChat и DeepSeek. Нужно подтвердить обе цифры.</p></div>
-    <div><b>Слова первой фразы</b><p>Начальник: «Всё для продвижения в одном кабинете». На сайте: «Всё для роста — в одном кабинете». Ставлю вариант начальника.</p></div>
-    <div><b>Логотипы на экране «Бонусы»</b><p>На странице бонусов логотипы Яндекса, VK, Telegram, Bitrix24, amoCRM. Показываю страницу общим планом, крупно — только сами бонусы («−30% на первый месяц…»). Если логотипы можно показывать крупно — скажите.</p></div>
-    <div><b>Mail.ru</b><p>В окне входа есть третья кнопка — Mail.ru. Она видна в кадре, но голос называет только Яндекс ID и MAX, как просил начальник.</p></div>
-    <div><b>Музыка на 2 минуты</b><p>Трек из второго видео нужно лицензировать, либо берём другой трек с лицензией для рекламы.</p></div>
-    <div><b>Видео маскота</b><p>Пока считаю без видео: маскот двигается целиком (парит, подпрыгивает, поворачивается). Если дубли из Veo получатся хорошими — заменю ими эти места.</p></div>
+    <div><b>Меню модулей (сцена 08)</b><p>Какой вариант берём: Б «Барабан» (рекомендую), В «Орбита» или прежний А?</p></div>
+    <div><b>Сбор в финале (сцена 19)</b><p>Новый вариант Б «Стена экранов → один кабинет» или прежний А?</p></div>
+    <div><b>Видео 06 крупновато</b><p>В клипе с лупой маскот обрезан сверху и снизу. Сейчас растворяю верх — смотрится нормально. Если будете перегенерировать, добавьте в промпт: «character fully in frame, small margin on all sides, medium shot».</p></div>
+    <div><b>Цифры «182 пункта» и «11 нейросетей»</b><p>В кабинете их нет (в фактах — «120+ проверок», на экране GEO — 6 нейросетей). Нужно подтвердить.</p></div>
+    <div><b>Логотипы на экране «Бонусы»</b><p>Показываю общим планом, крупно — только сами бонусы. Если логотипы можно крупно — скажите.</p></div>
+    <div><b>Музыка на 2 минуты</b><p>Нужен трек с лицензией для рекламы.</p></div>
   </div>
 </section>
 
-<footer>Кадры собраны из демо-кабинета SEO Jarvis (светлая тема). Тайминги черновые: после записи голоса анимацию подгоним под реальную длину фраз.</footer>
+<footer>Кадры собраны из демо-кабинета SEO Jarvis (светлая тема). Видео маскота — ваши клипы Veo, чёрный фон убран на лету. Тайминги черновые: после записи голоса подгоним под реальную длину фраз.</footer>
 </div>
 
 <script>
 (function(){
   var CUR='<path d="M3 2l7 19 2.5-7.5L20 11z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/>';
-  // деления кольца (сцена 02)
-  var g=document.getElementById('ticks');
-  if(g){var s='';for(var i=0;i<30;i++){var a=i/30*Math.PI*2,r1=88,r2=i%5===0?98:94;
-    s+='<line x1="'+(100+r1*Math.sin(a)).toFixed(1)+'" y1="'+(100-r1*Math.cos(a)).toFixed(1)+'" x2="'+(100+r2*Math.sin(a)).toFixed(1)+'" y2="'+(100-r2*Math.cos(a)).toFixed(1)+'" stroke="#fff" stroke-width="'+(i%5===0?2.4:1.4)+'" opacity="'+(i%5===0?1:.7)+'"/>';}
-    g.innerHTML=s;}
+  function cursor(l,t){return '<svg class="cursor" viewBox="0 0 24 24" style="left:'+l+'cqw;top:'+t+'cqw">'+CUR+'</svg>';}
+  function click(l,t){return '<div class="click" style="left:'+l+'cqw;top:'+t+'cqw"></div>';}
+  function $(s,r){return (r||document).querySelector(s);}
+  function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
 
-  // шаги анализа (сцена 06)
-  var steps=[['Определяем тематику и нишу','done'],['Собираем семантическое ядро','done'],['Считаем объём спроса','on'],['Снимаем стартовые позиции',''],['Находим конкурентов','']];
-  var st=document.getElementById('steps');
-  steps.forEach(function(x){var d=document.createElement('div');
-    var on=x[1]==='on',done=x[1]==='done';
-    d.style.cssText='display:flex;align-items:center;gap:1.4cqw;font:'+(on?'800 3.3cqw':'700 2.5cqw')+'/1.1 var(--sans);letter-spacing:-.025em;color:'+(on?'#fff':done?'rgba(255,255,255,.75)':'rgba(255,255,255,.28)');
-    var ic=document.createElement('span');
-    ic.style.cssText='flex:none;display:grid;place-items:center;width:'+(on?3.2:2.6)+'cqw;height:'+(on?3.2:2.6)+'cqw;border-radius:50%;font:700 1.4cqw/1 var(--sans);'+(done?'background:#3ddc84;color:#04140a':on?'border:.3cqw solid #6ba5ff;box-shadow:0 0 1.6cqw #6ba5ff':'border:.2cqw solid rgba(255,255,255,.25)');
-    ic.textContent=done?'✓':'';
-    d.appendChild(ic);d.appendChild(document.createTextNode(x[0]+(on?'…':'')));st.appendChild(d);});
+  // деления кольца
+  $$('.ticks').forEach(function(g){var s='';for(var i=0;i<30;i++){var a=i/30*Math.PI*2,r1=88,r2=i%5===0?98:94;
+    s+='<line x1="'+(100+r1*Math.sin(a)).toFixed(1)+'" y1="'+(100-r1*Math.cos(a)).toFixed(1)+'" x2="'+(100+r2*Math.sin(a)).toFixed(1)+'" y2="'+(100-r2*Math.cos(a)).toFixed(1)+'" stroke="#fff" stroke-width="'+(i%5===0?2.4:1.4)+'" opacity="'+(i%5===0?1:.7)+'"/>';}
+    g.innerHTML=s;});
+
+  // стопка окон: одинаковый размер, задние — непрозрачные и тёмные
+  function stack(el,opt){ if(!el) return; opt=opt||{};
+    var W=opt.w||38,H=W*0.625,x=opt.x||55,y=opt.y||20,dx=opt.dx||3.2,dy=opt.dy||-3.2;
+    var L=opt.list||['learn_video','links_full','dash_full'], n=opt.n||L.length, h='';
+    for(var i=0;i<n;i++){var k=L.length-n+i, back=L.length-1-k;
+      h+='<div class="win fill tilt-r'+(back?' shade':'')+'" style="--sh:'+(back===1?.55:.72)+';left:'+(x+back*dx)+'cqw;top:'+(y+back*dy)+'cqw;width:'+W+'cqw;height:'+H+'cqw;z-index:'+(3+i)+'"><img src="img/'+L[k]+'.jpg" alt=""></div>';}
+    el.outerHTML=h;}
+  stack($('#stack1'));
+  stack($('#stack1b'),{n:2,list:['learn_video','links_full']});
+  stack($('#stack1c'));
+
+  // логотип: знак + «SEO Jarvis»
+  var PET=['M25.0111 13.2056C25.2516 16.1344 23.9056 10.7651 18.5327 10.8046C12.8162 10.6513 11.8413 16.2738 12.1908 13.1058C12.5403 9.93777 15.0655 7.13892 18.5298 7.13892C21.9941 7.13892 24.7706 10.2769 25.0111 13.2056Z',
+    'M6.98889 18.8921C6.74837 15.9634 8.09435 21.3326 13.4673 21.2931C19.1838 21.4464 20.1588 15.8239 19.8092 18.992C19.4597 22.16 16.9345 24.9588 13.4702 24.9588C10.0059 24.9588 7.2294 21.8209 6.98889 18.8921Z',
+    'M18.8222 24.9733C15.8949 25.2139 21.2614 23.8673 21.2219 18.4916C21.3751 12.7721 15.7555 11.7967 18.9219 12.1464C22.0883 12.4961 24.8857 15.0226 24.8857 18.4887C24.8857 21.9548 21.7494 24.7327 18.8222 24.9733Z',
+    'M13.3058 7.02663C16.233 6.78599 10.8665 8.13266 10.906 13.5084C10.7528 19.2278 16.3724 20.2032 13.206 19.8535C10.0396 19.5038 7.24219 16.9773 7.24219 13.5113C7.24219 10.0452 10.3785 7.26727 13.3058 7.02663Z'];
+  function sign(size,stage){ // stage: 'done' | 'fly'
+    var fly=stage==='fly', id='lg'+Math.random().toString(36).slice(2,7);
+    var p=PET.map(function(d,i){var t=fly?' transform="rotate('+(i*90+40)+' 16 16) translate('+[14,-14,-14,14][i]+' '+[-12,12,-12,12][i]+')" opacity=".9"':'';return '<path d="'+d+'" fill="#fff"'+t+'/>';}).join('');
+    var sq=fly?'<rect x="4" y="4" width="24" height="24" rx="7" fill="url(#'+id+')" opacity=".55"/>':'<rect width="32" height="32" rx="8" fill="url(#'+id+')"/>';
+    return '<svg viewBox="'+(fly?'-14 -14 60 60':'0 0 32 32')+'" style="width:'+size+'cqw;height:'+size+'cqw;display:block;overflow:visible;filter:drop-shadow(0 0 3cqw rgba(26,105,240,.7))"><defs><linearGradient id="'+id+'" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0B64F4"/><stop offset="1" stop-color="#1AA2E6"/></linearGradient></defs>'+sq+p+'</svg>';}
+  function word(fs,popped){var s='SEO Jarvis'.split('').map(function(c,i){
+      var st=popped&&i>=popped?'display:inline-block;opacity:.25;transform:translateY(1.6cqw) rotate(12deg)':'display:inline-block';
+      return '<span style="'+st+'">'+(c===' '?'&nbsp;':c)+'</span>';}).join('');
+    return '<div style="font:800 '+fs+'cqw/1 var(--sans);letter-spacing:-.035em;color:#fff;white-space:nowrap">'+s+'</div>';}
+  $('#logo2').innerHTML=sign(12,'done')+word(8);
+  $('#logo2b').innerHTML=sign(20,'fly');
+  $('#logo2c').innerHTML=sign(12,'done')+word(8,5);
+  $('#logo3a').innerHTML=sign(12,'done')+word(8);
+  function scatter(el,strong){ if(!el) return; var L='SEOJarvis'.split(''),h='';
+    var pos=[[6,8,-30],[13,30,24],[4,44,-12],[19,4,-8],[78,6,-22],[88,22,30],[74,40,-35],[90,46,18],[83,32,-8]];
+    L.forEach(function(c,i){var p=pos[i];h+='<div class="t'+(strong?' motion':'')+'" style="left:'+p[0]+'cqw;top:'+p[1]+'cqw;font-size:'+(strong?6:5)+'cqw;opacity:'+(strong?.85:.22)+';transform:rotate('+p[2]+'deg)">'+c+'</div>';});
+    el.outerHTML=h;}
+  scatter($('#scatter3'),false); scatter($('#scatter3b'),true);
+
+  // окно входа — HTML по образцу кабинета
+  function auth(o){
+    var phone='<svg viewBox="0 0 24 24" style="width:1.1cqw" fill="currentColor"><path d="M20 15.5l-3.4-.4a1.6 1.6 0 0 0-1.4.5l-2 2a15 15 0 0 1-6.6-6.6l2-2c.4-.4.6-.9.5-1.4L8.7 4.2A1.6 1.6 0 0 0 7 2.8H4.5C3.6 2.8 2.8 3.6 2.9 4.6 3.5 13 11 20.5 19.4 21.1c1 .1 1.8-.7 1.8-1.6v-2.5c0-.8-.6-1.5-1.2-1.5z"/></svg>';
+    var mail='<svg viewBox="0 0 24 24" style="width:1.1cqw" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>';
+    var em=o.tab==='email';
+    var field=em?'<label>Email</label><div class="in">name@example.ru<i>|</i></div>'
+               :'<label>Телефон</label><div class="in"><span style="color:#8c96ad">'+phone+'</span>'+(o.typing?'+7 900 000-00<i>|</i>':'<span style="color:#9aa3b5">+7 900 000-00-00</span>')+'</div>';
+    var hl=o.hl?' hl':'';
+    return '<div class="auth" style="left:55cqw;top:'+(o.top||13)+'cqw;width:34cqw">'+
+      '<h5>Добро пожаловать</h5><div class="s">Войдите или создайте аккаунт</div>'+
+      '<div class="tabs"><span class="'+(em?'':'on')+'">'+phone+'По телефону</span><span class="'+(em?'on':'')+'">'+mail+'По email</span></div>'+
+      field+'<div class="go">'+(em?'Войти':'Получить код')+' →</div>'+
+      '<div class="or">или продолжить через</div>'+
+      '<div class="soc"><span class="ob ya'+hl+(o.press?' press':'')+'"><img src="img/icons/yandex-id.png" alt="">Яндекс ID</span>'+
+      '<span class="ob"><img src="img/icons/mailru.png" alt="">Mail.ru</span>'+
+      '<span class="ob'+hl+'"><img src="img/icons/max.png" alt="">MAX</span></div></div>';}
+  $$('.authslot').forEach(function(s){var d=s.dataset;s.outerHTML=auth({tab:d.tab,typing:d.typing,hl:d.hl,press:d.press,done:d.done});});
+
+  // шаги анализа
+  var STEPS=['Определяем тематику и нишу','Собираем семантическое ядро','Считаем объём спроса','Снимаем стартовые позиции','Находим конкурентов'];
+  $$('.steps').forEach(function(st){var on=+st.dataset.on;
+    STEPS.forEach(function(x,i){var d=document.createElement('div');var isOn=i===on,done=i<on;
+      d.style.cssText='display:flex;align-items:center;gap:1.4cqw;white-space:nowrap;font:'+(isOn?'800 3cqw':'700 2.3cqw')+'/1.1 var(--sans);letter-spacing:-.025em;color:'+(isOn?'#fff':done?'rgba(255,255,255,.75)':'rgba(255,255,255,.28)');
+      var ic=done?'<img src="img/icons/ok.png" alt="" style="width:2.4cqw;height:2.4cqw;flex:none">':'<span style="flex:none;width:'+(isOn?2.9:2.4)+'cqw;height:'+(isOn?2.9:2.4)+'cqw;border-radius:50%;'+(isOn?'border:.3cqw solid #1A69F0;box-shadow:0 0 1.6cqw #1A69F0':'border:.2cqw solid rgba(255,255,255,.25)')+'"></span>';
+      d.innerHTML=ic+'<span>'+x+(isOn?'…':'')+'</span>';st.appendChild(d);});});
 
   // 10 модулей
   var M=[
     {t:'Удобный дашборд',time:'0:41–0:47',
-     win:[['dash_full','left:14cqw;top:9.5cqw;width:72cqw','Дашборд: «Ядро поднимается в топ»']],
-     what:'Главный экран кабинета, как на скриншоте начальника, но в светлой теме: «Ядро поднимается в топ», видимость 23% ▲+8, кольцо «13 запросов» (топ-3, 4–10, 11–50), средняя позиция 16 ▲+3 с графиком за 4 недели, ниже таблица запросов в продвижении.',
-     move:'Окно разворачивается из пункта меню. 23% набирается одометром, кольцо заполняется по секторам, линия средней позиции дорисовывается слева направо. Камера мягко наезжает на «23%».',
-     why:'Вся картина продвижения на одном экране — без звонков менеджеру.',
+     body:'<div class="win" style="left:14cqw;top:8.5cqw;width:72cqw"><img src="img/dash_full.jpg" alt="Дашборд: «Ядро поднимается в топ»"></div>',
+     what:'Главный экран кабинета в светлой теме: «Ядро поднимается в топ», видимость 23% ▲+8, кольцо «13 запросов», средняя позиция 16 ▲+3 с графиком, ниже таблица запросов.',
+     move:'Окно разворачивается из пункта меню. 23% набирается одометром, кольцо заполняется по секторам, линия средней позиции дорисовывается. Камера мягко наезжает на «23%».',
+     why:'Вся картина продвижения на одном экране — без звонков менеджеру.', ok:true,
      vo:'Удобный дашборд: видимость, позиции и рост сайта — на одном экране.'},
     {t:'Позиции и динамика роста сайта',time:'0:47–0:53',
-     win:[['core','left:5cqw;top:24cqw;width:50cqw','Блок «Ядро поднимается в топ»'],['keys','left:52cqw;top:10cqw;width:42cqw;z-index:5','Таблица запросов с динамикой']],
-     extra:'<div class="toast" style="left:74cqw;top:44cqw;border-color:rgba(107,165,255,.6)"><i style="background:#6ba5ff;color:#041028">↑</i>+4 позиции</div>',
-     what:'Таблица запросов: «стоматология москва» 3 (+4), «брекеты цена москва» 17 (+4), «лечение зубов недорого» 6 (+2). Рядом блок со средней позицией и графиком роста.',
-     move:'Цифры позиций катятся к лучшему месту, по строкам проходит синяя волна, всплывает «+4 позиции». График дорисовывается.',
-     why:'Каждый день видно, какой запрос вырос и на сколько.',
+     body:'<div class="win" style="left:20cqw;top:7.5cqw;width:60cqw;z-index:5"><img src="img/core.jpg" alt="Блок «Ядро поднимается в топ»"></div>'+
+          '<div class="win" style="left:29cqw;top:21.5cqw;width:42cqw;z-index:4"><img src="img/keys.jpg" alt="Таблица ключевых запросов"></div>'+
+          '<div class="toast" style="left:72.5cqw;top:31cqw"><span style="display:grid;place-items:center;width:2.4cqw;height:2.4cqw;border-radius:50%;background:#1A69F0;color:#fff;font-size:1.4cqw">↑</span>+4 позиции</div>',
+     what:'Сверху по центру — блок «Ядро поднимается в топ» (средняя позиция и график). Снизу по центру — таблица «Ключевые запросы»: «стоматология москва» 3 (+4), «брекеты цена москва» 17 (+4), «лечение зубов недорого» 6 (+2). Справа от таблицы выскакивает «+4 позиции».',
+     move:'Блок съезжает сверху, таблица поднимается снизу, они встают по центральной оси. Цифры позиций катятся к лучшему месту, по строкам проходит синяя волна, сбоку на пружине выскакивает «+4 позиции».',
+     why:'Каждый день видно, какой запрос вырос и на сколько.', fix:'Правка: «Ядро» сверху по центру, запросы снизу по центру, «+4 позиции» выскакивает рядом.',
      vo:'Позиции и динамика роста — каждый день, по каждому запросу.'},
     {t:'Конкурентная разведка',time:'0:53–0:59',
-     win:[['share','left:40cqw;top:9cqw;width:52cqw','Доля рынка: конкуренты и example.ru']],
-     extra:'<div class="win" style="left:6cqw;top:20cqw;width:28cqw;padding:1.6cqw;font-family:var(--sans)"><div style="font-size:1.3cqw;color:#8c96ad">Окон в топ-5</div><div style="font:800 4.4cqw/1.1 var(--sans);color:#0c1220">6</div><div style="font-size:1.2cqw;color:#8c96ad">самые ценные — сюда переходов больше всего</div></div>',
-     cls:'tilt',
-     what:'«Доля рынка»: competitor1.ru 31%, leader-site.ru 19%, best-niche.ru 12%, <b>example.ru (вы) 7.4%</b>. Карточка из раздела «Конкуренты»: «Окон в топ-5: 6».',
+     body:'<div class="win tilt-r" style="left:40cqw;top:9cqw;width:52cqw"><img src="img/share.jpg" alt="Доля рынка"></div>'+
+          '<div class="win" style="left:6cqw;top:20cqw;width:28cqw;padding:1.6cqw;font-family:var(--sans)"><div style="font-size:1.3cqw;color:#8c96ad">Окон в топ-5</div><div style="font:800 4.4cqw/1.1 var(--sans);color:#0c1220">6</div><div style="font-size:1.2cqw;color:#8c96ad">самые ценные — сюда переходов больше всего</div></div>',
+     what:'«Доля рынка»: competitor1.ru 31%, leader-site.ru 19%, best-niche.ru 12%, <b>example.ru (вы) 7.4%</b>. Карточка «Окон в топ-5: 6».',
      move:'Полосы долей растут слева направо, строка «вы» подсвечивается. Карточка «Окон в топ-5» выезжает отдельно, цифра 0 → 6.',
-     why:'Видно, кто забирает трафик и где конкурентов можно обойти.',
+     why:'Видно, кто забирает трафик и где конкурентов можно обойти.', ok:true,
      vo:'Конкурентная разведка: кто забирает ваш трафик и где конкурентов можно обойти.'},
     {t:'Аудит на 182 пункта с рекомендациями',time:'0:59–1:05',
-     win:[['audit_head','left:8cqw;top:10cqw;width:62cqw','Шапка аудита: 72 из 100'],['audit_todo','left:36cqw;top:24cqw;width:56cqw;z-index:5','Что делать в первую очередь']],
-     what:'Оценка сайта 72/100, «3 критичных · 7 предупреждений · 5 в порядке», дальше список «Что делать в первую очередь» с приоритетами.',
+     body:'<div class="win" style="left:8cqw;top:9cqw;width:62cqw"><img src="img/audit_head.jpg" alt="Аудит 72 из 100"></div><div class="win" style="left:36cqw;top:23cqw;width:56cqw;z-index:5"><img src="img/audit_todo.jpg" alt="Что делать в первую очередь"></div>',
+     what:'Оценка сайта 72/100, «3 критичных · 7 предупреждений · 5 в порядке», список «Что делать в первую очередь».',
      move:'Кольцо набирает 0 → 72, счётчик проверок бежит до 182. Список задач выезжает снизу, первая строка подсвечивается.',
-     why:'Понятно, что исправить и в каком порядке — а не просто список ошибок.',
+     why:'Понятно, что исправить и в каком порядке.', ok:true,
      vo:'Аудит на сто восемьдесят два пункта — с рекомендациями, что исправить в первую очередь.'},
     {t:'Автоматическая закупка внешних ссылок',time:'1:05–1:11',
-     win:[['links_full','left:14cqw;top:9.5cqw;width:72cqw;height:42cqw','Ссылочный рейтинг ниши']],
-     what:'«Ссылочный рейтинг ниши»: плитки конкурентов с оценками и плитка «Ваш сайт #10 ▲1 место за месяц». Строка «Закупка ссылок» в работе.',
-     move:'Плитки переворачиваются волной, кольца набирают значения. Камера останавливается на «Ваш сайт», рядом бежит статус закупки.',
-     why:'Ссылки покупаются сами, без бирж и ручной работы.',
+     body:'<div class="win" style="left:14cqw;top:8.5cqw;width:72cqw;height:43cqw"><img src="img/links_full.jpg" alt="Ссылочный рейтинг ниши" style="width:130%;margin-left:-16%;margin-top:-2%"></div>',
+     what:'«Ссылочный рейтинг ниши»: плитки конкурентов и «Ваш сайт #10 ▲1 место за месяц».',
+     move:'Плитки переворачиваются волной, кольца набирают значения. Камера останавливается на «Ваш сайт».',
+     why:'Ссылки покупаются сами, без бирж и ручной работы.', ok:true,
      vo:'Внешние ссылки закупаются автоматически — это уже в тарифе.'},
     {t:'Продвижение в 11 нейросетях',time:'1:11–1:17',
-     win:[['geo_head','left:5cqw;top:13cqw;width:60cqw','Вы в ответах Алисы: 5 из 13'],['geo_cite','left:60cqw;top:9cqw;width:32cqw','Кого цитирует Алиса']],
-     cls:'tilt2',
-     what:'Экран GEO: «Вы в ответах Алисы: 5 из 13», переключатели нейросетей — Алиса, ChatGPT, Perplexity, Gemini, GigaChat, DeepSeek. Рядом «Кого цитирует Алиса».',
-     move:'Счётчик 0 → 5, курсор пробегает по вкладкам нейросетей, полосы цитирования растут.',
-     why:'Клиенты всё чаще спрашивают нейросеть, а не поиск. Видно, советует ли она ваш сайт.',
+     body:'<div style="position:absolute;left:0;right:0;top:0;bottom:0;perspective:90cqw;z-index:4">'+
+          '<div class="win" style="left:12cqw;top:7.5cqw;width:76cqw;transform:rotateX(14deg) rotateY(-6deg);transform-origin:50% 100%"><img src="img/geo_head.jpg" alt="Видимость в ответах нейросетей: 5 из 13"></div>'+
+          '<div class="win" style="left:31cqw;top:20cqw;width:38cqw;transform:rotateX(10deg) rotateY(8deg) rotateZ(-1deg);transform-origin:50% 0"><img src="img/geo_cite.jpg" alt="Кого цитирует Алиса"></div></div>',
+     kf:[['<div style="position:absolute;inset:0;perspective:90cqw;z-index:4"><div class="win motion" style="left:12cqw;top:7.5cqw;width:76cqw;transform:rotateY(-42deg) rotateX(16deg);transform-origin:0 50%"><img src="img/geo_head.jpg" alt=""></div></div>','1:11 · плашка поворачивается и выезжает'],
+         ['<div style="position:absolute;inset:0;perspective:90cqw;z-index:4"><div class="win" style="left:12cqw;top:7.5cqw;width:76cqw;transform:rotateX(14deg) rotateY(-6deg)"><img src="img/geo_head.jpg" alt=""></div><div class="win motion" style="left:31cqw;top:30cqw;width:38cqw;transform:rotateX(70deg);transform-origin:50% 100%"><img src="img/geo_cite.jpg" alt=""></div></div>','1:12 · «Кого цитирует» поднимается']],
+     what:'По центру сверху — плашка «Видимость в ответах нейросетей»: «Вы в ответах Алисы: 5 из 13», вкладки Алиса, ChatGPT, Perplexity, Gemini, GigaChat, DeepSeek. Под ней по центру — «Кого цитирует Алиса». Обе в 3D-наклоне.',
+     move:'Верхняя плашка влетает поворотом вокруг вертикальной оси, как карточка в рекламе Claude, и встаёт с лёгким наклоном. Нижняя поднимается снизу, переворачиваясь вокруг горизонтальной оси. Обе медленно «дышат» в 3D. Счётчик 0 → 5, курсор пробегает по вкладкам нейросетей.',
+     why:'Клиенты всё чаще спрашивают нейросеть, а не поиск. Видно, советует ли она ваш сайт.', fix:'Правка: обе плашки по центру, в 3D, поворачиваются и выезжают.',
      vo:'Продвижение в одиннадцати нейросетях — чтобы Алиса и другие ИИ советовали ваш сайт.'},
     {t:'Продвижение Яндекс.Карт',time:'1:17–1:23',
-     win:[['yamaps','left:28cqw;top:9.5cqw;width:44cqw','Продвижение в Яндекс.Картах']],
-     what:'Раздел «Яндекс.Карты»: карточка организации и запросы, по которым её находят на картах.',
-     move:'Окно разворачивается, по карте падает метка с «пружиной», строки запросов проявляются по одной.',
-     why:'Клиенты рядом с вами находят вас прямо на карте.',
+     body:'<div class="win" style="left:30cqw;top:8.5cqw;width:40cqw"><img src="img/yamaps.jpg" alt="Карточка организации в Яндекс.Картах"></div>'+
+          '<div style="position:absolute;left:31.9cqw;top:20.2cqw;width:14.2cqw;height:2.9cqw;border-radius:.8cqw;box-shadow:0 0 0 .3cqw #1A69F0,0 0 2cqw rgba(26,105,240,.7);z-index:6"></div>'+cursor(43,21.8),
+     kf:[['<div class="win" style="left:18cqw;top:20cqw;width:64cqw;padding:2.2cqw 2.4cqw;display:flex;align-items:center;justify-content:space-between;font:800 2.6cqw/1 var(--sans);letter-spacing:-.02em">Яндекс.Карты<img src="img/yamaps_btn.jpg" alt="" style="width:24cqw"></div>'+cursor(72,26.5)+click(71.5,25.6),'1:17,5 · «Добавить карточку»'],
+         ['<div class="win" style="left:20cqw;top:4.5cqw;width:60cqw"><img src="img/yamaps_new_filled.jpg" alt=""></div>'+cursor(75,45.5)+click(74.5,45),'1:19 · ссылка → «Далее»'],
+         ['<div class="win" style="left:30cqw;top:8.5cqw;width:40cqw"><img src="img/yamaps.jpg" alt=""></div><div class="toast" style="left:60cqw;top:5cqw;font-size:1.3cqw"><img src="img/icons/ok.png" alt="">На тесте</div>','1:20,5 · карточка готова']],
+     what:'Раздел «Яндекс.Карты». Нажимаем «Добавить карточку» → окно «Новая карточка организации» (шаг 1 из 3) → вставлена ссылка yandex.ru/maps/org/example → «Далее» → готовая карточка example.ru: запросы «стоматология москва», «лечение зубов недорого», «имплантация под ключ», статус «На тесте».',
+     move:'Курсор нажимает «Добавить карточку», окно выезжает снизу, ссылка вставляется, клик «Далее». Окно сворачивается в готовую карточку, по ней падает метка с пружиной, запросы-чипы подсвечиваются по одному, в конце курсор наводится на запрос.',
+     why:'Клиенты рядом с вами находят вас прямо на карте.', fix:'Правка: добавлены нажатия кнопок — карточку «добавляют» на глазах.',
      vo:'Продвижение в Яндекс Картах — для клиентов рядом с вами.'},
     {t:'Партнёрские бонусы',time:'1:23–1:29',
-     win:[['bonus_full','left:14cqw;top:9.5cqw;width:72cqw','Бонусы от сервисов-партнёров']],
-     what:'Раздел «Бонусы от сервисов-партнёров»: «Интеграции, скидки и спецусловия для клиентов SEO Jarvis». Карточки бонусов: «−30% на первый месяц Яндекс.Директа», «14 дней тарифа PRO в подарок», «3 месяца тарифа CRM бесплатно».',
-     move:'Карточки выезжают сеткой, синие плашки с бонусами вспыхивают по очереди. Логотипы — общим планом, крупно только сами бонусы.',
-     why:'Скидки и подарки от сервисов, которыми бизнес и так пользуется.',
+     body:'<div class="win" style="left:14cqw;top:8.5cqw;width:72cqw"><img src="img/bonus_full.jpg" alt="Бонусы от сервисов-партнёров"></div>',
+     what:'«Бонусы от сервисов-партнёров»: «−30% на первый месяц Яндекс.Директа», «14 дней тарифа PRO в подарок», «3 месяца тарифа CRM бесплатно».',
+     move:'Карточки выезжают сеткой, синие плашки с бонусами вспыхивают по очереди.',
+     why:'Скидки и подарки от сервисов, которыми бизнес и так пользуется.', ok:true,
      vo:'Партнёрские бонусы — скидки и спецусловия от сервисов для бизнеса.'},
     {t:'Обучающие видео',time:'1:29–1:35',
-     win:[['learn_video','left:14cqw;top:10cqw;width:72cqw','Обучающий центр: видеоурок']],
+     body:'<div class="win" style="left:14cqw;top:9cqw;width:72cqw"><img src="img/learn_video.jpg" alt="Видеоурок «Как работает SEO Jarvis»"></div>',
      what:'Обучающий центр: видеоурок «Как работает SEO Jarvis», список уроков с прогрессом.',
-     move:'Кнопка «play» нажимается, по полосе прогресса бежит заливка, уроки в списке отмечаются галочками.',
-     why:'Уроки объясняют каждую цифру в кабинете — клиент понимает свой результат.',
+     move:'Кнопка «play» нажимается, по полосе прогресса бежит заливка, уроки отмечаются галочками.',
+     why:'Уроки объясняют каждую цифру в кабинете.', ok:true,
      vo:'Обучающие видео объясняют каждую цифру в кабинете.'},
     {t:'Анализ спроса и потенциала заявок',time:'1:35–1:41',
-     win:[['demand','left:5cqw;top:10cqw;width:46cqw','Динамика спроса'],['potential','left:38cqw;top:25cqw;width:56cqw;z-index:5','Потенциал трафика и лидов']],
-     what:'«Динамика спроса» и «Потенциал трафика и лидов» цепочкой: частота 34 690 → без рекламы 24 283 → переходы 4 801 → лиды 144.',
-     move:'График спроса прорисовывается. Карточки цепочки въезжают по одной со стрелками, цифры прокручиваются, последняя — «144 лида» — загорается зелёным.',
-     why:'Видно, сколько заявок может принести поиск, — до вложений.',
+     body:'<div class="win" style="left:5cqw;top:9cqw;width:46cqw"><img src="img/demand.jpg" alt="Динамика спроса"></div><div class="win" style="left:38cqw;top:24cqw;width:56cqw;z-index:5"><img src="img/potential.jpg" alt="Потенциал трафика и лидов"></div>',
+     what:'«Динамика спроса» и «Потенциал трафика и лидов»: 34 690 → 24 283 → 4 801 → 144 лида.',
+     move:'График прорисовывается, карточки цепочки въезжают по одной, «144 лида» загорается зелёным.',
+     why:'Видно, сколько заявок может принести поиск, — до вложений.', ok:true,
      vo:'И анализ спроса: сколько заявок может принести ваш сайт.'}
   ];
 
-  // меню вокруг маскота (сцены 08 и 19)
-  function hub(f,doneAll){ if(!f) return;
-    M.forEach(function(m,i){var left=i<5, k=left?i:i-5;
-      var el=document.createElement('div');
-      var x=left?37:63, y=7+k*8.6;
-      el.style.cssText='position:absolute;top:'+y+'cqw;'+(left?'right:'+(100-x)+'cqw;':'left:'+x+'cqw;')+'display:flex;align-items:center;gap:.8cqw;font:600 1.45cqw/1 var(--sans);padding:.9cqw 1.3cqw .9cqw .9cqw;border-radius:999px;white-space:nowrap;z-index:5;background:#fff;color:#1d2433;box-shadow:0 .8cqw 2cqw rgba(0,0,0,.5);'+(doneAll?'opacity:.9;':'')+(i===0&&!doneAll?'outline:.3cqw solid #1A69F0;box-shadow:0 0 3cqw rgba(26,105,240,.8);':'');
-      if(left) el.style.flexDirection='row';
-      var n=document.createElement('em'); n.style.cssText='font:600 1.1cqw/1 var(--mono);font-style:normal;color:#fff;border-radius:999px;padding:.5cqw .6cqw;background:'+(doneAll?'#3ddc84':'#1A69F0');
-      n.textContent=doneAll?'✓':String(i+1).padStart(2,'0');
-      el.appendChild(n); el.appendChild(document.createTextNode(m.t)); f.appendChild(el);
-      if(i===0&&!doneAll){var c=document.createElementNS('http://www.w3.org/2000/svg','svg');c.setAttribute('viewBox','0 0 24 24');c.setAttribute('class','cursor');c.style.left='31cqw';c.style.top=(y+2)+'cqw';c.innerHTML=CUR;f.appendChild(c);}
-    });
-    if(doneAll){f.querySelectorAll('div[style*="white-space:nowrap"]').forEach(function(el,i){el.style.transform='scale(.92)';});}
-  }
-  hub(document.getElementById('hub'),false);
-  hub(document.getElementById('hubdone'),true);
+  // меню: вариант А — по обе стороны
+  function hubA(f,doneAll){ if(!f) return; var h='<img class="mascot" src="img/mascot-wink.png" alt="" style="left:'+(doneAll?44.5:41)+'cqw;top:'+(doneAll?17:15)+'cqw;width:'+(doneAll?11:18)+'cqw">';
+    M.forEach(function(m,i){var left=i<5,k=left?i:i-5,x=left?37:63,y=7+k*8.6;
+      h+='<div style="position:absolute;top:'+y+'cqw;'+(left?'right:'+(100-x)+'cqw;':'left:'+x+'cqw;')+'display:flex;align-items:center;gap:.8cqw;font:600 1.45cqw/1 var(--sans);padding:.9cqw 1.3cqw .9cqw .9cqw;border-radius:999px;white-space:nowrap;z-index:5;background:#fff;color:#1d2433;box-shadow:0 .8cqw 2cqw rgba(0,0,0,.5);'+(i===0&&!doneAll?'outline:.3cqw solid #1A69F0;':'')+'">'+
+        (doneAll?'<img src="img/icons/ok.png" alt="" style="width:2cqw;height:2cqw">':'<em style="font:600 1.1cqw/1 var(--mono);font-style:normal;color:#fff;border-radius:999px;padding:.5cqw .6cqw;background:#1A69F0">'+String(i+1).padStart(2,'0')+'</em>')+m.t+'</div>';});
+    if(!doneAll) h+=cursor(31,9);
+    if(doneAll) h+='<div class="t" style="left:0;right:0;text-align:center;top:49cqw;font-size:3cqw">Всё это — <span class="b">в одном кабинете</span></div>';
+    f.insertAdjacentHTML('afterbegin',h);}
+  hubA($('#hub'),false); hubA($('#hubdone'),true);
+
+  // меню: вариант Б — барабан
+  function drum(f,active,rolling){ if(!f) return;
+    var h='<img class="mascot" src="img/mascot-wink.png" alt="" style="left:9cqw;top:13cqw;width:24cqw;transform:rotate(6deg)">';
+    for(var k=-4;k<=4;k++){var i=active+k; if(i<0||i>9) continue; var a=Math.abs(k);
+      if(rolling&&k>0) continue;
+      var y=26.5+k*6.6-Math.sign(k)*a*a*.35, op=k===0?1:Math.max(0,.75-a*.17), sc=1-a*.08, rx=-k*17;
+      var done=i<active;
+      h+='<div class="drum'+(rolling&&k===0?' motion':'')+'" style="left:46cqw;top:'+y+'cqw;transform:translateY(-50%) perspective(60cqw) rotateX('+rx+'deg) scale('+sc+');opacity:'+op+';filter:blur('+(a*.12)+'cqw);'+(k===0?'outline:.35cqw solid #1A69F0;box-shadow:0 0 4cqw rgba(26,105,240,.7);':'')+'">'+
+        (done?'<img src="img/icons/ok.png" alt="" style="width:2.4cqw;height:2.4cqw">':'<em>'+String(i+1).padStart(2,'0')+'</em>')+M[i].t+'</div>';}
+    if(!rolling) h+=cursor(43,27.5);
+    f.insertAdjacentHTML('afterbegin',h);}
+  drum($('#drumF'),0); drum($('#drumA'),3,true); drum($('#drumB'),2);
+
+  // меню: вариант В — орбита
+  function orbit(f,fly){ if(!f) return; var h='';
+    var cx=50,cy=29,rx=39,ry=18;
+    M.forEach(function(m,i){var a=(i/10)*Math.PI*2+Math.PI/2, x=cx+Math.cos(a)*rx*(fly?.45:1), y=cy+Math.sin(a)*ry*(fly?.45:1);
+      var front=Math.sin(a), sc=.78+.3*(front+1)/2, z=front>0?9:5, bl=front<-.3?.12:0, op=fly?.7:(.55+.45*(front+1)/2);
+      h+='<div class="tile'+(fly?' motion':'')+'" style="left:'+(x-6.5)+'cqw;top:'+(y-3.5)+'cqw;transform:scale('+sc+') rotate('+(fly?(i*30):0)+'deg);z-index:'+z+';opacity:'+op+';filter:blur('+bl+'cqw);'+(i===0&&!fly?'outline:.3cqw solid #1A69F0;':'')+'"><em>'+String(i+1).padStart(2,'0')+'</em><br>'+m.t+'</div>';});
+    h+='<img class="mascot" src="img/mascot-wink.png" alt="" style="left:42cqw;top:17cqw;width:16cqw;z-index:7">';
+    f.insertAdjacentHTML('afterbegin',h);}
+  orbit($('#orbitF'),false); orbit($('#orbitA'),true);
+
+  // финал: стена экранов
+  var SHOTS=['dash_full','positions_full','share','audit_head','links_full','geo_cite','yamaps','bonus_full','learn_video','demand'];
+  function wall(f,mode){ if(!f) return; var h='';
+    if(mode==='wall'||mode==='half'){
+      h+='<div style="position:absolute;left:50%;top:50%;width:120cqw;transform:translate(-50%,-50%) perspective(100cqw) rotateX('+(mode==='wall'?28:10)+'deg) rotateZ('+(mode==='wall'?-14:-4)+'deg);display:grid;grid-template-columns:repeat(5,1fr);gap:1.6cqw;z-index:3">';
+      SHOTS.forEach(function(s,i){var miss=mode==='wall'&&(i===3||i===8);
+        h+='<div class="win fill'+(miss?' motion':'')+'" style="position:relative;aspect-ratio:16/10;'+(miss?'opacity:.5;transform:translateZ(20cqw) scale(1.2)':'')+'"><img src="img/'+s+'.jpg" alt=""><img src="img/icons/ok.png" alt="" style="position:absolute;right:.8cqw;top:.8cqw;width:2.6cqw;height:2.6cqw"></div>';});
+      h+='</div>';
+      if(mode==='half') h='<div style="position:absolute;inset:0;transform:scale(.6);transform-origin:60% 45%">'+h+'</div>';
+    } else {
+      var W=40,H=25,x=30,y=7;
+      ['learn_video','links_full','dash_full'].forEach(function(s,i){var back=2-i;
+        h+='<div class="win fill'+(back?' shade':'')+'" style="--sh:'+(back===1?.55:.72)+';left:'+(x+back*3.2)+'cqw;top:'+(y-back*3.2+3)+'cqw;width:'+W+'cqw;height:'+H+'cqw;z-index:'+(3+i)+'"><img src="img/'+s+'.jpg" alt=""></div>';});
+      h+='<div style="position:absolute;left:44cqw;top:12cqw;width:12cqw;height:12cqw;z-index:8">'+sign(12,'done')+'</div>';
+      h+='<div class="t" style="left:0;right:0;text-align:center;top:44cqw;font-size:4cqw">Всё это — <span class="b">в одном кабинете</span></div>';
+    }
+    f.insertAdjacentHTML('afterbegin',h);}
+  wall($('#wallA'),'wall'); wall($('#wallB'),'half'); wall($('#wallF'),'final');
 
   // сцены модулей
-  var root=document.getElementById('modules');
+  var root=$('#modules');
   M.forEach(function(m,i){
     var a=document.createElement('article'); a.className='scene';
     var dots=''; for(var j=0;j<10;j++) dots+='<i class="'+(j<i?'done':j===i?'on':'')+'"></i>';
-    var wins=m.win.map(function(w){var tilt=(m.cls==='tilt'&&w[0]==='share')||(m.cls==='tilt2'&&w[0]==='geo_cite')?' tilt-r':'';
-      var inner=w[0]==='links_full'?'<img src="img/'+w[0]+'.jpg" alt="'+w[2]+'" style="width:130%;margin-left:-16%;margin-top:-2%">':'<img src="img/'+w[0]+'.jpg" alt="'+w[2]+'">';
-      return '<div class="win'+tilt+'" style="'+w[1]+'">'+inner+'</div>';}).join('');
-    a.innerHTML='<div class="frame">'+wins+(m.extra||'')+
-      '<div class="mhead"><em>'+String(i+1).padStart(2,'0')+'</em><b>'+m.t+'</b></div><div class="dots">'+dots+'</div>'+
-      '<span class="tag">'+m.time.split('–')[0]+' · пункт развернулся в окно</span></div>'+
-      '<div class="meta"><div class="top"><span class="num">'+(9+i)+'</span><span class="time">'+m.time+'</span><span class="badge new">МОДУЛЬ '+(i+1)+' / 10</span></div>'+
+    var head='<div class="mhead"><em>'+String(i+1).padStart(2,'0')+'</em><b>'+m.t+'</b></div><div class="dots">'+dots+'</div>';
+    var kf=m.kf?'<div class="kfl">Раскадровка</div><div class="kf">'+m.kf.map(function(k){return '<div class="frame">'+k[0]+head+'<span class="tag">'+k[1]+'</span></div>';}).join('')+'</div>':'';
+    a.innerHTML='<div class="vis"><div class="frame">'+m.body+head+'<span class="tag">'+m.time.split('–')[0]+' · пункт развернулся в окно</span></div>'+kf+'</div>'+
+      '<div class="meta"><div class="top"><span class="num">'+(9+i)+'</span><span class="time">'+m.time+'</span><span class="badge '+(m.fix?'fix':'new')+'">'+(m.fix?'ПРАВКА':'МОДУЛЬ '+(i+1)+' / 10')+'</span></div>'+
       '<h3>'+m.t+'</h3><dl><dt>Что в кадре</dt><dd>'+m.what+'</dd><dt>Движение</dt><dd>'+m.move+' В конце окно сворачивается обратно в пункт меню, пункт получает галочку.</dd>'+
-      '<dt>Текст в кадре</dt><dd>Название модуля в шапке окна + тексты кабинета</dd><dt>Зачем это клиенту</dt><dd class="why">'+m.why+'</dd></dl>'+
+      '<dt>Зачем это клиенту</dt><dd class="why">'+m.why+'</dd></dl>'+
+      (m.fix?'<p class="edit">'+m.fix+'</p>':'<p class="edit">Было окей — без изменений, кроме меньшей шапки модуля.</p>')+
       '<p class="vo">«'+m.vo+'»<small>≈ 4–5 с</small></p></div>';
     root.appendChild(a);
   });
 
-  // текст озвучки целиком
+  // маскот из видео: убираем чёрный фон на лету
+  var STATIC=/static/.test(location.search);
+  function keyDraw(cv,src){var w=cv.width,h=cv.height,c=cv.getContext('2d');c.clearRect(0,0,w,h);c.drawImage(src,0,0,w,h);
+    try{var d=c.getImageData(0,0,w,h),p=d.data,fade=cv.dataset.fade;
+      for(var i=0;i<p.length;i+=4){var m=Math.max(p[i],p[i+1],p[i+2]);var al=m<16?0:m>58?255:(m-16)*6.07;
+        if(fade){var y=(i/4/w)|0;var f=fade==='bottom'?(h-y)/(h*.3):y/(h*.16);if(f<1)al*=Math.max(0,f);}
+        p[i+3]=al;}
+      c.putImageData(d,0,0);}catch(e){cv.style.mixBlendMode='screen';}}
+  function place(cv){var f=cv.closest('.frame'),fr=f.getBoundingClientRect(),u=fr.width/100,W,L,T;
+    if(cv.dataset.box){var b=cv.dataset.box.split(',').map(Number);L=b[0];T=b[1];W=b[2];}
+    else{var an=cv.dataset.anchor.split(',').map(Number),t=f.querySelector(cv.dataset.target).getBoundingClientRect();
+      var cx=(t.left+t.width*(+cv.dataset.tx||.5)-fr.left)/u, cy=(t.top+t.height/2-fr.top)/u;
+      if(cv.dataset.w){W=+cv.dataset.w;T=cy-an[1]*.5625*W;}else{W=(56.25-cy)/((1-an[1])*.5625);T=56.25-.5625*W;} L=cx-an[0]*W;}
+    cv.style.left=L+'cqw';cv.style.top=T+'cqw';cv.style.width=W+'cqw';cv.style.height=(W*.5625)+'cqw';}
+  $$('canvas.kv').forEach(function(cv){cv.width=640;cv.height=360;place(cv);
+    var im=new Image();im.onload=function(){keyDraw(cv,im);};im.src=cv.dataset.still;
+    if(cv.dataset.play&&cv.dataset.src&&!STATIC){var v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.autoplay=true;v.src=cv.dataset.src;
+      var last=-1;function tick(){if(v.readyState>=2&&v.currentTime!==last){last=v.currentTime;keyDraw(cv,v);}requestAnimationFrame(tick);}
+      v.play().then(function(){requestAnimationFrame(tick);}).catch(function(){});}
+  });
+  window.addEventListener('resize',function(){$$('canvas.kv').forEach(place);});
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){$$('canvas.kv').forEach(place);});
+
+  // текст озвучки
   var VO=[['0:00','Всё для продвижения — в одном кабинете.'],['0:07','Знакомьтесь: Джарвис — SEO-продвижение на автопилоте.'],
     ['0:11','Регистрация — по телефону, почте или в один клик: через Яндекс ID или MAX.'],['0:18','Дальше — адрес сайта и регион, где нужны клиенты.'],
     ['0:24','Джарвис сам собирает и готовит данные: определяет нишу, собирает семантическое ядро, считает спрос, снимает позиции и находит конкурентов.'],
     ['0:34','Продвижение запущено.'],['0:37','Что внутри кабинета?']];
   M.forEach(function(m){VO.push([m.time.split('–')[0],m.vo]);});
   VO.push(['1:41','Всё это — в одном кабинете.'],['1:45','Джарвис. SEO на автопилоте. Пять дней — бесплатно, без карты.']);
-  var ol=document.getElementById('vo-list');
+  var ol=$('#vo-list');
   VO.forEach(function(v){var li=document.createElement('li');li.innerHTML='<span>'+v[0]+'</span>';li.appendChild(document.createTextNode(v[1]));ol.appendChild(li);});
 
-  // промпты Veo — по секундам
+  // промпты Veo (на потом)
   var P=[{"id": "A", "title": "Знакомство: логотип раскрывается в маскота", "scene": "Сцена 03 · 0:07–0:11 ролика", "use": "Берём 2,0–6,0 с клипа (4 с). Перед этим в ролике плоский логотип перетекает в закрытый «шар» из лепестков — клип начинается с него.", "mode": "Frames to Video: последний кадр = mascot-wink.png (клип должен закончиться ровно этой позой). Если режима нет — Ingredients to Video с mascot-wink.png как референсом.", "place": "Персонаж по центру, занимает ~55% высоты кадра.", "subject": "The SEO Jarvis mascot is born from its own spiral logo: a closed ball of swirling shells opens like a flower and reveals the character, who switches on its eyes and winks at the camera.", "beats": [["00:00–00:01.5", "Лепестки плотно сложены в закрытый глянцевый шар-спираль, лица не видно. Шар медленно вращается по часовой, один раз мягко «вспыхивает» синим изнутри.", "The shells are tightly wrapped into a closed glossy spiral ball, the face is completely hidden. The ball slowly rotates clockwise and pulses once with a soft blue inner glow."], ["00:01.5–00:03.5", "Лепестки раскрываются наружу, как бутон, с вращением против часовой. Открывается тёмное стеклянное «лицо». Лёгкий подскок от раскрытия.", "The shells unfurl outward like a blooming flower while rotating counter-clockwise, revealing the dark glass visor face. The body makes a small bounce from the release."], ["00:03.5–00:04.5", "Глаза включаются с мягким мерцанием — две вертикальные «таблетки». Взгляд влево, потом вправо, как будто осматривается.", "The eyes switch on with a soft flicker as two vertical glowing pills. The character glances left, then right, as if looking around."], ["00:04.5–00:05.5", "Смотрит прямо в камеру, чуть наклоняет голову.", "It looks straight into the camera and tilts its head slightly."], ["00:05.5–00:06.5", "Подмигивает: правый глаз становится «<», корпус чуть сжимается и распрямляется.", "It winks: the right eye turns into a \"<\" shape, the body does a tiny squash and stretch."], ["00:06.5–00:08", "Держит позу подмигивания точно как на картинке, мягко парит.", "It holds the wink pose exactly as in the reference image and gently floats in place."]], "prompt": "The SEO Jarvis mascot is born from its own spiral logo: a closed ball of swirling shells opens like a flower and reveals the character, who switches on its eyes and winks at the camera.\n\nTIMELINE (8 seconds):\n[00:00–00:01.5] The shells are tightly wrapped into a closed glossy spiral ball, the face is completely hidden. The ball slowly rotates clockwise and pulses once with a soft blue inner glow.\n[00:01.5–00:03.5] The shells unfurl outward like a blooming flower while rotating counter-clockwise, revealing the dark glass visor face. The body makes a small bounce from the release.\n[00:03.5–00:04.5] The eyes switch on with a soft flicker as two vertical glowing pills. The character glances left, then right, as if looking around.\n[00:04.5–00:05.5] It looks straight into the camera and tilts its head slightly.\n[00:05.5–00:06.5] It winks: the right eye turns into a \"<\" shape, the body does a tiny squash and stretch.\n[00:06.5–00:08] It holds the wink pose exactly as in the reference image and gently floats in place.\n\nFRAMING: character centered, about 55% of the frame height.\n\nSTYLE: premium 3D character animation, Pixar-level polish. The character is made of glossy pearlescent white and electric-blue (#1A69F0) translucent petal-like shells swirling around a round dark-navy glass visor face. The eyes are soft glowing white shapes on the visor (normally two vertical rounded pills; the wink is a '<' shape). Subtle subsurface scattering in the shells, soft blue rim light, gentle bloom on the eyes only. BACKGROUND: pure flat black #000000 for the whole clip — no gradient, no floor, no shadow, no particles, no environment. CAMERA: locked-off static shot, eye level, no zoom, no pan, no cuts. The character never touches the frame edges and keeps a clear margin on all sides. CONSISTENCY: the design, proportions, colors and number of shells stay exactly as in the reference image in every frame. MOTION: smooth and weighty, ease-in/ease-out, small squash-and-stretch, no jitter. AUDIO: silent, no music, no voice.\n\nAVOID: text, letters, numbers, logos, watermark, mouth, teeth, nose, human features, fingers (hands are simple rounded white mitten shapes), extra limbs, legs, face morphing, eye color change, purple or green tints, lens flare streaks, confetti, sparkles, background objects, camera shake, motion blur trails."}, {"id": "B", "title": "Анализ: проверяет шаги через лупу", "scene": "Сцена 06 · 0:24–0:33 ролика", "use": "Берём весь клип, растягиваем до ~9 с. В ролике отзеркалим по горизонтали, чтобы лупа смотрела влево, на список шагов. Каждая «остановка» лупы = момент, когда шаг получает галочку.", "mode": "Frames to Video: первый кадр = mascot-magnifier.png.", "place": "Персонаж по центру, лупа целиком в кадре на всём протяжении.", "subject": "The mascot holds a blue magnifying glass and carefully inspects an invisible checklist in front of it, moving the lens from top to bottom with five short stops.", "beats": [["00:00–00:01", "Стартовая поза как на картинке: держит лупу, глаза любопытные.", "Starts in the exact pose of the reference image, holding the magnifier, eyes curious."], ["00:01–00:02", "Поднимает лупу вверх и вперёд, наклоняется к ней; глаз видно сквозь стекло увеличенным.", "It raises the magnifier up and forward and leans in; its glowing eye is seen enlarged through the lens."], ["00:02–00:05", "Ведёт лупу вниз пятью короткими остановками по ~0,6 с. На каждой остановке — маленький кивок, глаза чуть щурятся.", "It moves the magnifier downward in five short stops of about 0.6 seconds each. At every stop it gives a tiny nod and the eyes squint slightly, as if ticking off an item."], ["00:05–00:06", "Опускает лупу, глаза довольно расширяются, по стеклу пробегает блик.", "It lowers the magnifier, the eyes widen with satisfaction and a soft light glint sweeps across the lens."], ["00:06–00:08", "Уверенный кивок, парит на месте, лупа в руке.", "A confident approving nod, then it floats gently in place holding the magnifier."]], "prompt": "The mascot holds a blue magnifying glass and carefully inspects an invisible checklist in front of it, moving the lens from top to bottom with five short stops.\n\nTIMELINE (8 seconds):\n[00:00–00:01] Starts in the exact pose of the reference image, holding the magnifier, eyes curious.\n[00:01–00:02] It raises the magnifier up and forward and leans in; its glowing eye is seen enlarged through the lens.\n[00:02–00:05] It moves the magnifier downward in five short stops of about 0.6 seconds each. At every stop it gives a tiny nod and the eyes squint slightly, as if ticking off an item.\n[00:05–00:06] It lowers the magnifier, the eyes widen with satisfaction and a soft light glint sweeps across the lens.\n[00:06–00:08] A confident approving nod, then it floats gently in place holding the magnifier.\n\nFRAMING: character centered, the magnifying glass stays fully inside the frame at all times.\n\nSTYLE: premium 3D character animation, Pixar-level polish. The character is made of glossy pearlescent white and electric-blue (#1A69F0) translucent petal-like shells swirling around a round dark-navy glass visor face. The eyes are soft glowing white shapes on the visor (normally two vertical rounded pills; the wink is a '<' shape). Subtle subsurface scattering in the shells, soft blue rim light, gentle bloom on the eyes only. BACKGROUND: pure flat black #000000 for the whole clip — no gradient, no floor, no shadow, no particles, no environment. CAMERA: locked-off static shot, eye level, no zoom, no pan, no cuts. The character never touches the frame edges and keeps a clear margin on all sides. CONSISTENCY: the design, proportions, colors and number of shells stay exactly as in the reference image in every frame. MOTION: smooth and weighty, ease-in/ease-out, small squash-and-stretch, no jitter. AUDIO: silent, no music, no voice.\n\nAVOID: text, letters, numbers, logos, watermark, mouth, teeth, nose, human features, fingers (hands are simple rounded white mitten shapes), extra limbs, legs, face morphing, eye color change, purple or green tints, lens flare streaks, confetti, sparkles, background objects, camera shake, motion blur trails."}, {"id": "C", "title": "Запуск: радуется в окне «Поздравляем!»", "scene": "Сцена 07 · 0:33–0:37 ролика", "use": "Берём 0,4–4,4 с клипа. Маскот выпрыгивает над окном кабинета вместо старого робота; приземление — точно на удар музыки.", "mode": "Frames to Video: первый кадр = mascot-wink.png.", "place": "Персонаж по центру, в верхней части ему нужно место для прыжка — держите его в центральных 60% кадра.", "subject": "The mascot celebrates the successful launch with a joyful jump and a spin.", "beats": [["00:00–00:00.6", "Приседает: корпус сжимается, лепестки прижимаются — подготовка к прыжку.", "Anticipation: the body squashes down and the shells tuck in tightly."], ["00:00.6–00:01.4", "Энергично подпрыгивает вверх, вытягивается, лепестки раскрываются веером.", "It jumps up energetically, stretches, and the shells fan out wide."], ["00:01.4–00:02.2", "В верхней точке делает полный оборот вокруг своей оси.", "At the top of the jump it does one full 360-degree spin around its vertical axis."], ["00:02.2–00:03", "Приземляется со сжатием, лепестки возвращаются на место с лёгким покачиванием.", "It lands with a squash, and the shells settle back into place with a gentle wobble."], ["00:03–00:04", "Глаза становятся счастливыми дужками «^ ^», маленький подскок.", "The eyes turn into happy upside-down U arcs, followed by a small hop."], ["00:04–00:06", "Ещё один подскок поменьше, покачивается из стороны в сторону.", "A second smaller hop, then it sways happily from side to side."], ["00:06–00:08", "Успокаивается, смотрит в камеру, глаза-дужки, мягко парит.", "It settles, faces the camera with happy arc eyes and floats gently."]], "prompt": "The mascot celebrates the successful launch with a joyful jump and a spin.\n\nTIMELINE (8 seconds):\n[00:00–00:00.6] Anticipation: the body squashes down and the shells tuck in tightly.\n[00:00.6–00:01.4] It jumps up energetically, stretches, and the shells fan out wide.\n[00:01.4–00:02.2] At the top of the jump it does one full 360-degree spin around its vertical axis.\n[00:02.2–00:03] It lands with a squash, and the shells settle back into place with a gentle wobble.\n[00:03–00:04] The eyes turn into happy upside-down U arcs, followed by a small hop.\n[00:04–00:06] A second smaller hop, then it sways happily from side to side.\n[00:06–00:08] It settles, faces the camera with happy arc eyes and floats gently.\n\nFRAMING: character centered within the middle 60% of the frame, leaving headroom for the jump.\n\nSTYLE: premium 3D character animation, Pixar-level polish. The character is made of glossy pearlescent white and electric-blue (#1A69F0) translucent petal-like shells swirling around a round dark-navy glass visor face. The eyes are soft glowing white shapes on the visor (normally two vertical rounded pills; the wink is a '<' shape). Subtle subsurface scattering in the shells, soft blue rim light, gentle bloom on the eyes only. BACKGROUND: pure flat black #000000 for the whole clip — no gradient, no floor, no shadow, no particles, no environment. CAMERA: locked-off static shot, eye level, no zoom, no pan, no cuts. The character never touches the frame edges and keeps a clear margin on all sides. CONSISTENCY: the design, proportions, colors and number of shells stay exactly as in the reference image in every frame. MOTION: smooth and weighty, ease-in/ease-out, small squash-and-stretch, no jitter. AUDIO: silent, no music, no voice.\n\nAVOID: text, letters, numbers, logos, watermark, mouth, teeth, nose, human features, fingers (hands are simple rounded white mitten shapes), extra limbs, legs, face morphing, eye color change, purple or green tints, lens flare streaks, confetti, sparkles, background objects, camera shake, motion blur trails."}, {"id": "D", "title": "Регистрация: нажимает «Яндекс ID»", "scene": "Сцена 04 · 0:11–0:18 ролика", "use": "Берём 0,5–4,5 с клипа. Маскот слева снизу от окна входа; нажатие (2,9 с клипа) совпадает с кликом по кнопке «Яндекс ID», сразу всплывает «Аккаунт создан».", "mode": "Ingredients to Video: референсы mascot-wink.png (внешний вид) и mascot-magnifier.png (как выглядят ручки). Лупы в этом клипе нет.", "place": "Персонаж в левой трети кадра, смотрит и тянется вправо.", "subject": "The mascot glides in and presses an invisible button on its right with one small hand.", "beats": [["00:00–00:01", "Вплывает из-за левого края в левую треть кадра, слегка наклонён вперёд, взгляд вправо.", "It glides in from the left edge into the left third of the frame, leaning slightly forward, eyes looking to the right."], ["00:01–00:02", "Останавливается, смотрит на невидимую кнопку справа на уровне корпуса, глаза сосредоточенно сужаются.", "It stops and looks at an invisible button to its right at body height; the eyes narrow in focus."], ["00:02–00:02.8", "Из-под лепестков выдвигается маленькая круглая белая ручка (как на второй картинке) и тянется вправо.", "A small rounded white mitten-like hand, the same as in the magnifier reference, extends from under the shells toward the right."], ["00:02.8–00:03.2", "Короткое уверенное нажатие вперёд, корпус чуть сжимается, в точке нажатия — мягкая синяя вспышка.", "One short confident press forward; the body squashes slightly and a soft blue light pulse appears at the touch point."], ["00:03.2–00:04", "Убирает ручку, отпружинивает назад.", "It pulls the hand back and bounces back a little."], ["00:04–00:05", "Поворачивается к камере и подмигивает («<»).", "It turns to the camera and winks with the \"<\" eye."], ["00:05–00:08", "Парит на месте, глаза обычные.", "It floats in place with normal eyes."]], "prompt": "The mascot glides in and presses an invisible button on its right with one small hand.\n\nTIMELINE (8 seconds):\n[00:00–00:01] It glides in from the left edge into the left third of the frame, leaning slightly forward, eyes looking to the right.\n[00:01–00:02] It stops and looks at an invisible button to its right at body height; the eyes narrow in focus.\n[00:02–00:02.8] A small rounded white mitten-like hand, the same as in the magnifier reference, extends from under the shells toward the right.\n[00:02.8–00:03.2] One short confident press forward; the body squashes slightly and a soft blue light pulse appears at the touch point.\n[00:03.2–00:04] It pulls the hand back and bounces back a little.\n[00:04–00:05] It turns to the camera and winks with the \"<\" eye.\n[00:05–00:08] It floats in place with normal eyes.\n\nFRAMING: character in the left third of the frame, facing and reaching to the right.\n\nSTYLE: premium 3D character animation, Pixar-level polish. The character is made of glossy pearlescent white and electric-blue (#1A69F0) translucent petal-like shells swirling around a round dark-navy glass visor face. The eyes are soft glowing white shapes on the visor (normally two vertical rounded pills; the wink is a '<' shape). Subtle subsurface scattering in the shells, soft blue rim light, gentle bloom on the eyes only. BACKGROUND: pure flat black #000000 for the whole clip — no gradient, no floor, no shadow, no particles, no environment. CAMERA: locked-off static shot, eye level, no zoom, no pan, no cuts. The character never touches the frame edges and keeps a clear margin on all sides. CONSISTENCY: the design, proportions, colors and number of shells stay exactly as in the reference image in every frame. MOTION: smooth and weighty, ease-in/ease-out, small squash-and-stretch, no jitter. AUDIO: silent, no music, no voice.\n\nAVOID: text, letters, numbers, logos, watermark, mouth, teeth, nose, human features, fingers (hands are simple rounded white mitten shapes), extra limbs, legs, face morphing, eye color change, purple or green tints, lens flare streaks, confetti, sparkles, background objects, camera shake, motion blur trails."}, {"id": "E1", "title": "Меню: парит в центре (бесшовная петля)", "scene": "Сцены 08–18 · 0:37–1:41 ролика", "use": "Петля 8 с крутится всё время тура по модулям, между нажатиями (клип E2).", "mode": "Frames to Video: первый и последний кадр = mascot-wink.png (тогда петля бесшовная).", "place": "Персонаж строго по центру, ~45% высоты кадра.", "subject": "Seamless idle loop: the mascot hovers calmly in the center, alive but not distracting.", "beats": [["00:00–00:02", "Медленно поднимается вверх на небольшую высоту, глаза открываются из подмигивания в обычные.", "It slowly floats up a little; the eyes open from the wink into normal pills."], ["00:02–00:04", "Медленно опускается, лепестки чуть «дышат».", "It slowly floats down while the shells subtly breathe."], ["00:04–00:04.3", "Моргает.", "It blinks once."], ["00:04.3–00:06", "Смотрит влево, потом вправо (только глаза и лёгкий поворот).", "It glances left, then right, with only the eyes and a slight body turn."], ["00:06–00:08", "Возвращается в центр и подмигивает — ровно как на первом кадре.", "It returns to center and winks, ending exactly on the first frame pose."]], "prompt": "Seamless idle loop: the mascot hovers calmly in the center, alive but not distracting.\n\nTIMELINE (8 seconds):\n[00:00–00:02] It slowly floats up a little; the eyes open from the wink into normal pills.\n[00:02–00:04] It slowly floats down while the shells subtly breathe.\n[00:04–00:04.3] It blinks once.\n[00:04.3–00:06] It glances left, then right, with only the eyes and a slight body turn.\n[00:06–00:08] It returns to center and winks, ending exactly on the first frame pose.\n\nFRAMING: character exactly centered, about 45% of the frame height.\n\nSTYLE: premium 3D character animation, Pixar-level polish. The character is made of glossy pearlescent white and electric-blue (#1A69F0) translucent petal-like shells swirling around a round dark-navy glass visor face. The eyes are soft glowing white shapes on the visor (normally two vertical rounded pills; the wink is a '<' shape). Subtle subsurface scattering in the shells, soft blue rim light, gentle bloom on the eyes only. BACKGROUND: pure flat black #000000 for the whole clip — no gradient, no floor, no shadow, no particles, no environment. CAMERA: locked-off static shot, eye level, no zoom, no pan, no cuts. The character never touches the frame edges and keeps a clear margin on all sides. CONSISTENCY: the design, proportions, colors and number of shells stay exactly as in the reference image in every frame. MOTION: smooth and weighty, ease-in/ease-out, small squash-and-stretch, no jitter. AUDIO: silent, no music, no voice.\n\nAVOID: text, letters, numbers, logos, watermark, mouth, teeth, nose, human features, fingers (hands are simple rounded white mitten shapes), extra limbs, legs, face morphing, eye color change, purple or green tints, lens flare streaks, confetti, sparkles, background objects, camera shake, motion blur trails."}, {"id": "E2", "title": "Меню: поворачивается и нажимает пункт", "scene": "Сцены 08–18 · 10 раз", "use": "Берём 0,5–4,5 с клипа. Для пунктов слева используем как есть, для пунктов справа — отзеркаливаем. Нажатие (2,0 с клипа) совпадает с моментом, когда пункт разворачивается в окно.", "mode": "Ingredients to Video: референсы mascot-wink.png и mascot-magnifier.png (ручки). Лупы нет.", "place": "Персонаж по центру, ручка тянется влево, но не выходит за 25% от левого края.", "subject": "From the idle hover in the center, the mascot turns to its left and taps an invisible menu item with a small hand, then returns.", "beats": [["00:00–00:00.8", "Парит по центру, смотрит в камеру.", "It hovers in the center facing the camera."], ["00:00.8–00:01.6", "Поворачивает корпус примерно на 30° влево (для зрителя), взгляд влево.", "It turns its body about 30 degrees to the viewer's left, eyes looking left."], ["00:01.6–00:02.2", "Выдвигает маленькую ручку влево и один раз коротко нажимает; лёгкое сжатие и синяя вспышка в точке нажатия.", "It extends a small rounded hand to the left and taps once; a slight squash and a soft blue pulse at the touch point."], ["00:02.2–00:03", "Убирает ручку, маленький довольный кивок.", "It pulls the hand back and gives a small satisfied nod."], ["00:03–00:04.5", "Поворачивается обратно к камере.", "It turns back to face the camera."], ["00:04.5–00:08", "Спокойно парит по центру.", "It hovers calmly in the center."]], "prompt": "From the idle hover in the center, the mascot turns to its left and taps an invisible menu item with a small hand, then returns.\n\nTIMELINE (8 seconds):\n[00:00–00:00.8] It hovers in the center facing the camera.\n[00:00.8–00:01.6] It turns its body about 30 degrees to the viewer's left, eyes looking left.\n[00:01.6–00:02.2] It extends a small rounded hand to the left and taps once; a slight squash and a soft blue pulse at the touch point.\n[00:02.2–00:03] It pulls the hand back and gives a small satisfied nod.\n[00:03–00:04.5] It turns back to face the camera.\n[00:04.5–00:08] It hovers calmly in the center.\n\nFRAMING: character centered; the hand reaches left but stays at least 25% away from the left edge.\n\nSTYLE: premium 3D character animation, Pixar-level polish. The character is made of glossy pearlescent white and electric-blue (#1A69F0) translucent petal-like shells swirling around a round dark-navy glass visor face. The eyes are soft glowing white shapes on the visor (normally two vertical rounded pills; the wink is a '<' shape). Subtle subsurface scattering in the shells, soft blue rim light, gentle bloom on the eyes only. BACKGROUND: pure flat black #000000 for the whole clip — no gradient, no floor, no shadow, no particles, no environment. CAMERA: locked-off static shot, eye level, no zoom, no pan, no cuts. The character never touches the frame edges and keeps a clear margin on all sides. CONSISTENCY: the design, proportions, colors and number of shells stay exactly as in the reference image in every frame. MOTION: smooth and weighty, ease-in/ease-out, small squash-and-stretch, no jitter. AUDIO: silent, no music, no voice.\n\nAVOID: text, letters, numbers, logos, watermark, mouth, teeth, nose, human features, fingers (hands are simple rounded white mitten shapes), extra limbs, legs, face morphing, eye color change, purple or green tints, lens flare streaks, confetti, sparkles, background objects, camera shake, motion blur trails."}, {"id": "F", "title": "Финал: машет и показывает на кнопку", "scene": "Сцена 20 · 1:45–1:52 ролика", "use": "Берём 1,0–8,0 с клипа (7 с). Маскот в левой части кадра, справа от него — «SEO на автопилоте» и кнопка «5 дней бесплатно».", "mode": "Frames to Video: последний кадр = mascot-wink.png. Референс ручек — mascot-magnifier.png, если режим позволяет.", "place": "Персонаж в левой трети кадра, жест указывает вправо.", "subject": "The mascot says goodbye: it waves to the viewer, points to the right where the call-to-action button will be, and winks.", "beats": [["00:00–00:01", "Вплывает снизу слева в левую треть кадра, замедляясь.", "It floats up from the lower left into the left third of the frame, decelerating."], ["00:01–00:02", "Поворачивается к камере, глаза открыты.", "It turns toward the camera with open eyes."], ["00:02–00:04", "Машет маленькой ручкой три раза, корпус слегка покачивается.", "It waves a small rounded hand three times while the body sways slightly."], ["00:04–00:05", "Показывает ручкой вправо — туда, где будет кнопка.", "It points with the hand to the right side of the frame."], ["00:05–00:06", "Убирает ручку и подмигивает «<».", "It lowers the hand and winks with the \"<\" eye."], ["00:06–00:08", "Держит позу подмигивания почти неподвижно — точно как на картинке.", "It holds the wink pose almost perfectly still, exactly as in the reference image."]], "prompt": "The mascot says goodbye: it waves to the viewer, points to the right where the call-to-action button will be, and winks.\n\nTIMELINE (8 seconds):\n[00:00–00:01] It floats up from the lower left into the left third of the frame, decelerating.\n[00:01–00:02] It turns toward the camera with open eyes.\n[00:02–00:04] It waves a small rounded hand three times while the body sways slightly.\n[00:04–00:05] It points with the hand to the right side of the frame.\n[00:05–00:06] It lowers the hand and winks with the \"<\" eye.\n[00:06–00:08] It holds the wink pose almost perfectly still, exactly as in the reference image.\n\nFRAMING: character in the left third of the frame, the gesture points to the right.\n\nSTYLE: premium 3D character animation, Pixar-level polish. The character is made of glossy pearlescent white and electric-blue (#1A69F0) translucent petal-like shells swirling around a round dark-navy glass visor face. The eyes are soft glowing white shapes on the visor (normally two vertical rounded pills; the wink is a '<' shape). Subtle subsurface scattering in the shells, soft blue rim light, gentle bloom on the eyes only. BACKGROUND: pure flat black #000000 for the whole clip — no gradient, no floor, no shadow, no particles, no environment. CAMERA: locked-off static shot, eye level, no zoom, no pan, no cuts. The character never touches the frame edges and keeps a clear margin on all sides. CONSISTENCY: the design, proportions, colors and number of shells stay exactly as in the reference image in every frame. MOTION: smooth and weighty, ease-in/ease-out, small squash-and-stretch, no jitter. AUDIO: silent, no music, no voice.\n\nAVOID: text, letters, numbers, logos, watermark, mouth, teeth, nose, human features, fingers (hands are simple rounded white mitten shapes), extra limbs, legs, face morphing, eye color change, purple or green tints, lens flare streaks, confetti, sparkles, background objects, camera shake, motion blur trails."}];
-  var vb=document.getElementById('veo');
+  var vb=$('#veo');
   function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
   P.forEach(function(p){var d=document.createElement('div');d.className='prompt';
     var rows=p.beats.map(function(x){return '<tr><td>'+x[0]+'</td><td>'+esc(x[1])+'</td></tr>';}).join('');
     d.innerHTML='<div class="hd"><b>'+p.id+'. '+esc(p.title)+'</b><span>'+esc(p.scene)+'</span></div>'+
-      '<p class="ru"><b>Что берём в ролик:</b> '+esc(p.use)+'</p>'+
-      '<p class="ru"><b>Режим и картинки:</b> '+esc(p.mode)+'</p>'+
-      '<p class="ru"><b>Кадр:</b> '+esc(p.place)+'</p>'+
+      '<p class="ru"><b>Что берём в ролик:</b> '+esc(p.use)+'</p><p class="ru"><b>Режим и картинки:</b> '+esc(p.mode)+'</p><p class="ru"><b>Кадр:</b> '+esc(p.place)+'</p>'+
       '<div class="tablewrap"><table class="roles beats"><thead><tr><th>Секунды клипа</th><th>Что делает маскот</th></tr></thead><tbody>'+rows+'</tbody></table></div>'+
-      '<details><summary>Промпт для Veo (английский)</summary><pre>'+esc(p.prompt)+'</pre></details>'+
-      '<button type="button" class="cp">Скопировать промпт</button>';
+      '<details><summary>Промпт для Veo (английский)</summary><pre>'+esc(p.prompt)+'</pre></details><button type="button" class="cp">Скопировать промпт</button>';
     vb.appendChild(d);
     var btn=d.querySelector('.cp'),pre=d.querySelector('pre');
-    btn.addEventListener('click',function(){copy(p.prompt,btn,'Скопировать промпт',pre);});
-  });
-
+    btn.addEventListener('click',function(){copy(p.prompt,btn,'Скопировать промпт',pre);});});
   function copy(txt,btn,label,node){
     var done=function(){btn.textContent='Скопировано';setTimeout(function(){btn.textContent=label;},1800);};
     function sel(){var r=document.createRange();r.selectNodeContents(node);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Текст выделен — нажмите Ctrl+C';}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(sel);}else sel();
-  }
-  var cb=document.getElementById('copy');
-  cb.addEventListener('click',function(){copy(VO.map(function(v){return v[1];}).join('\n'),cb,'Скопировать текст',ol);});
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(sel);}else sel();}
+  var cb=$('#copy'); cb.addEventListener('click',function(){copy(VO.map(function(v){return v[1];}).join('\n'),cb,'Скопировать текст',ol);});
 })();
 </script>
