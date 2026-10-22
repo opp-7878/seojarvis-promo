@@ -1,0 +1,9 @@
+node_modules/
+out/
+snaps/
+audio/mix_*.wav
+audio/music_edit.wav
+audio/sfx.wav
+audio/cues.json
+assets/fonts/GoogleSans-VF.ttf
+proto.html

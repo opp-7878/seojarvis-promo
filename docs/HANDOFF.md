@@ -1,5 +1,29 @@
 # Передача контекста: моушн-ролик SEO Jarvis
 
+## 0. Сессия 22.10.2026 — ролик v2 (визуал с нуля)
+Заказчик попросил переделать визуал по своим референсам (`refs/1-reference-videos/`) и музыке (`refs/2-music/`), сценарий и тексты оставить. Старый ролик за пример не брать.
+- **Готово:** `deliver/seojarvis-film-v2.mp4` — 30 с, 1920×1080, 60 fps, музыка + звуки, без голоса. Исходник — `film2/` (старый `film/` не трогали).
+- Раскадровка — `storyboard/film-v2.md`, разбор референсов — `refs/reference-analysis-v2.md`, процесс и оценки по кругам — `docs/process-v2.md`, текст озвучки под новый монтаж — `script/voiceover-film2.md`.
+- **Музыка:** QMIIR & Akhmedov — «HUEGO (Super Slowed)» (опознана Shazam). Редакция по тактам из 30-с превью Apple Music (`film2/audio/`). **Трек коммерческий — для публикации нужна лицензия** (лейбл Sketch Music).
+- **Шрифт:** Google Sans (OFL) — `film2/assets/fonts/`. Иконки — Lucide (ISC) — `film2/assets/icons/`.
+- **Звуки:** CC0 и Mixkit, список и лицензии — `film2/audio/sfx_candidates/SOURCES.md`. Файлы с Freesound — HQ-превью (MP3 ~16–19 кГц); для финала лучше скачать оригиналы с аккаунтом.
+- Опрос «Пара вопросов» и подтверждение email убраны (заказчик разрешил).
+
+Как пересобрать v2:
+```bash
+cd film2 && npm i
+python3 -m http.server 8766 --bind 127.0.0.1 &
+node tools/sheet.mjs snaps/x.jpg 4 0 5 10 14.7 20 28     # лист кадров
+FILM_URL=http://127.0.0.1:8766/index.html node tools/render.mjs --out out/draft.mp4 --fps 30 --scale 0.5   # черновик ~13 мин
+tools/render_all.sh 3                                     # финал 1080p60, ~1 ч на 4 ядрах
+node tools/cues.mjs && python3 tools/audio.py [--vo vo.wav]
+tools/master.sh audio/mix_novo.wav ../deliver/seojarvis-film-v2.mp4
+```
+Все тайминги — объект `T` в `film2/film.js`, такт музыки `BAR = 2.445`, дроп = `bar(6)` = 14.67 с.
+Подводный камень: headless Chromium нужен с `--use-angle=swiftshader --enable-unsafe-swiftshader` (фон — WebGL), уже прописано в скриптах.
+
+---
+
 Документ для следующей сессии Claude. Здесь всё, что было сделано в первой сессии (21–22.10.2026), почему решения приняты именно так и что делать дальше.
 
 ## 1. Задача

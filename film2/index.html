@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><title>SEO Jarvis — film v2</title>
+<style>
+@font-face { font-family: "GS"; src: url(assets/fonts/GoogleSans-sub.woff2) format("woff2"); font-weight: 400 700; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #02060f; }
+body { font-family: "GS", sans-serif; color: #fff; -webkit-font-smoothing: antialiased; font-variation-settings: "GRAD" 0; }
+#bg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+#grain { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; mix-blend-mode: overlay; opacity: .09; pointer-events: none; z-index: 50; }
+#stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
+.abs { position: absolute; left: 0; top: 0; }
+.layer { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+
+/* type */
+.hd { font-weight: 700; letter-spacing: -0.045em; line-height: 1; white-space: nowrap; }
+.w { display: inline-block; overflow: hidden; padding: .06em .02em .2em; margin: -.06em -.02em -.2em; vertical-align: top; }
+.wi { display: inline-block; will-change: auto; }
+.l { display: inline-block; }
+.muted { color: #9DB3DC; }
+.cap { font-size: 34px; font-weight: 500; letter-spacing: -0.01em; }
+
+/* glass: dark translucent body, thin light rim, layered soft shadows */
+.glass { border-radius: 36px;
+  background: linear-gradient(180deg, rgba(190,210,255,.11), rgba(16,30,66,.30) 42%, rgba(6,14,34,.46));
+  backdrop-filter: blur(34px) saturate(118%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.26), inset 0 0 0 1px rgba(255,255,255,.085),
+    0 1px 2px rgba(0,3,15,.30), 0 12px 28px -8px rgba(0,3,18,.50), 0 44px 96px -24px rgba(0,3,20,.70); }
+.inner { border-radius: 22px; background: rgba(255,255,255,.035);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07), inset 0 0 0 1px rgba(255,255,255,.075); }
+.blue { background: linear-gradient(180deg, #2B78F5, #1A69F0 55%, #1660DE);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.30), 0 1px 2px rgba(0,8,40,.35), 0 18px 40px -14px rgba(0,10,60,.75); }
+.ico { display: inline-flex; }
+.ico svg { width: 100%; height: 100%; stroke-width: 1.75; }
+
+/* report card */
+#pdf { width: 560px; height: 700px; padding: 48px; }
+.pdfbadge { width: 84px; height: 84px; border-radius: 22px; background: rgba(255,90,90,.14); color: #FF7A7A; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 1px rgba(255,120,120,.25); }
+
+/* form */
+.lbl { font-size: 28px; font-weight: 500; color: #9DB3DC; letter-spacing: -0.005em; }
+.fld { height: 96px; border-radius: 22px; display: flex; align-items: center; padding: 0 28px; gap: 22px; font-size: 36px; font-weight: 500; letter-spacing: -0.01em;
+  background: rgba(255,255,255,.04); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.13); color: #fff; }
+.fld .ico { width: 36px; height: 36px; color: #8EA6D4; }
+.caret { display: inline-block; width: 3px; background: #fff; border-radius: 2px; margin-left: 4px; }
+.btn { display: flex; align-items: center; justify-content: center; gap: 16px; color: #fff; font-weight: 600; letter-spacing: -0.015em; white-space: nowrap; }
+
+/* dashboard */
+#dash { width: 1760px; height: 1000px; border-radius: 34px; overflow: hidden;
+  background: linear-gradient(180deg, rgba(10,22,52,.70), rgba(4,10,28,.78));
+  backdrop-filter: blur(30px) saturate(115%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22), inset 0 0 0 1px rgba(255,255,255,.08), 0 30px 80px -20px rgba(0,3,20,.8), 0 80px 160px -40px rgba(0,3,20,.6); }
+.side { position: absolute; left: 0; top: 0; width: 300px; height: 1000px; background: rgba(0,4,16,.30); box-shadow: inset -1px 0 0 rgba(255,255,255,.07); }
+.mi { position: absolute; left: 22px; width: 256px; height: 56px; border-radius: 14px; display: flex; align-items: center; gap: 16px; padding: 0 18px; font-size: 23px; color: #A9BAD9; }
+.mi .ico { width: 26px; height: 26px; }
+.mi.on { color: #6FA3FF; background: rgba(26,105,240,.14); box-shadow: inset 0 0 0 1.5px rgba(70,135,255,.45); }
+.dc { position: absolute; border-radius: 22px; background: rgba(255,255,255,.035); box-shadow: inset 0 1px 0 rgba(255,255,255,.07), inset 0 0 0 1px rgba(255,255,255,.08); }
+.dcl { font-size: 21px; color: #8FA3C8; font-weight: 500; }
+.dcv { font-size: 64px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+.dcd { font-size: 19px; color: #8FA3C8; display: flex; align-items: center; gap: 10px; }
+.dot { width: 10px; height: 10px; border-radius: 5px; display: inline-block; }
+.tab { position: absolute; height: 52px; border-radius: 13px; display: flex; align-items: center; padding: 0 22px; font-size: 21px; color: #B9C7E2; font-weight: 500; }
+.tab.on { background: #1A69F0; color: #fff; }
+.pill { display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: 600; }
+.tbl { font-size: 19px; }
+.tr { position: absolute; left: 26px; right: 26px; height: 52px; display: flex; align-items: center; box-shadow: inset 0 -1px 0 rgba(255,255,255,.06); }
+.tr .q { flex: 1; font-weight: 600; color: #E6EDFA; }
+.tr .p { width: 110px; } .tr .d { width: 100px; color: #46D388; font-weight: 600; } .tr .f { width: 80px; color: #8FA3C8; }
+.pos { min-width: 44px; height: 34px; padding: 0 10px; border-radius: 10px; background: rgba(255,255,255,.08); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* odometer */
+.odo { display: inline-flex; line-height: 1; font-variant-numeric: tabular-nums; }
+.odo .col { display: inline-block; overflow: hidden; height: 1em; position: relative; }
+.odo .strip { display: flex; flex-direction: column; }
+.odo .strip span { height: 1em; display: block; text-align: center; }
+
+/* hero card in the dashboard sequence */
+.face { position: absolute; inset: 0; border-radius: 40px; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; }
+
+#cursor { position: absolute; left: 0; top: 0; width: 46px; height: 46px; z-index: 40; filter: drop-shadow(0 6px 10px rgba(0,0,0,.45)) drop-shadow(0 1px 1px rgba(0,0,0,.4)); }
+</style>
+</head>
+<body>
+<canvas id="bg" width="960" height="540"></canvas>
+<div id="stage"></div>
+<canvas id="grain" width="1920" height="1080"></canvas>
+<script type="module" src="film.js"></script>
+</body></html>
