@@ -5,7 +5,7 @@ import fs from 'fs';
 const [out, scaleArg, ...ts] = process.argv.slice(2);
 const scale = +scaleArg || 0.5;
 fs.mkdirSync(out, { recursive: true });
-const exe = process.env.CHROME || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
+const exe = process.env.CHROME || '/opt/pw-browsers/chromium-1243/chrome-linux64/chrome';
 const b = await chromium.launch({ executablePath: exe, args: ['--no-sandbox', '--font-render-hinting=none'] });
 const p = await b.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: scale });
 p.on('pageerror', e => console.error('PAGEERROR', e.message));

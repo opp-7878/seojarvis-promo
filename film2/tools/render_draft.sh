@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 FPS=${1:-30}; SCALE=${2:-1}; SUB=${3:-1}; OUT=${4:-out/draft.mp4}
 mkdir -p out
 DUR=$(node -e "
-const {chromium}=require('playwright');(async()=>{const b=await chromium.launch({executablePath:process.env.CHROME||'/opt/pw-browsers/chromium-1194/chrome-linux/chrome',args:['--no-sandbox']});
+const {chromium}=require('playwright');(async()=>{const b=await chromium.launch({executablePath:process.env.CHROME||'/opt/pw-browsers/chromium-1243/chrome-linux64/chrome',args:['--no-sandbox']});
 const p=await b.newPage();await p.goto('http://127.0.0.1:8765/film2/index.html');await p.waitForFunction(()=>window.READY===true);console.log(await p.evaluate(()=>DURATION));await b.close();})()")
 N=4; STEP=$(python3 -c "print($DUR/$N)")
 for i in $(seq 0 $((N-1))); do

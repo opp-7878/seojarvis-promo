@@ -5,7 +5,7 @@ import { spawn } from 'child_process';
 const A = Object.fromEntries(process.argv.slice(2).reduce((a, v, i, arr) => (v.startsWith('--') && a.push([v.slice(2), arr[i + 1]]), a), []));
 const fps = +(A.fps || 30), scale = +(A.scale || 0.5), sub = +(A.sub || 1), from = +(A.from || 0), to = +(A.to || 30);
 const W = Math.round(1920 * scale), H = Math.round(1080 * scale);
-const exe = process.env.CHROME || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
+const exe = process.env.CHROME || '/opt/pw-browsers/chromium-1243/chrome-linux64/chrome';
 const b = await chromium.launch({ executablePath: exe, args: ['--no-sandbox', '--font-render-hinting=none'] });
 const p = await b.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: scale });
 p.on('pageerror', e => console.error('PAGEERROR', e.message));
