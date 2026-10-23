@@ -20,7 +20,8 @@
   const PILL_UP = 330;                             // y плашки в фазе «список»
   const T_LINE0 = 0.70, T_LINE_STEP = 0.48;        // появление строк
   const T_ARC0 = 3.30, T_ARC_STEP = 0.18, T_ARC_DUR = 0.55;
-  const T_SPIN0 = 4.0, T_SPIN1 = 5.4;
+  const T_SPIN0 = 4.2, T_SPIN1 = 5.8;
+  const S = k => 0.35 * k + 0.65 * (0.5 - 0.5 * Math.cos(Math.PI * k));   // мягкий разгон кольца
   const T_FLY0 = 5.3, T_FLY_STEP = 0.15, T_FLY_DUR = 0.40;
   const T_OK = 6.30;
   const RING_R = 345, GAP = 46, CX = 960, CY = 540;
@@ -86,12 +87,15 @@
         inf.y = LINE_Y[li];
         inf.midA = inf.th0 + (inf.len * R.f / RING_R) / 2;
       });
+      // кольцо — конвейер: строки по очереди выезжают снизу (6 часов) и едут по часовой; первой идёт нижняя
+            R.phiOf = tt => TAU * S(prog(tt, T_SPIN0, T_SPIN1));       // один полный оборот по часовой
+      info.forEach((inf, i) => { inf.tb = 3.95 + 0.16 * i; });
       R.hits = info.map((_, i) => T_FLY0 + i * T_FLY_STEP + T_FLY_DUR);
     },
 
     seek(t) {
       // ---------- плашка: позиция ----------
-      const py = tween(t, [[0.30, CY], [0.75, PILL_UP], [3.30, PILL_UP], [3.80, CY]]);
+      const py = tween(t, [[0.30, CY], [0.75, PILL_UP], [3.30, PILL_UP], [3.75, CY]]);
       let ox = 0, oy = 0, sc = 1, flash = 0;
       R.hits.forEach((h, i) => {
         const b = bump(t, h - 0.08, 0.2);
@@ -149,37 +153,44 @@
       // ---------- строки ----------
       R.lines.forEach((ln, i) => {
         const ts = T_LINE0 + i * T_LINE_STEP;
-        const inArc = t >= T_ARC0 + i * T_ARC_STEP;
+        const inArc = t >= 3.30;
         ln.node.style.display = inArc ? 'none' : 'block';
         revealWords(ln.words, t - ts, { stagger: 0.06, dur: 0.5 });
         if (t < ts) ln.words.forEach(w => w.style.opacity = 0);
       });
 
-      // ---------- символы: прямая строка → дуга → оборот → в плашку ----------
-      const phi = TAU * E.inOutCubic(prog(t, T_SPIN0, T_SPIN1));
-      const ccy = py;                                         // центр кольца = центр плашки
+      // ---------- символы: колонка → вниз за кадр → выезд снизу в кольцо (конвейер) → оборот → в плашку ----------
+      const off = tween(t, [[3.30, 0], [3.75, 210, E.inOutCubic], [3.95, 650, E.inCubic]]);
+      const phi = R.phiOf(t);
+      const ccy = py;
       R.info.forEach((inf, i) => {
-        const tsA = T_ARC0 + i * T_ARC_STEP, tsF = T_FLY0 + i * T_FLY_STEP;
+        const tsF = T_FLY0 + i * T_FLY_STEP;
         const n = inf.els.length;
-        const shown = t >= tsA && t < tsF + T_FLY_DUR + 0.09;
-        inf.els.forEach((e, c) => {
+        const shown = t >= 3.30 && t < tsF + T_FLY_DUR + 0.09;
+                inf.els.forEach((e, c) => {
           if (!shown) { e.style.visibility = 'hidden'; return; }
-          const th = inf.th0 + inf.cs[c] + phi;               // угол символа
-          const baseRot = inf.th0 + inf.cs[c] - TAU + Math.PI / 2 + phi;
           let x, y, rot, s, op = 1, bl = 0;
           if (t < tsF) {
-            const k = E.inOutCubic(prog(t, tsA, tsA + T_ARC_DUR));
-            const x0 = inf.chars[c].x, y0 = inf.y;
-            const x1 = CX + RING_R * Math.cos(th), y1 = ccy + RING_R * Math.sin(th);
-            x = lerp(x0, x1, k); y = lerp(y0, y1, k);
-            rot = lerp(0, baseRot * 180 / Math.PI, k); s = lerp(1, R.f, k);
+            const kb = E.outCubic(prog(t, inf.tb, inf.tb + 0.6));
+            if (t < inf.tb) {                                   // ждёт за кадром: прямая строка уехала вниз
+              const sy = inf.y + off;
+              if (sy - 30 > 1085) { e.style.visibility = 'hidden'; return; }
+              x = inf.chars[c].x; y = sy; rot = 0; s = 1;
+            } else {
+              const th = inf.th0 + inf.cs[c] + phi;
+              const rr = RING_R * (1 + 1.1 * (1 - kb));
+              x = CX + rr * Math.cos(th); y = ccy + rr * Math.sin(th);
+              rot = (th + Math.PI / 2) * 180 / Math.PI; s = R.f;
+              op = prog(kb, 0, 0.35); bl = 6 * (1 - prog(kb, 0, 0.7));
+            }
           } else {
+            const th = inf.th0 + inf.cs[c] + phi;
             const st = 0.08 * c / n;
             const k = prog(t, tsF + st, tsF + st + 0.32);
-            const rad = RING_R * (1 - E.inCubic(k));
-            const a = th + 1.4 * k;
+            const rad = RING_R * (1 - Math.pow(k, 2.2));
+            const a = th - 1.8 * k * k * k;                    // уходим назад (против часовой): там строки уже улетели
             x = CX + rad * Math.cos(a); y = CY + rad * Math.sin(a);
-            rot = (baseRot + 1.4 * k) * 180 / Math.PI; s = R.f * lerp(1, 0.25, k);
+            rot = (a + Math.PI / 2) * 180 / Math.PI; s = R.f * lerp(1, 0.25, k);
             op = 1 - prog(k, 0.6, 1); bl = 5 * prog(k, 0.45, 1);
           }
           e.style.visibility = op <= 0.003 ? 'hidden' : 'visible';
