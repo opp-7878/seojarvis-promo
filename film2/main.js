@@ -9,6 +9,8 @@
   let TL = [];
 
   async function boot() {
+    // шрифт грузим явно (иначе fonts.ready может завершиться раньше, чем Inter понадобится, и замеры в build съедут)
+    await Promise.all([400, 500, 600, 700].map(w => document.fonts.load(`${w} 40px InterF`, 'Всё SEO Jarvis abc')));
     await document.fonts.ready;
     await Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; })));
     const stage = document.getElementById('stage');

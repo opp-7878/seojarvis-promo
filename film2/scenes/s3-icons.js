@@ -97,7 +97,7 @@
       const Cx = 960, Cy = 540;
       const qbx = Cx + s * (R.o.x - Cx), qby = Cy + s * (R.o.y - Cy);
       const qx = lerp(qbx, 960, w), qy = lerp(qby, 540, w);
-      const tx = qx - s * R.o.x, ty = qy - s * R.o.y;
+      const top = R.hr.y, tx = qx - s * R.o.x, ty = (qy - top) - s * (R.o.y - top);
       R.h.node.style.transform = (s === 1 && w === 0) ? 'none' : `translate(${tx.toFixed(3)}px,${ty.toFixed(3)}px) scale(${s.toFixed(5)})`;
       const sOf = tt => { // масштаб-только-ступени (для «живой» цели иконок)
         let v = 1; R.ic.forEach(o => { v += GROW * sstep(prog(tt, o.hit, o.hit + STEP_T)); }); return v; };

@@ -138,7 +138,7 @@
 
       // ---------- заголовок ----------
       const h = R.head;
-      revealWords(h.words, t - 2.88, { stagger: 0.055, dur: 0.5 });
+      revealWords(h.words, t - 2.85, { stagger: 0.05, dur: 0.4 });
       const hsc = t >= 3.5 ? 1 : tween(t, [[2.85, 0.82], [3.25, 1.035, E.outCubic], [3.5, 1, E.inOutCubic]]);
       h.node.style.transform = hsc === 1 ? 'none' : `scale(${hsc.toFixed(4)})`;
     },
