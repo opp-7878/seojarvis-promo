@@ -1,0 +1,82 @@
+/* Общие стили ролика v2. Сцены пишут свои стили в своих файлах (через injectCSS) с префиксом сцены. */
+@font-face { font-family: "InterF"; src: url(assets/fonts/inter-cyrillic-opsz-normal.woff2) format("woff2"); font-weight: 100 900;
+  unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
+@font-face { font-family: "InterF"; src: url(assets/fonts/inter-latin-opsz-normal.woff2) format("woff2"); font-weight: 100 900; }
+
+:root {
+  --blue: #1A69F0;      /* акцент бренда */
+  --blue2: #1AA2E6;     /* второй цвет градиента логотипа */
+  --ink: #1C2233;       /* основной текст на белом: тёмный, но не чёрный */
+  --ink2: #5A6275;      /* второстепенный текст */
+  --ink3: #8B93A5;      /* подсказки, плейсхолдеры */
+  --line: #E3E8F0;      /* рамки полей и карточек */
+  --field: #FFFFFF;
+  --card: #FFFFFF;
+  --appbg: #F6F8FB;
+  --green: #16A34A;
+  --radius: 12px;       /* радиус кнопок и полей в кабинете */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #fff; }
+body { font-family: "InterF", Inter, system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11", "ss01"; }
+
+#stage { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; }
+
+/* Фон «белый как в Gemini»: чистый центр, лёгкая серая виньетка по краям */
+#bg { position: absolute; inset: 0;
+  background: radial-gradient(ellipse 75% 80% at 50% 48%, #FFFFFF 0%, #FAFBFC 55%, #EEF0F4 100%); }
+/* Сетка из точек, малая прозрачность. Включается из main.js по времени (BG_DOTS). */
+#bg-dots { position: absolute; inset: 0; opacity: 0;
+  background-image: radial-gradient(circle, rgba(28,34,51,0.22) 1.3px, transparent 1.6px);
+  background-size: 32px 32px; background-position: 16px 16px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 85%);
+          mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 85%); }
+
+/* Корень сцены: полный кадр, прозрачный, поверх фона */
+.scene { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; display: none; }
+
+/* Курсор macOS (общий для всех сцен, см. makeCursor) */
+.cursor { position: absolute; left: 0; top: 0; width: 40px; height: 40px; pointer-events: none; z-index: 1000;
+  transform-origin: 6px 4px; will-change: transform; }
+.cursor svg { width: 40px; height: 40px; filter: drop-shadow(0 3px 5px rgba(0,0,0,0.28)); }
+.cursor-ring { position: absolute; left: 0; top: 0; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%;
+  border: 2px solid rgba(26,105,240,0.55); background: rgba(26,105,240,0.10); opacity: 0; pointer-events: none; z-index: 999; }
+
+/* Главный заголовок (сцены 2 и 3 используют его одинаково, стык без склейки) */
+.headline { position: absolute; left: 0; top: 0; width: 1920px; text-align: center; white-space: nowrap;
+  font-weight: 700; font-size: 104px; line-height: 1.08; letter-spacing: -0.035em; color: var(--ink); }
+.headline .line { display: block; }
+.headline .w { display: inline-block; will-change: transform, filter, opacity; }
+
+/* Логотип SEO Jarvis: знак + слово */
+.logo-mark { width: 120px; height: 120px; display: block; }
+.logo-word { font-weight: 700; letter-spacing: -0.03em; color: var(--ink); }
+
+/* ===== Интерфейс кабинета app.seojarvis.ru (светлая тема) ===== */
+.app-card { background: var(--card); border-radius: 24px; border: 1px solid #E8ECF2;
+  box-shadow: 0 1px 2px rgba(16,24,40,0.04), 0 24px 60px -12px rgba(16,24,40,0.14); }
+.app-h1 { font-weight: 700; font-size: 34px; line-height: 1.15; letter-spacing: -0.02em; color: #12182A; }
+.app-sub { font-size: 16px; line-height: 1.5; color: var(--ink2); }
+.app-label { font-size: 15px; font-weight: 500; color: #2A3142; margin-bottom: 8px; }
+.app-field { height: 48px; border: 1px solid #DDE2EA; border-radius: var(--radius); background: #fff;
+  display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 16px; color: #12182A; }
+.app-field .ph { color: #9AA1AF; }
+.app-field.focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(26,105,240,0.14); }
+.app-hint { font-size: 12.5px; color: #9AA1AF; margin-top: 8px; }
+.app-btn { height: 52px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-size: 17px; font-weight: 600; color: #fff;
+  background: linear-gradient(90deg, #7DB3F7 0%, #4A8DF2 45%, #1A69F0 100%); }
+.app-btn.solid { background: linear-gradient(180deg, #2C72E6 0%, #1D57C7 100%); }
+.app-btn-ghost { height: 52px; border-radius: var(--radius); border: 1px solid #DDE2EA; background: #fff;
+  display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 600; color: #12182A; }
+.app-btn-ghost.hover { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(26,105,240,0.10); }
+.caret { display: inline-block; width: 2px; height: 22px; background: var(--blue); margin-left: 1px; vertical-align: middle; }
+
+/* Плашка «Анализируем…» (стык сцен 5 → 6: кнопка превращается в эту плашку) */
+.an-pill { position: absolute; left: 960px; top: 540px; width: 400px; height: 84px; margin: -42px 0 0 -200px;
+  border-radius: 42px; display: flex; align-items: center; justify-content: center; gap: 16px;
+  background: linear-gradient(180deg, #3A86F7 0%, #1A69F0 100%); color: #fff;
+  font-size: 30px; font-weight: 600; letter-spacing: -0.01em;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.25) inset, 0 18px 50px -10px rgba(26,105,240,0.55), 0 0 90px 10px rgba(26,140,240,0.22); }

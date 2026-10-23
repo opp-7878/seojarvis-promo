@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>SEO Jarvis — ролик v2</title>
+<link rel="stylesheet" href="core.css">
+</head>
+<body>
+<div id="stage">
+  <div id="bg"></div>
+  <div id="bg-dots"></div>
+</div>
+<script src="core.js"></script>
+<script src="scenes/s1-laptop.js"></script>
+<script src="scenes/s2-logo.js"></script>
+<script src="scenes/s3-icons.js"></script>
+<script src="scenes/s4-register.js"></script>
+<script src="scenes/s5-addsite.js"></script>
+<script src="scenes/s6-analyzing.js"></script>
+<script src="main.js"></script>
+<script>
+  // предпросмотр в браузере: ?play=1 — проигрывание в реальном времени
+  if (new URLSearchParams(location.search).get('play')) {
+    const go = () => { if (!window.READY) return requestAnimationFrame(go); const t0 = performance.now();
+      const f = () => { const t = (performance.now() - t0) / 1000; seek(t % DURATION); requestAnimationFrame(f); }; f(); };
+    go();
+  }
+</script>
+</body>
+</html>
