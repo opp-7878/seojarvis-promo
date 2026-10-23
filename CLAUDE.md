@@ -3,7 +3,7 @@
 Перед любой работой прочитай `docs/HANDOFF.md`: там вся история, решения и следующие шаги.
 
 Коротко:
-- **Сейчас главное — ролик v2 по сценарию заказчика**: `film2/`, `storyboard/v2-client-scenario.md`, черновик `deliver/v2/`.
+- **Сейчас главное — ролик v2 по сценарию заказчика**: `film2/`, `storyboard/v2-client-scenario.md`, черновик `deliver/v2/`. **Следующий шаг — правки заказчика: `storyboard/v2-feedback-1.md`.**
 - Готово превью 30 с без голоса: `deliver/seojarvis-preview-v1-music.mp4`. Исходник — `film/` (HTML, кадр = `seek(t)`, рендер Playwright + ffmpeg).
 - Как делалось и что правили, со скриншотами: `docs/process/README.md`.
 - Следующие шаги: музыка заказчика из `refs/2-music/`, разбор его референсов из `refs/1-reference-videos/`, озвучка ElevenLabs (текст в `script/voiceover-preview-v2-FINAL.md`), потом полный ролик 60–90 с.
