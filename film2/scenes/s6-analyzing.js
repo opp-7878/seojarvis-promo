@@ -7,7 +7,7 @@
 .s6 .s6-sp { position: relative; width: 30px; height: 30px; flex: none; }
 .s6 .s6-sp svg { position: absolute; left: 0; top: 0; width: 30px; height: 30px; overflow: visible; }
 .s6 .s6-tx { position: relative; display: grid; white-space: nowrap; }
-.s6 .s6-tx > span { grid-area: 1 / 1; display: block; will-change: transform, filter, opacity; }
+.s6 .s6-tx > span { grid-area: 1 / 1; justify-self: start; display: block; will-change: transform, filter, opacity; }
 .s6 .s6-line { position: absolute; left: 0; width: 1920px; height: 60px; line-height: 60px; text-align: center; white-space: nowrap;
   font-weight: 600; font-size: 44px; letter-spacing: -0.01em; color: var(--ink); }
 .s6 .s6-line .w { display: inline-block; will-change: transform, filter, opacity; }

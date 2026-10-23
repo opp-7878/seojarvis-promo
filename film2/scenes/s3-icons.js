@@ -57,7 +57,7 @@
       rg.setStart(tn, 2); rg.setEnd(tn, 3);
       const r = rg.getBoundingClientRect();
       const fs = 104, base = r.top + 0.969 * fs;            // базовая линия Inter
-      R.o = { x: r.left + (r.width + 0.035 * fs) / 2, y: base - 0.546 * fs / 2 };
+      R.o = { x: r.left + (r.width + 0.035 * fs) / 2, y: base - 0.546 * fs / 2 - 2.1 };
       R.hr = rectOf(R.h.node);
       R.ic = ICONS.map((d, i) => {
         const e = el('div', 'ic', root);

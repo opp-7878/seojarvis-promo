@@ -143,10 +143,10 @@
       // ---------- поле региона и меню ----------
       const fR = prog(t, 3.0, 3.12) * (1 - prog(t, 3.60, 3.75));
       setFocus(fR, R.fr);
-      const open = E.outCubic(prog(t, 3.0, 3.2)), close = prog(t, 3.55, 3.70);
-      const menuOp = open * (1 - close);
+      const open = E.outCubic(prog(t, 3.0, 3.2)), close = prog(t, 3.55, 3.63);
+      const menuOp = open * (1 - E.outExpo(prog(t, 3.55, 3.60)));
       R.menu.style.opacity = menuOp.toFixed(3);
-      R.menu.style.transform = `scaleY(${(lerp(0.92, 1, open) * lerp(1, 0.96, close)).toFixed(4)})`;
+      R.menu.style.transform = `scaleY(${(lerp(0.92, 1, open) * lerp(1, 0.9, E.inCubic(close))).toFixed(4)})`;
       R.menu.style.visibility = menuOp > 0.001 ? 'visible' : 'hidden';
       const rot = E.outCubic(prog(t, 3.0, 3.22)) * (1 - E.outCubic(prog(t, 3.55, 3.75)));
       R.chev.style.transform = `rotate(${(180 * rot).toFixed(1)}deg)`;
@@ -159,7 +159,7 @@
       const A = sc(1.3, R.rFa.cx + 120, R.rFa.cy);
       const Rg = sc(2.9, R.rFr.cx + 120, R.rFr.cy);
       const I1 = sc(3.4, R.rMi[1].cx + 60, R.rMi[1].cy);
-      const B = sc(4.3, R.rBtn.cx + 60, R.rBtn.cy);
+      const B = sc(4.3, R.rBtn.cx + 250, R.rBtn.cy - 16);
       const cp = path2(t, [
         [1.05, A.x + 260, A.y + 170], [1.30, A.x, A.y],
         [1.55, A.x, A.y], [2.05, A.x + 130, A.y + 90],

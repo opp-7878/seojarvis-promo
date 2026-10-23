@@ -69,18 +69,18 @@
   // камера
   const FIELD = { cx: 1160.4, cy: 168 + 0 };   // центр адресной строки во внутренних координатах (48 меню + 84 вкладки + 42)
   const addrW = wx(1160.4), addrH = wy(48 + 84 + 42);
-  const camA = { x: 960, y: 540, s: 1 };
-  const camB = { x: addrW, y: addrH, s: 2.05 };
-  const camC = { x: wx(1160.4), y: wy(740), s: 2.7 };
+  const camA = { x: 960, y: 540, s: 1, fy: 540 };
+  const camB = { x: addrW, y: addrH, s: 2.65, fy: 255 };
+  const camC = { x: wx(1160.4), y: wy(740), s: 2.7, fy: 540 };
   function camAt(t) {
     const a = E.inOutCubic(prog(t, 0.6, 1.6));
     const kk = prog(t, 3.4, 4.7);
     const b = 0.5 * E.inExpo(kk) + 0.5 * E.inOutQuart(kk);
     const lg = (p, q, e) => p * Math.pow(q / p, e);
-    let x, y, s;
-    if (t < 3.4) { x = lerp(camA.x, camB.x, a); y = lerp(camA.y, camB.y, a); s = lg(camA.s, camB.s, a); }
-    else { x = lerp(camB.x, camC.x, b); y = lerp(camB.y, camC.y, b); s = lg(camB.s, camC.s, b); }
-    return { x, y, s, tx: 960 - s * x, ty: 540 - s * y };
+    let x, y, s, fy;
+    if (t < 3.4) { x = lerp(camA.x, camB.x, a); y = lerp(camA.y, camB.y, a); s = lg(camA.s, camB.s, a); fy = lerp(camA.fy, camB.fy, a); }
+    else { x = lerp(camB.x, camC.x, b); y = lerp(camB.y, camC.y, b); s = lg(camB.s, camC.s, b); fy = lerp(camB.fy, camC.fy, b); }
+    return { x, y, s, tx: 960 - s * x, ty: fy - s * y };
   }
 
   const mix = (c1, c2, f) => c1.map((v, i) => Math.round(lerp(v, c2[i], f)));
@@ -100,6 +100,7 @@
       const scr = el('div', 'scr', lap);
       scr.style.cssText += `left:${SX}px;top:${SY}px;width:${SW}px;height:${SH}px;border-radius:${S.r + 1}px ${S.r + 1}px 0 0;`;
       const inn = el('div', 'scr-in', scr);
+      const edge = el('div', 'abs', scr); edge.style.cssText = `left:0;top:0;width:100%;height:100%;border-radius:inherit;box-shadow:inset 0 0 0 2.6px #060606;z-index:9;`;
       // чуть шире, чем экран PNG, чтобы запас в 1px был залит
       inn.style.left = '0px'; inn.style.top = '0px'; inn.style.width = (SW * 2) + 'px'; inn.style.height = (SH * 2) + 'px';
       el('div', 'scr-fill', inn);
@@ -187,7 +188,7 @@
       R.ntp.style.opacity = (1 - E.inOutCubic(prog(t, 3.1, 3.4))).toFixed(3);
       // курсор: траектория в кадре под финальную камеру
       const cb = camAt(1.8);
-      const tx = cb.tx + cb.s * wx(760), ty = cb.ty + cb.s * addrH;
+      const tx = cb.tx + cb.s * wx(1100), ty = cb.ty + cb.s * addrH;
       const p = path2(t, [[1.45, tx + 560, ty + 520], [1.74, tx, ty, E.outCubic]], E.outCubic);
       const co = prog(t, 1.45, 1.6) * (1 - prog(t, 2.9, 3.2));
       R.cursor.set(p.x, p.y, { press: bump(t, 1.75, 0.18), opacity: co, ring: prog(t, 1.75, 2.1) });
